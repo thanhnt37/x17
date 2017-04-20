@@ -37,12 +37,12 @@ class LocaleHelper implements LocaleHelperInterface
 
     public function getLocale()
     {
-        $pieces = explode('.', \Request::getHost());
         $locale = null;
-        $availableDomains = config('locale.domains', []);
 
-        if (in_array(strtolower($pieces[0]), $availableDomains)) {
-            $locale = strtolower($pieces[0]);
+        if ( config('locale.isSubdomainEnabled') ) {
+            $locale = $this->getLocaleSubDomain();
+        } else {
+            $locale = strtolower(\Request::get('locale',''));
         }
 
         if (empty($locale)) {
@@ -83,7 +83,7 @@ class LocaleHelper implements LocaleHelperInterface
 
     public function getEnableLocales()
     {
-        return array_where(config('locale.languages'), function ($key, $value) {
+        return array_where(config('locale.languages'), function ($value, $key) {
             return $value['status'] == true;
         });
     }
@@ -113,5 +113,33 @@ class LocaleHelper implements LocaleHelperInterface
         }
 
         return config('locale.default');
+    }
+
+    /**
+     * Get link for change locale.
+     *
+     * @param $code
+     * @return string
+     * @throws \Exception
+     */
+    public function getCurrentUrlWithLocaleCode($code)
+    {
+        $availableDomains = config('locale.domains', []);
+//        if (!isset($availableDomains[$code])) {
+//            throw new \Exception("Code $code is not supported.");
+//        }
+        $locale = $this->getLocale();
+        $currentUrl = \Request::fullUrl();
+
+        if ( config('locale.isSubdomainEnabled') ) {
+            return str_replace($availableDomains[ $locale ], $availableDomains[ $code ], $currentUrl);
+        } else {
+            $urlFragments = parse_url($currentUrl);
+            parse_str(array_get($urlFragments, 'query',''), $queryParams);
+            $queryParams['locale'] = $code;
+            $urlFragments['query'] = http_build_query($queryParams);
+
+            return http_build_url($currentUrl, $urlFragments);
+        }
     }
 }

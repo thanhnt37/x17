@@ -1,8 +1,8 @@
 # Laravel Boilerplate
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/takaaki-mizuno/laravel-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/takaaki-mizuno/laravel-boilerplate/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thanhnt37/laravel-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thanhnt37/laravel-boilerplate/?branch=master)
 
-[![CircleCI](https://circleci.com/gh/takaaki-mizuno/laravel-boilerplate.svg?style=svg)](https://circleci.com/gh/takaaki-mizuno/laravel-boilerplate)
+[![CircleCI](https://circleci.com/gh/thanhnt37/laravel-boilerplate.svg?style=svg)](https://circleci.com/gh/thanhnt37/laravel-boilerplate)
 
 This is starter application template for Laravel.
 Any suggestions, feedback, or push requests are really welcome.
@@ -11,7 +11,7 @@ Any suggestions, feedback, or push requests are really welcome.
 
 First, you can clone this repository.
 
-`git clone git@github.com:takaaki-mizuno/laravel-boilerplate.git`
+`git clone git@github.com:thanhnt37/laravel-boilerplate.git`
 
 Then, change the directory name to your own project name.
 
@@ -24,7 +24,7 @@ Create your own repository on GitHub.And you can change origin url to your own r
 
 And after that, you can add this boilerplate remote repository as another remote url.
 
-`git remote add boilerplate git@github.com:takaaki-mizuno/laravel-boilerplate.git`
+`git remote add boilerplate git@github.com:thanhnt37/laravel-boilerplate.git`
 
 With that, you can get update of boiler plate with `git pull boilerplate master` command.
 

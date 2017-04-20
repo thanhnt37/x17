@@ -15,14 +15,15 @@ class UserService extends AuthenticatableService implements UserServiceInterface
     protected $resetEmailTemplate = 'emails.user.reset_password';
 
     public function __construct(
-        UserRepositoryInterface $userRepository,
-        UserPasswordResetRepositoryInterface $userPasswordResetRepository
-    ) {
-        $this->authenticatableRepository = $userRepository;
+        UserRepositoryInterface                 $userRepository,
+        UserPasswordResetRepositoryInterface    $userPasswordResetRepository
+    )
+    {
+        $this->authenticatableRepository    = $userRepository;
         $this->passwordResettableRepository = $userPasswordResetRepository;
     }
 
-    protected function getGuardName()
+    public function getGuardName()
     {
         return 'users';
     }

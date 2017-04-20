@@ -1,10 +1,10 @@
-<?php
-namespace Tests\Controllers\Admin;
+<?php  namespace Tests\Controllers\Admin;
 
 use Tests\TestCase;
 
 class ImageControllerTest extends TestCase
 {
+
     protected $useDatabase = true;
 
     public function testGetInstance()
@@ -62,7 +62,7 @@ class ImageControllerTest extends TestCase
 
         $this->action('PUT', 'Admin\ImageController@update', [$id], [
                 '_token' => csrf_token(),
-            ] + $image->toArray());
+            ] + $image->toFillableArray());
         $this->assertResponseStatus(302);
 
         $newImage = \App\Models\Image::find($id);
@@ -83,4 +83,5 @@ class ImageControllerTest extends TestCase
         $checkImage = \App\Models\Image::find($id);
         $this->assertNull($checkImage);
     }
+
 }

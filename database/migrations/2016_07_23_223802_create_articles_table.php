@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+use \App\Database\Migration;
 
 class CreateArticlesTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('slug')->default('');
-            $table->text('title')->nullable();
+            $table->string('title')->nullable();
 
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();
@@ -37,9 +37,7 @@ class CreateArticlesTable extends Migration
 
         });
 
-        DB::statement('ALTER TABLE articles MODIFY created_at '.'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP');
-
-        DB::statement('ALTER TABLE articles MODIFY updated_at '.'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP');
+        $this->updateTimestampDefaultValue('articles', ['updated_at'], ['created_at']);
     }
 
     /**

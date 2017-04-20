@@ -61,8 +61,6 @@ class AdminUser extends AuthenticatableBase
         'email',
         'password',
         'locale',
-        'facebook_id',
-        'facebook_token',
         'remember_token',
         'api_access_token',
         'profile_image_id',
@@ -77,6 +75,12 @@ class AdminUser extends AuthenticatableBase
     protected $hidden = ['password', 'remember_token', 'facebook_token'];
 
     protected $dates = ['deleted_at'];
+
+    public static function boot()
+    {
+        parent::boot();
+        parent::observe(new \App\Observers\AdminUserObserver);
+    }
 
     // Relation
 

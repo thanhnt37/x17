@@ -30,6 +30,7 @@ class ModelMakeCommand extends GeneratorCommandBase
     protected function generate($name)
     {
         $this->generateModel($name);
+        $this->generateObserver($name);
         $this->generatePresenter($name);
         $this->addModelFactory($name);
         $this->generateUnitTest($name);
@@ -60,29 +61,17 @@ class ModelMakeCommand extends GeneratorCommandBase
         $fillables = count($columns) > 0 ? "'".implode("',".PHP_EOL."        '", $columns)."'," : '';
         $this->replaceTemplateVariable($stub, 'FILLABLES', $fillables);
 
-        $api = count($columns) > 0 ? implode(','.PHP_EOL.'            ', array_map(function ($column) {
+        $api = count($columns) > 0 ? implode(','.PHP_EOL.'            ', array_map(function($column) {
                 return "'".$column."'".' => $this->'.$column;
             }, $columns)).',' : '';
         $this->replaceTemplateVariable($stub, 'API', $api);
 
+        $relations = $this->detectRelations($name);
+        $this->replaceTemplateVariable($stub, 'RELATIONS', $relations);
+
         $columns = $this->getDateTimeColumns($tableName);
         $datetimes = count($columns) > 0 ? "'".implode("','", $columns)."'" : '';
         $this->replaceTemplateVariable($stub, 'DATETIMES', $datetimes);
-
-        $relations = "";
-        foreach ($columns as $column) {
-            if (preg_match('/^(.*_image)_id$/', $column, $matches)) {
-                $key = $matches[1];
-                $relationName = \StringHelper::snake2Camel($key);
-                $relations .= '    public function '.$relationName.'()'.PHP_EOL.'    {'.PHP_EOL.'        return $this->hasOne(\App\Models\Image::class, \'id\', \''.$column.'\');'.PHP_EOL.'    }'.PHP_EOL.PHP_EOL;
-            } elseif (preg_match('/^(.*)_id$/', $column, $matches)) {
-                $key = $matches[1];
-                $relationName = \StringHelper::snake2Camel($key);
-                $relatedModelName = ucfirst($relationName);
-                $relations .= '    public function '.$relationName.'()'.PHP_EOL.'    {'.PHP_EOL.'        return $this->belongsTo(\App\Models\\'.$relatedModelName.'::class, \''.$column.'\', \'id\');'.PHP_EOL.'    }'.PHP_EOL.PHP_EOL;
-            }
-        }
-        $this->replaceTemplateVariable($stub, 'RELATIONS', $relations);
 
         $hasSoftDelete = $this->hasSoftDeleteColumn($tableName);
         $this->replaceTemplateVariable($stub, 'SOFT_DELETE_CLASS_USE',
@@ -113,33 +102,6 @@ class ModelMakeCommand extends GeneratorCommandBase
         return __DIR__.'/stubs/model.stub';
     }
 
-    /**
-     * @param  string $name
-     * @return string
-     */
-    protected function getTableName($name)
-    {
-        $options = $this->option();
-        if (array_key_exists('name', $options)) {
-            return $optionName = $this->option('name');
-        }
-
-        $className = $this->getClassName($name);
-
-        $name = \StringHelper::pluralize(\StringHelper::camel2Snake($className));
-        $columns = $this->getTableColumns($name);
-        if (count($columns)) {
-            return $name;
-        }
-
-        $name = \StringHelper::singularize(\StringHelper::camel2Snake($className));
-        $columns = $this->getTableColumns($name);
-        if (count($columns)) {
-            return $name;
-        }
-
-        return \StringHelper::pluralize(\StringHelper::camel2Snake($className));
-    }
 
     /**
      * Get the default namespace for the class.
@@ -239,37 +201,29 @@ class ModelMakeCommand extends GeneratorCommandBase
     }
 
     /**
-     * @param string $tableName
-     * @param bool   $removeDefaultCoulmn
-     *
-     * @return \Doctrine\DBAL\Schema\Column[]
+     * @param  string $name
+     * @return bool
      */
-    protected function getTableColumns($tableName, $removeDefaultCoulmn = true)
+    protected function generateObserver($name)
     {
-        $hasDoctrine = interface_exists('Doctrine\DBAL\Driver');
-        if (!$hasDoctrine) {
-            return [];
+        $className = $this->getClassName($name);
+        $tableName = $this->getTableName($name);
+
+        $path = $this->getObserverPath($name);
+        if ($this->alreadyExists($path)) {
+            $this->error($path.' already exists.');
+
+            return false;
         }
 
-        $platform = \DB::getDoctrineConnection()->getDatabasePlatform();
-        $platform->registerDoctrineTypeMapping('json', 'string');
+        $stub = $this->files->get($this->getStubForObserver());
 
-        $schema = \DB::getDoctrineSchemaManager();
+        $this->replaceTemplateVariable($stub, 'CLASS', $className);
+        $this->replaceTemplateVariable($stub, 'TABLE', $tableName);
 
-        $columns = $schema->listTableColumns($tableName);
+        $this->files->put($path, $stub);
 
-        if (!$removeDefaultCoulmn) {
-            return $columns;
-        }
-
-        $ret = [];
-        foreach ($columns as $column) {
-            if (!in_array($column->getName(), ['created_at', 'updated_at', 'deleted_at'])) {
-                $ret[] = $column;
-            }
-        }
-
-        return $ret;
+        return true;
     }
 
     /**
@@ -293,7 +247,7 @@ class ModelMakeCommand extends GeneratorCommandBase
         $columns = $this->getFillableColumns($tableName);
         $multilingualKeys = [];
         foreach ($columns as $column) {
-            if (preg_match('/^(.*)_en$/', $column, $matches)) {
+            if (preg_match('/^(.*)_gb$/', $column, $matches)) {
                 $multilingualKeys[] = $matches[1];
             }
         }
@@ -312,9 +266,24 @@ class ModelMakeCommand extends GeneratorCommandBase
 
         $this->replaceTemplateVariable($stub, 'CLASS', $className);
 
+        $relation = $this->generateRelationFunctions($name);
+        $this->replaceTemplateVariable($stub, 'RELATION_CLASS', $relation['class']);
+        $this->replaceTemplateVariable($stub, 'RELATION_FUNCTION', $relation['functions']);
+
         $this->files->put($path, $stub);
 
         return true;
+    }
+
+    /**
+     * @param  string $name
+     * @return string
+     */
+    protected function getObserverPath($name)
+    {
+        $className = $this->getClassName($name);
+
+        return $this->laravel['path'].'/Observers/'.$className.'Observer.php';
     }
 
     /**
@@ -331,9 +300,83 @@ class ModelMakeCommand extends GeneratorCommandBase
     /**
      * @return string
      */
+    protected function getStubForObserver()
+    {
+        return __DIR__.'/stubs/observer.stub';
+    }
+
+    /**
+     * @return string
+     */
     protected function getStubForPresenter()
     {
         return __DIR__.'/stubs/presenter.stub';
+    }
+
+
+    /**
+     * @return array[ functions, class ]
+     * */
+    protected function generateRelationFunctions($name)
+    {
+        $tableName = $this->getTableName($name);
+        $columns = $this->getTableColumns($tableName);
+
+        $result['class'] = "";
+        $result['functions'] = "";
+
+        foreach ($columns as $column) {
+            $columnName = $column->getName();
+            if (preg_match('/^(.*_image)_id$/', $columnName, $matches)) {
+                $relationName = \StringHelper::snake2Camel($matches[1]);
+
+                $result['functions'] .= '/**' . PHP_EOL . '    ' .
+                    '* @return \App\Models\Image' . PHP_EOL . '    ' .
+                    '* */' . PHP_EOL . '    ' .
+                    'public function ' . $relationName . '()' . PHP_EOL . '    ' .
+                    '{' . PHP_EOL . '        ' .
+                        '$cached = Redis::hget(\CacheHelper::generateCacheKey(\'hash_images\'), $this->entity->' . $columnName . ');' . PHP_EOL . '        ' .
+                            'if( $cached ) {' . PHP_EOL . '            ' .
+                            '$image = new Image(json_decode($cached, true));' . PHP_EOL . '            ' .
+                            '$image[\'id\'] = json_decode($cached, true)[\'id\'];' . PHP_EOL . '            ' .
+                            'return $image;' . PHP_EOL . '        ' .
+                        '} else {' . PHP_EOL . '            ' .
+                            '$image = $this->entity->' . $relationName . ';' . PHP_EOL . '            ' .
+                            'Redis::hsetnx(\CacheHelper::generateCacheKey(\'hash_images\'), $this->entity->' . $columnName . ', $image);' . PHP_EOL . '            ' .
+                            'return $image;' . PHP_EOL . '        ' .
+                        '}' . PHP_EOL . '    ' .
+                    '}' . PHP_EOL . PHP_EOL . '    ';
+
+                $result['class'] .= 'use App\Models\Image;' . PHP_EOL;
+            } elseif (preg_match('/^(.*)_id$/', $columnName, $matches)) {
+                $relationName = \StringHelper::snake2Camel($matches[1]);
+                $className = ucfirst($relationName);
+                if (!$this->getPath($className)) {
+                    continue;
+                }
+
+                $result['functions'] .= '/**' . PHP_EOL . '    ' .
+                    '* @return \App\Models\\' . $className . PHP_EOL . '    ' .
+                    '* */' . PHP_EOL . '    ' .
+                    'public function ' . $relationName . '()' . PHP_EOL . '    ' .
+                    '{' . PHP_EOL . '        ' .
+                        '$cached = Redis::hget(\CacheHelper::generateCacheKey(\'hash_' . $this->getTableName($className) . '\'), $this->entity->' . $columnName . ');' . PHP_EOL . '        ' .
+                            'if( $cached ) {' . PHP_EOL . '            ' .
+                            '$' . $relationName . ' = new ' . $className . '(json_decode($cached, true));' . PHP_EOL . '            ' .
+                            '$' . $relationName . '[\'id\'] = json_decode($cached, true)[\'id\'];' . PHP_EOL . '            ' .
+                            'return $' . $relationName . ';' . PHP_EOL . '        ' .
+                        '} else {' . PHP_EOL . '            ' .
+                            '$' . $relationName . ' = $this->entity->' . $relationName . ';' . PHP_EOL . '            ' .
+                            'Redis::hsetnx(\CacheHelper::generateCacheKey(\'hash_' . $this->getTableName($className) . '\'), $this->entity->' . $columnName . ', $' . $relationName . ');' . PHP_EOL . '            ' .
+                            'return $' . $relationName . ';' . PHP_EOL . '        ' .
+                        '}' . PHP_EOL . '    ' .
+                    '}' . PHP_EOL . PHP_EOL . '    ';
+
+                $result['class'] .= 'use App\Models\\' . $className . ';' . PHP_EOL;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -427,5 +470,92 @@ class ModelMakeCommand extends GeneratorCommandBase
         return [
             ['table', '-t', InputOption::VALUE_OPTIONAL, 'Table Name', null],
         ];
+    }
+
+    protected function detectRelations($name)
+    {
+        $tableName = $this->getTableName($name);
+        $columns = $this->getTableColumns($tableName);
+
+        $relations = "";
+
+        foreach ($columns as $column) {
+            $columnName = $column->getName();
+            if (preg_match('/^(.*_image)_id$/', $columnName, $matches)) {
+                $relationName = \StringHelper::snake2Camel($matches[1]);
+                $relations .= 'public function ' . $relationName . '()' . PHP_EOL . '    {' . PHP_EOL . '        return $this->hasOne(\App\Models\Image::class, \'id\', \'' . $columnName . '\');' . PHP_EOL . '    }' . PHP_EOL . PHP_EOL . '    ';
+            } elseif (preg_match('/^(.*)_id$/', $columnName, $matches)) {
+                $relationName = \StringHelper::snake2Camel($matches[1]);
+                $className = ucfirst($relationName);
+                if (!$this->getPath($className)) {
+                    continue;
+                }
+                $relations .= 'public function ' . $relationName . '()' . PHP_EOL . '    {' . PHP_EOL . '        return $this->belongsTo(\App\Models\\' . $className . '::class, \'' . $columnName . '\', \'id\');' . PHP_EOL . '    }' . PHP_EOL . PHP_EOL . '    ';
+            }
+        }
+
+        return $relations;
+    }
+
+    /**
+     * @param  string $name
+     * @return string
+     */
+    protected function getTableName($name)
+    {
+        $options = $this->option();
+        if (array_key_exists('name', $options)) {
+            return $optionName = $this->option('name');
+        }
+
+        $className = $this->getClassName($name);
+
+        $name = \StringHelper::pluralize(\StringHelper::camel2Snake($className));
+        $columns = $this->getTableColumns($name);
+        if (count($columns)) {
+            return $name;
+        }
+
+        $name = \StringHelper::singularize(\StringHelper::camel2Snake($className));
+        $columns = $this->getTableColumns($name);
+        if (count($columns)) {
+            return $name;
+        }
+
+        return \StringHelper::pluralize(\StringHelper::camel2Snake($className));
+    }
+
+    /**
+     * @param string $tableName
+     * @param bool   $removeDefaultColumn
+     *
+     * @return \Doctrine\DBAL\Schema\Column[]
+     */
+    protected function getTableColumns($tableName, $removeDefaultColumn = true)
+    {
+        $hasDoctrine = interface_exists('Doctrine\DBAL\Driver');
+        if (!$hasDoctrine) {
+            return [];
+        }
+
+        $platform = \DB::getDoctrineConnection()->getDatabasePlatform();
+        $platform->registerDoctrineTypeMapping('json', 'string');
+
+        $schema = \DB::getDoctrineSchemaManager();
+
+        $columns = $schema->listTableColumns($tableName);
+
+        if (!$removeDefaultColumn) {
+            return $columns;
+        }
+
+        $ret = [];
+        foreach ($columns as $column) {
+            if (!in_array($column->getName(), ['created_at', 'updated_at', 'deleted_at'])) {
+                $ret[] = $column;
+            }
+        }
+
+        return $ret;
     }
 }

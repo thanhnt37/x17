@@ -30,9 +30,13 @@ class AdminUserRoleRepository extends SingleKeyModelRepository implements AdminU
 
     public function deleteByAdminUserId($id)
     {
-        $modelClass = $this->getModelClassName();
-        $modelClass::where('admin_user_id', $id)->delete();
-
+        $records = $this->getByAdminUserId($id);
+        if( count($records) ) {
+            foreach( $records as $record ) {
+                $this->delete($record);
+            }
+        }
+        
         return true;
     }
 
@@ -40,10 +44,12 @@ class AdminUserRoleRepository extends SingleKeyModelRepository implements AdminU
     {
         $this->deleteByAdminUserId($adminUserId);
         foreach ($roles as $role) {
-            $this->create([
-                'admin_user_id' => $adminUserId,
-                'role' => $role,
-            ]);
+            $this->create(
+                [
+                    'admin_user_id' => $adminUserId,
+                    'role'          => $role,
+                ]
+            );
         }
     }
 }

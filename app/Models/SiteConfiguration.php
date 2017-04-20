@@ -39,6 +39,8 @@ class SiteConfiguration extends Base
      */
     protected $table = 'site_configurations';
 
+    protected $presenter = \App\Presenters\SiteConfigurationPresenter::class;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -62,6 +64,12 @@ class SiteConfiguration extends Base
      */
     protected $hidden = [];
 
+    public static function boot()
+    {
+        parent::boot();
+        parent::observe(new \App\Observers\SiteConfigurationObserver);
+    }
+
     /*
      * API Presentation
      */
@@ -71,16 +79,6 @@ class SiteConfiguration extends Base
         return [
             'id' => $this->id,
         ];
-    }
-
-    /**
-     * @return Image|null
-     */
-    public function getOGPImage()
-    {
-        $this->load('ogpImage');
-
-        return $this->ogpImage ? $this->ogpImage : new Image();
     }
 
     // Relations

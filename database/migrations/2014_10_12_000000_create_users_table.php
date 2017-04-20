@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+use \App\Database\Migration;
 
 class CreateUsersTable extends Migration
 {
@@ -12,11 +12,15 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->default('');
             $table->string('email');
             $table->string('password', 60);
 
-            $table->string('locale')->default('');
+            $table->smallInteger('gender')->default(1);     // 1 = Male, 0 = Female
+            $table->string('telephone')->nullable()->default('');
+            $table->date('birthday')->nullable()->default(null);
+            $table->string('locale')->nullable()->default('');
+            $table->string('address')->nullable()->default('');
 
             $table->bigInteger('last_notification_id')->default(0);
 
@@ -24,14 +28,14 @@ class CreateUsersTable extends Migration
 
             $table->bigInteger('profile_image_id')->default(0);
 
+            $table->smallInteger('is_activated')->default(0);
+
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE users MODIFY created_at '.'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP');
-
-        DB::statement('ALTER TABLE users MODIFY updated_at '.'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP');
+        $this->updateTimestampDefaultValue('users', ['updated_at'], ['created_at']);
     }
 
     /**

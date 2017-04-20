@@ -23,7 +23,8 @@ class AuthenticatableService implements AuthenticatableServiceInterface
     public function __construct(
         AuthenticatableRepositoryInterface $authenticatableRepository,
         PasswordResettableRepositoryInterface $passwordResettableRepository
-    ) {
+    )
+    {
         $this->authenticatableRepository = $authenticatableRepository;
         $this->passwordResettableRepository = $passwordResettableRepository;
     }
@@ -33,7 +34,7 @@ class AuthenticatableService implements AuthenticatableServiceInterface
         /** @var \App\Models\AuthenticatableBase $user */
         $user = $this->authenticatableRepository->find($id);
         if (empty($user)) {
-            return;
+            return false;
         }
         $guard = $this->getGuard();
         $guard->login($user);
@@ -46,7 +47,7 @@ class AuthenticatableService implements AuthenticatableServiceInterface
         $rememberMe = (bool) array_get($input, 'remember_me', 0);
         $guard = $this->getGuard();
         if (!$guard->attempt(['email' => $input['email'], 'password' => $input['password']], $rememberMe, true)) {
-            return;
+            return false;
         }
 
         return $guard->user();
@@ -54,10 +55,15 @@ class AuthenticatableService implements AuthenticatableServiceInterface
 
     public function signUp($input)
     {
+        $existingUser = $this->authenticatableRepository->findByEmail(array_get($input, 'email'));
+        if ( !empty($existingUser) ) {
+            return null;
+        }
+
         /** @var \App\Models\AuthenticatableBase $user */
         $user = $this->authenticatableRepository->create($input);
         if (empty($user)) {
-            return;
+            return false;
         }
         $guard = $this->getGuard();
         $guard->login($user);
@@ -114,7 +120,7 @@ class AuthenticatableService implements AuthenticatableServiceInterface
     {
         $user = $this->authenticatableRepository->findByEmail($email);
         if (empty($user)) {
-            return;
+            return false;
         }
 
         $token = $this->passwordResettableRepository->create($user);
@@ -122,17 +128,27 @@ class AuthenticatableService implements AuthenticatableServiceInterface
         /** @var \App\Services\MailServiceInterface $mailService */
         $mailService = \App::make('App\Services\MailServiceInterface');
 
-        $mailService->sendMail($this->resetEmailTitle, config('mail.from'),
-            ['name' => '', 'address' => $user->email], $this->resetEmailTemplate, [
-                'token' => $token,
-            ]);
+        $mailService->sendMail(
+            $this->resetEmailTitle,
+            config('mail.from'),
+            [
+                'name' => '',
+                'address' => $user->email
+            ],
+            $this->resetEmailTemplate,
+            [
+                'token' => $token
+            ]
+        );
+
+        return true;
     }
 
     public function getUserByPasswordResetToken($token)
     {
         $email = $this->passwordResettableRepository->findEmailByToken($token);
         if (empty($email)) {
-            return;
+            return null;
         }
 
         return $this->authenticatableRepository->findByEmail($email);
@@ -166,7 +182,7 @@ class AuthenticatableService implements AuthenticatableServiceInterface
         /** @var \App\Models\AuthenticatableBase $user */
         $user = $this->signIn($input);
         if (empty($user)) {
-            return;
+            return null;
         }
 
         return $this->setAPIAccessToken($user);
@@ -177,7 +193,7 @@ class AuthenticatableService implements AuthenticatableServiceInterface
         /** @var \App\Models\AuthenticatableBase $user */
         $user = $this->signUp($input);
         if (empty($user)) {
-            return;
+            return null;
         }
 
         return $this->setAPIAccessToken($user);
@@ -194,7 +210,7 @@ class AuthenticatableService implements AuthenticatableServiceInterface
     /**
      * @return string
      */
-    protected function getGuardName()
+    public function getGuardName()
     {
         return '';
     }
