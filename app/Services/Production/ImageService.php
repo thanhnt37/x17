@@ -9,7 +9,7 @@ class ImageService extends BaseService implements ImageServiceInterface
     /**
      * resize image as config
      *
-     * @params  object  $image {path, mimeType, size ...}
+     * @params  string  $path path to tmp upload image
      *          array   $config[width, height]
      *          string  $fileUploadedPath like public/static/common/images/products/product1.png
      *

@@ -62,6 +62,8 @@ return [
             ],
             'size'        => [500, 500],
             'thumbnails'  => [
+                [100, 100],
+                [200, 200]
             ],
             'seed_prefix' => 'user_profile',
             'format'      => 'png',

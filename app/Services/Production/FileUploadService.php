@@ -242,12 +242,15 @@ class FileUploadService extends BaseService implements FileUploadServiceInterfac
         if( env('LOCAL_STORAGE') ) {
             $input['url']      = $fileName;
             $input['is_local'] = true;
+
+            foreach (array_get(config('file.categories.' . $configKey), 'thumbnails', []) as $thumbnail) {
+                $thumbnailKey = $this->getThumbnailKeyFromKey($fileName, $thumbnail);
+                $this->imageService->resizeImage($path, $thumbnail, $localPath . $thumbnailKey);
+            }
         } else {
             $bucket = $this->decideBucket(array_get(config('file.categories.' . $configKey), 'buckets', ''));
             $region = array_get(config('file.categories.' . $configKey), 'region', 'ap-northeast-1');
             $url = $this->uploadToS3($fileUploadedPath, $region, $bucket, $fileName, $mediaType);
-
-            unlink($fileUploadedPath);
 
             $input['url']          = $url;
             $input['is_local']     = false;
@@ -255,6 +258,12 @@ class FileUploadService extends BaseService implements FileUploadServiceInterfac
             $input['s3_bucket']    = $bucket;
             $input['s3_region']    = $region;
             $input['s3_extension'] = $ext;
+
+            foreach (array_get(config('file.categories.' . $configKey), 'thumbnails', []) as $thumbnail) {
+                $thumbnailKey = $this->getThumbnailKeyFromKey($fileName, $thumbnail);
+                $this->imageService->resizeImage($path, $thumbnail, $localPath . $thumbnailKey);
+                $this->uploadToS3($localPath . $thumbnailKey, $region, $bucket, $thumbnailKey, $mediaType);
+            }
         }
 
         /** @var  \App\Models\Image | null $image */
