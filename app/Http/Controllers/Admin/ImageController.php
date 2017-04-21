@@ -42,7 +42,7 @@ class ImageController extends Controller {
         );
 
         return view(
-            'pages.admin.images.index',
+            'pages.admin.' . config('view.admin') . '.images.index',
             [
                 'models' => $models,
                 'count' => $count,
@@ -58,7 +58,7 @@ class ImageController extends Controller {
      */
     public function create() {
         return view(
-            'pages.admin.images.edit',
+            'pages.admin.' . config('view.admin') . '.images.edit',
             [
                 'isNew' => true,
                 'image' => $this->imageRepository->getBlankModel(),
@@ -121,7 +121,7 @@ class ImageController extends Controller {
         }
 
         return view(
-            'pages.admin.images.edit',
+            'pages.admin.' . config('view.admin') . '.images.edit',
             [
                 'isNew' => false,
                 'image' => $model,

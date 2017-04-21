@@ -53,7 +53,7 @@ class UserController extends Controller {
         );
 
         return view(
-            'pages.admin.users.index',
+            'pages.admin.' . config('view.admin') . '.users.index',
             [
                 'models'   => $models,
                 'count'    => $count,
@@ -69,7 +69,7 @@ class UserController extends Controller {
      */
     public function create() {
         return view(
-            'pages.admin.users.edit',
+            'pages.admin.' . config('view.admin') . '.users.edit',
             [
                 'isNew' => true,
                 'user'  => $this->userRepository->getBlankModel(),
@@ -145,7 +145,7 @@ class UserController extends Controller {
         }
 
         return view(
-            'pages.admin.users.edit',
+            'pages.admin.' . config('view.admin') . '.users.edit',
             [
                 'isNew' => false,
                 'user'  => $model,

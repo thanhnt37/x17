@@ -53,7 +53,7 @@ class SiteConfigurationController extends Controller {
         );
 
         return view(
-            'pages.admin.site-configurations.index',
+            'pages.admin.' . config('view.admin') . '.site-configurations.index',
             [
                 'models'   => $models,
                 'count'    => $count,
@@ -69,7 +69,7 @@ class SiteConfigurationController extends Controller {
      */
     public function create() {
         return view(
-            'pages.admin.site-configurations.edit',
+            'pages.admin.' . config('view.admin') . '.site-configurations.edit',
             [
                 'isNew'             => true,
                 'siteConfiguration' => $this->siteConfigurationRepository->getBlankModel(),
@@ -158,7 +158,7 @@ class SiteConfigurationController extends Controller {
         }
 
         return view(
-            'pages.admin.site-configurations.edit',
+            'pages.admin.' . config('view.admin') . '.site-configurations.edit',
             [
                 'isNew'             => false,
                 'siteConfiguration' => $model,

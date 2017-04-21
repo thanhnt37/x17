@@ -32,7 +32,7 @@ class MeController extends Controller
 
     public function index()
     {
-        return view('pages.admin.me.index');
+        return view('pages.admin.' . config('view.admin') . '.me.index');
     }
 
     public function update(MeUpdateRequest $request)
@@ -71,7 +71,7 @@ class MeController extends Controller
             $this->adminUserNotificationService->readUntil($adminUser, $lastNotification);
         }
 
-        return view('pages.admin.me.notifications', [
+        return view('pages.admin.' . config('view.admin') . '.me.notifications', [
             'models' => $notifications,
             'offset' => $offset,
             'limit' => $limit,

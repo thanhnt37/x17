@@ -43,7 +43,7 @@ class LogController extends Controller {
         $count = $this->logRepository->countWithFilter( $filter );
 
         return view(
-            'pages.admin.logs.index',
+            'pages.admin.' . config('view.admin') . '.logs.index',
             [
                 'logs'     => $logs,
                 'count'    => $count,

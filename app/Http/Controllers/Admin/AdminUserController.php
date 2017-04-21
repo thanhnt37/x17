@@ -62,7 +62,7 @@ class AdminUserController extends Controller
         );
 
         return view(
-            'pages.admin.admin-users.index',
+            'pages.admin.' . config('view.admin') . '.admin-users.index',
             [
                 'adminUsers' => $adminUsers,
                 'count'      => $count,
@@ -79,7 +79,7 @@ class AdminUserController extends Controller
     public function create()
     {
         return view(
-            'pages.admin.admin-users.edit',
+            'pages.admin.' . config('view.admin') . '.admin-users.edit',
             [
                 'isNew'     => true,
                 'adminUser' => $this->adminUserRepository->getBlankModel(),
@@ -167,7 +167,7 @@ class AdminUserController extends Controller
         }
 
         return view(
-            'pages.admin.admin-users.edit',
+            'pages.admin.' . config('view.admin') . '.admin-users.edit',
             [
                 'isNew'     => false,
                 'adminUser' => $adminUser,

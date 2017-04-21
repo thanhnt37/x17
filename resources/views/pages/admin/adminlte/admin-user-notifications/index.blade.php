@@ -1,4 +1,4 @@
-@extends('layouts.admin.application', ['menu' => 'admin_user_notifications'] )
+@extends('layouts.admin.' . config('view.admin') . '.application', ['menu' => 'admin_user_notifications'] )
 
 @section('metadata')
 @stop

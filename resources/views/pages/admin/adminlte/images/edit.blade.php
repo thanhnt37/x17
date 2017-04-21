@@ -1,4 +1,4 @@
-@extends('layouts.admin.application', ['menu' => 'images'] )
+@extends('layouts.admin.' . config('view.admin') . '.application', ['menu' => 'images'] )
 
 @section('metadata')
 @stop
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="form-group text-center">
-                            <img id="image-preview" style="max-width: 500px; width: 100%;" src="{!! $image->url !!}" alt="" class="margin"/>
+                            <img id="image-preview" style="max-width: 500px; width: 100%;" src="{!! $image->present()->url !!}" alt="" class="margin"/>
                         </div>
                     </div>
                     <div class="col-lg-7">

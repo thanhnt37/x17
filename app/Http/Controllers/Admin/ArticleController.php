@@ -68,7 +68,7 @@ class ArticleController extends Controller
         );
 
         return view(
-            'pages.admin.articles.index',
+            'pages.admin.' . config('view.admin') . '.articles.index',
             [
                 'models'   => $articles,
                 'count'    => $count,
@@ -85,7 +85,7 @@ class ArticleController extends Controller
     public function create()
     {
         return view(
-            'pages.admin.articles.edit',
+            'pages.admin.' . config('view.admin') . '.articles.edit',
             [
                 'isNew'   => true,
                 'article' => $this->articleRepository->getBlankModel(),
@@ -168,7 +168,7 @@ class ArticleController extends Controller
         }
 
         return view(
-            'pages.admin.articles.edit',
+            'pages.admin.' . config('view.admin') . '.articles.edit',
             [
                 'isNew'   => false,
                 'article' => $article,

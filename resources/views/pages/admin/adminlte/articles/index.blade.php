@@ -1,4 +1,4 @@
-@extends('layouts.admin.application', ['menu' => 'articles'] )
+@extends('layouts.admin.' . config('view.admin') . '.application', ['menu' => 'articles'] )
 
 @section('metadata')
 @stop
