@@ -12,4 +12,13 @@ interface CacheHelperInterface
      * @return  string
      */
     public function generateCacheKey($name);
+
+    /**
+     * Check is enabled cache & redis
+     *
+     * @params
+     *
+     * @return  boolean
+     */
+    public function cacheRedisEnabled();
 }
