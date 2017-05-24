@@ -12,16 +12,21 @@ class SiteConfigurationPresenter extends BasePresenter
      * */
     public function ogpImage()
     {
-        $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->ogp_image_id);
-        if( $cached ) {
-            $image = new Image(json_decode($cached, true));
-            $image['id'] = json_decode($cached, true)['id'];
-            return $image;
-        } else {
-            $image = $this->entity->ogpImage;
-            Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->ogp_image_id, $image);
-            return $image;
+        if( \CacheHelper::cacheRedisEnabled() ) {
+            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->ogp_image_id);
+            if( $cached ) {
+                $image = new Image(json_decode($cached, true));
+                $image['id'] = json_decode($cached, true)['id'];
+                return $image;
+            } else {
+                $image = $this->entity->ogpImage;
+                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->ogp_image_id, $image);
+                return $image;
+            }
         }
+
+        $image = $this->entity->ogpImage;
+        return $image;
     }
 
     /**
@@ -29,15 +34,20 @@ class SiteConfigurationPresenter extends BasePresenter
      * */
     public function twitterCardImage()
     {
-        $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->twitter_card_image_id);
-        if( $cached ) {
-            $image = new Image(json_decode($cached, true));
-            $image['id'] = json_decode($cached, true)['id'];
-            return $image;
-        } else {
-            $image = $this->entity->twitterCardImage;
-            Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->twitter_card_image_id, $image);
-            return $image;
+        if( \CacheHelper::cacheRedisEnabled() ) {
+            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->twitter_card_image_id);
+            if( $cached ) {
+                $image = new Image(json_decode($cached, true));
+                $image['id'] = json_decode($cached, true)['id'];
+                return $image;
+            } else {
+                $image = $this->entity->twitterCardImage;
+                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->twitter_card_image_id, $image);
+                return $image;
+            }
         }
+        
+        $image = $this->entity->twitterCardImage;
+        return $image;
     }
 }
