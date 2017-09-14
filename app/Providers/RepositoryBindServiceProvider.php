@@ -86,6 +86,20 @@ class RepositoryBindServiceProvider extends ServiceProvider {
             \App\Repositories\Eloquent\LogRepository::class
         );
 
+        $this->app->singleton(
+            \App\Repositories\OauthClientRepositoryInterface::class,
+            \App\Repositories\Eloquent\OauthClientRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\OauthAccessTokenRepositoryInterface::class,
+            \App\Repositories\Eloquent\OauthAccessTokenRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\OauthRefreshTokenRepositoryInterface::class,
+            \App\Repositories\Eloquent\OauthRefreshTokenRepository::class
+        );
         /* NEW BINDING */
     }
 }
