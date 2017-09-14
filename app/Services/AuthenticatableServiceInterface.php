@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services;
 
 interface AuthenticatableServiceInterface extends BaseServiceInterface
@@ -58,13 +57,6 @@ interface AuthenticatableServiceInterface extends BaseServiceInterface
     public function sendPasswordResetEmail($email);
 
     /**
-     * @param string $token
-     *
-     * @return null|\App\Models\AuthenticatableBase
-     */
-    public function getUserByPasswordResetToken($token);
-
-    /**
      * @param string $email
      * @param string $password
      * @param string $token
@@ -103,4 +95,11 @@ interface AuthenticatableServiceInterface extends BaseServiceInterface
      * @return string
      */
     public function getGuardName();
+
+    /**
+     * @param $request
+     *
+     * @return null
+     */
+    public function checkClient($request);
 }

@@ -1,15 +1,18 @@
 <?php
-
 namespace App\Services\Production;
 
 use App\Repositories\AuthenticatableRepositoryInterface;
 use App\Repositories\PasswordResettableRepositoryInterface;
+use App\Repositories\OauthClientRepositoryInterface;
 use App\Services\AuthenticatableServiceInterface;
 
 class AuthenticatableService implements AuthenticatableServiceInterface
 {
     /** @var \App\Repositories\AuthenticatableRepositoryInterface */
     protected $authenticatableRepository;
+
+    /** @var \App\Repositories\OauthClientRepositoryInterface */
+    protected $oauthClientRepository;
 
     /** @var  \App\Repositories\PasswordResettableRepositoryInterface */
     protected $passwordResettableRepository;
@@ -21,12 +24,14 @@ class AuthenticatableService implements AuthenticatableServiceInterface
     protected $resetEmailTemplate = '';
 
     public function __construct(
-        AuthenticatableRepositoryInterface $authenticatableRepository,
-        PasswordResettableRepositoryInterface $passwordResettableRepository
+        AuthenticatableRepositoryInterface      $authenticatableRepository,
+        PasswordResettableRepositoryInterface   $passwordResettableRepository,
+        OauthClientRepositoryInterface          $oauthClientRepository
     )
     {
-        $this->authenticatableRepository = $authenticatableRepository;
+        $this->authenticatableRepository    = $authenticatableRepository;
         $this->passwordResettableRepository = $passwordResettableRepository;
+        $this->oauthClientRepository        = $oauthClientRepository;
     }
 
     public function signInById($id)
@@ -144,26 +149,20 @@ class AuthenticatableService implements AuthenticatableServiceInterface
         return true;
     }
 
-    public function getUserByPasswordResetToken($token)
-    {
-        $email = $this->passwordResettableRepository->findEmailByToken($token);
-        if (empty($email)) {
-            return null;
-        }
-
-        return $this->authenticatableRepository->findByEmail($email);
-    }
-
     public function resetPassword($email, $password, $token)
     {
         $user = $this->authenticatableRepository->findByEmail($email);
         if (empty($user)) {
             return false;
         }
-        if (!$this->passwordResettableRepository->exists($user, $token)) {
+
+        $tokenModel = $this->passwordResettableRepository->exists($user, $token);
+
+        if (empty($tokenModel)) {
             return false;
         }
         $this->authenticatableRepository->update($user, ['password' => $password]);
+
         $this->passwordResettableRepository->delete($token);
         $this->setUser($user);
 
@@ -221,5 +220,44 @@ class AuthenticatableService implements AuthenticatableServiceInterface
     protected function getGuard()
     {
         return \Auth::guard($this->getGuardName());
+    }
+
+    public function checkClient($request)
+    {
+        $oauthClient = $this->oauthClientRepository->findByIdAndSecret(
+            $request->get('client_id'),
+            $request->get('client_secret')
+        );
+        return !empty($oauthClient);
+    }
+
+    public function sendUserPasswordResetEmail($email)
+    {
+        $user     = $this->authenticatableRepository->findByEmail($email);
+        $template = 'emails.user.reset_password';
+
+        if (empty($user)) {
+            return;
+        }
+
+        $token = $this->passwordResettableRepository->create($user);
+
+        /** @var \App\Services\MailServiceInterface $mailService */
+        $mailService = \App::make('App\Services\MailServiceInterface');
+        $mailService->sendEmailForgotPassWord($user, $token);
+    }
+
+    public function sendContactUsEmail($user)
+    {
+        $template    = 'emails.user.contact_us';
+        $mailService = \App::make('App\Services\MailServiceInterface');
+        //        $mailService->sendEmailContactUs($user);
+        $mailService->sendMail(
+            trans('user.pages.emails.title.contact_us'),
+            config('mail.from'),
+            config('mail.contact'),
+            $template,
+            ['user' => $user]
+        );
     }
 }

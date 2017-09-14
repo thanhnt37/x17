@@ -104,6 +104,11 @@ class ServiceBindServiceProvider extends ServiceProvider
             \App\Services\Production\AdminUserNotificationService::class
         );
 
+        $this->app->singleton(
+            \App\Services\APIUserServiceInterface::class,
+            \App\Services\Production\APIUserService::class
+        );
+        
         /* NEW BINDING */
     }
 }

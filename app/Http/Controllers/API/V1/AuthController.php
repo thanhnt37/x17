@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\PsrServerRequest;
+use App\Http\Requests\API\V1\RefreshTokenRequest;
 use App\Http\Requests\APIRequest;
-use App\Services\UserServiceAuthenticationServiceInterface;
 use App\Services\UserServiceInterface;
+use App\Services\APIUserServiceInterface;
 use App\Repositories\UserRepositoryInterface;
+use League\OAuth2\Server\AuthorizationServer;
+use Zend\Diactoros\Response as Psr7Response;
 
 class AuthController extends Controller
 {
@@ -16,23 +20,18 @@ class AuthController extends Controller
     /** @var \App\Repositories\UserRepositoryInterface */
     protected $userRepository;
 
-    /** @var \App\Services\ServiceAuthenticationServiceInterface */
-    protected $serviceAuthenticationService;
-
-    /** @var \App\Services\AuthenticatableServiceInterface */
-    protected $authenticatableService;
+    /** @var AuthorizationServer */
+    protected $server;
 
     public function __construct(
-        UserServiceInterface                    $userService,
-        UserRepositoryInterface                 $userRepository,
-        UserServiceAuthenticationServiceInterface   $serviceAuthenticationService,
-        UserServiceInterface                    $authenticatableService
+        UserServiceInterface     $userService,
+        UserRepositoryInterface     $userRepository,
+        AuthorizationServer         $server
     )
     {
-        $this->userService                  = $userService;
-        $this->userRepository               = $userRepository;
-        $this->serviceAuthenticationService = $serviceAuthenticationService;
-        $this->authenticatableService       = $authenticatableService;
+        $this->userService          = $userService;
+        $this->userRepository       = $userRepository;
+        $this->server               = $server;
     }
 
     public function signIn(APIRequest $request)
@@ -41,25 +40,40 @@ class AuthController extends Controller
         $paramsAllow = [
             'string'  => [
                 'email',
-                'password'
+                'password',
+                'grant_type',
+                'client_id',
+                'client_secret'
             ]
         ];
         $paramsRequire = [
             'email',
-            'password'
+            'password',
+            'grant_type',
+            'client_id',
+            'client_secret'
         ];
         $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
         if ($validate['code'] != 100) {
             return $this->response($validate['code']);
         }
         $data = $validate['data'];
+        $data['username'] = $data['email'];
 
-        $user = $this->userService->signInByAPI($data);
-        if(empty($user)) {
-            return $this->response(902);
+        $check = $this->userService->checkClient($request);
+        if( !$check ) {
+            return $this->response(101);
         }
 
-        return $this->response(100, $user->toAPIArray());
+        $user = $this->userService->signIn($data);
+        if (empty($user)) {
+            dd($user);
+            return $this->response(101);
+        }
+
+        $serverRequest = PsrServerRequest::createFromRequest($request, $data);
+
+        return $this->server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
     }
 
     public function signUp(APIRequest $request)
@@ -70,6 +84,9 @@ class AuthController extends Controller
                 'name',
                 'email',
                 'password',
+                'grant_type',
+                'client_id',
+                'client_secret',
                 'telephone',
                 'locale',
                 'address'
@@ -86,6 +103,9 @@ class AuthController extends Controller
             'name',
             'email',
             'password',
+            'grant_type',
+            'client_id',
+            'client_secret',
             'gender',
             'telephone',
             'birthday',
@@ -96,82 +116,31 @@ class AuthController extends Controller
         }
         $data = $validate['data'];
 
-        if( !empty($this->userRepository->findByEmail($data['email'])) ) {
+        $check = $this->userService->checkClient($request);
+        if( !$check ) {
+            return $this->response(101);
+        }
+
+        $userDeleted = $this->userRepository->findByEmail($data['email'], true);
+        if (!empty($userDeleted)) {
             return $this->response(111);
         }
 
-        $user = $this->userService->signUpByAPI($data);
-        if (empty($user)) {
-            return $this->response(901);
-        }
+        $user = $this->userService->signUp($data);
 
-        return $this->response(100, $user->toAPIArray());
+        $data['username'] = $data['email'];
+        $serverRequest = PsrServerRequest::createFromRequest($request, $data);
+
+
+        $response = $this->server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
+        return $response->withStatus(201);
     }
 
-    public function signOut(APIRequest $request)
+    public function refreshToken(RefreshTokenRequest $request)
     {
-        $user = $request->get('_user');
-        $this->userRepository->update($user, ['api_access_token' => '']);
+        $this->userService->checkClient($request);
+        $serverRequest = PsrServerRequest::createFromRequest($request);
 
-        return $this->response(100);
-    }
-
-    public function signInBySocial(APIRequest $request, $social)
-    {
-        switch ($social) {
-            case 'facebook':
-            case 'google':
-                break;
-            default:
-                return $this->response(107);
-        }
-
-        $data = $request->all();
-        $paramsAllow = [
-            'string'   => [
-                'name',
-                'email',
-                'service_id',
-                'telephone',
-                'avatar',
-            ],
-            'numeric'  => [
-                '>=0' => ['gender'],
-                '<=1' => ['gender']
-            ],
-            'datetime' => [
-                'birthday' => 'Y-m-d'
-            ]
-        ];
-        $paramsRequire = [
-            'name',
-            'email',
-            'service_id'
-        ];
-        $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
-        if ($validate['code'] != 100) {
-            return $this->response($validate['code']);
-        }
-        $data = $validate['data'];
-
-        $authUserId = $this->serviceAuthenticationService->getAuthModelId(
-            $social,
-            [
-                'service'    => $social,
-                'service_id' => $data['service_id'],
-                'name'       => $data['name'],
-                'email'      => $data['email'],
-                'avatar'     => $data['avatar'] ? $data['avatar'] : \URLHelper::asset('img/user_avatar.png', 'common'),
-                'telephone'  => $data['telephone'] ? $data['telephone'] : null,
-                'birthday'   => $data['birthday'] ? $data['birthday'] : null,
-            ]
-        );
-
-        if (!empty($authUserId)) {
-            $user = $this->authenticatableService->signInById($authUserId);
-            return $this->response(100, $user->toAPIArray());
-        } else {
-            return $this->response(101);
-        }
+        return $this->server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
     }
 }

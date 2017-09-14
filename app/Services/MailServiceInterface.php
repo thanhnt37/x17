@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services;
 
 interface MailServiceInterface extends BaseServiceInterface
@@ -14,4 +13,12 @@ interface MailServiceInterface extends BaseServiceInterface
      * @return bool
      */
     public function sendMail($title, $from, $to, $template, $data);
+
+    /**
+     * @param \App\Models\User $toUser
+     * @param string           $token
+     *
+     * @return mixed
+     */
+    public function sendEmailForgotPassWord($toUser, $token);
 }
