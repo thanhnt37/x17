@@ -9,7 +9,7 @@
   "type": "project",
   "require": {
     "php": ">=5.6.4",
-    "laravel/framework": "5.3.*",
+    "laravel/framework": "5.4.*",
     "predis/predis": "1.*",
     "aws/aws-sdk-php": "3.12.*",
     "facebook/graph-sdk": "5.3.*",
@@ -19,7 +19,8 @@
     "laravel/socialite": "^2.0",
     "google/apiclient": "^2.0",
     "dusterio/laravel-aws-worker": "^0.1.5",
-    "cviebrock/eloquent-sluggable": "^4.0"
+    "cviebrock/eloquent-sluggable": "^4.0",
+    "laravel/passport": "^4.0"
   },
   "require-dev": {
     "mockery/mockery": "0.9.*",
@@ -30,7 +31,8 @@
     "barryvdh/laravel-ide-helper": "^2.1",
     "symfony/css-selector": "3.1.*",
     "symfony/dom-crawler": "3.1.*",
-    "doctrine/dbal": "~2.3"
+    "doctrine/dbal": "~2.3",
+    "laravel/browser-kit-testing": "^2.0"
   },
   "autoload": {
     "classmap": [

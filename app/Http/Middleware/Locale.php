@@ -30,7 +30,7 @@ class Locale
             }
         } else {
             $locale = \LocaleHelper::getLocale();
-            \Session::set('locale', $locale);
+            \Session::put('locale', $locale);
             \App::setLocale($locale);
         }
 

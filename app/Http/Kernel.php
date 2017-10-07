@@ -13,7 +13,10 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \App\Http\Middleware\SecurityHeaders::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \App\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\SecurePath::class,
     ];
 
     protected $middlewareGroups = [
@@ -38,7 +41,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-
+            \App\Http\Middleware\API\V1\SetDefaultValues::class,
+            'throttle:60,1',
+            'bindings',
         ],
     ];
 
@@ -57,6 +62,9 @@ class Kernel extends HttpKernel
         'user.auth'                 => \App\Http\Middleware\User\Authenticate::class,
         'user.guest'                => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
         'user.values'               => \App\Http\Middleware\User\SetDefaultValues::class,
-        'api.auth'                  => \App\Http\Middleware\API\APIAuthentication::class,
+        'throttle'                  => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'bindings'                  => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'api.auth'                  => \App\Http\Middleware\API\V1\Authenticate::class,
+        'auth'                      => \Illuminate\Auth\Middleware\Authenticate::class,
     ];
 }

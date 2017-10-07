@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * App\Models\User.
@@ -37,7 +39,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class User extends AuthenticatableBase
 {
-    use SoftDeletes;
+    use HasApiTokens, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -66,7 +68,7 @@ class User extends AuthenticatableBase
         'api_access_token',
         'profile_image_id',
         'last_notification_id',
-        'is_activated',
+        'is_activated'
     ];
 
     /**
@@ -83,6 +85,18 @@ class User extends AuthenticatableBase
         parent::boot();
         parent::observe(new \App\Observers\UserObserver);
     }
+
+    /**
+     * Find the user identified by the given $identifier.
+     *
+     * @param $identifier email|phone
+     * @return mixed
+     */
+    public function findForPassport($identifier)
+    {
+        return $this->where('email', $identifier)->first();
+    }
+
 
     public function profileImage()
     {
