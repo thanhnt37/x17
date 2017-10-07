@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use App\Http\Responses\API\V1\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -45,26 +47,30 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->is('api/*')) {
+            if ($exception instanceof ValidationException) {
+                return parent::render($request, $exception);
+            }
+
             if( !$exception->getMessage() ) {
                 switch( $exception->getStatusCode() ) {
                     // not authorized
                     case '403':
-                        return response()->json(['code' => 101, 'message' => config('api.messages.101'), 'data' => null]);
+                        return Response::response(40301);
                         break;
 
                     // not found
                     case '404':
-                        return response()->json(['code' => 109, 'message' => config('api.messages.109'), 'data' => null]);
+                        return Response::response(40401);
                         break;
 
                     // wrong http method
                     case '405':
-                        return response()->json(['code' => 108, 'message' => config('api.messages.108'), 'data' => null]);
+                        return Response::response(40501);
                         break;
 
                     // internal error
                     case '500':
-                        return response()->json(['code' => 905, 'message' => config('api.messages.905'), 'data' => null]);
+                        return Response::response(50001);
                         break;
 
                     default:
@@ -73,7 +79,7 @@ class Handler extends ExceptionHandler
                 }
             } else {
                 // defined in route but method not exist
-                return response()->json(['code' => 110, 'message' => $exception->getMessage(), 'data' => null]);
+                return response()->json(['code' => 503, 'message' => $exception->getMessage(), 'data' => null])->setStatusCode(503);
             }
         }
         

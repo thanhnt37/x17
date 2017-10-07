@@ -2,6 +2,7 @@
 namespace App\Http\Middleware\API\V1;
 
 use App\Exceptions\APIErrorException;
+use App\Http\Responses\API\V1\Response;
 use App\Services\APIUserServiceInterface;
 use Closure;
 use Illuminate\Http\Request;
@@ -28,13 +29,11 @@ class Authenticate
      * @param \Closure                 $next
      *
      * @return mixed
-     *
-     * @throws APIErrorException
      */
     public function handle(Request $request, Closure $next)
     {
         if (empty($this->userService->isSignedIn())) {
-            return response()->json(['code' => 101, 'message' => config('api.messages.101'), 'data' => null]);
+            return Response::response(40101);
         }
 
         return $next($request);
