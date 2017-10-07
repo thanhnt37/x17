@@ -1,25 +1,44 @@
 <?php
 
 return [
-    'messages' => [
-        '100' => 'Successfully !!!',
-        '101' => 'Error, Authentication failed !!!',
-        '102' => 'Error, Parameter is not enough !!!',
-        '103' => 'Error, Parameter type is invalid !!!',
-        '104' => 'Error, Parameter value is invalid !!!',
-        '105' => 'Error, Parameter type Json is invalid !!!',
-        '106' => 'Error, Token was invalid !!!',
-        '107' => 'Error, Access was denied !!!',
-        '108' => 'Error, The HTTP method not allowed !!!',
-        '109' => 'Error, The route is not defined !!!',
-        '110' => 'Error, Method not exist !!!',
-        '111' => 'Error, This email is already used !!!',
-
-        '900' => 'Sorry, Unknown error !!!',
-        '901' => 'Sorry, Can\'t working with Database !!!',
-        '902' => 'Sorry, No data matching !!!',
-        '903' => 'Sorry, Data has been Delete !!!',
-        '904' => 'Sorry, Server cannot send email !!!',
-        '905' => 'Sorry, Internal Server Error !!!'
-    ]
+    200 => [
+        'message'        => 'Success !!!',
+        'httpStatusCode' => 200
+    ],
+    204 => [
+        'message'        => 'Sorry, No data matching !!!',
+        'httpStatusCode' => 204
+    ],
+    40001 => [
+        'message'        => 'Error, Parameter is invalid !!!',
+        'httpStatusCode' => 400
+    ],
+    40002 => [
+        'message'        => 'Error, This email is already used !!!',
+        'httpStatusCode' => 400
+    ],
+    40101 => [
+        'message'        => 'Error, Authentication failed !!!',
+        'httpStatusCode' => 401
+    ],
+    40301 => [
+        'message'        => 'Error, Access was denied !!!',
+        'httpStatusCode' => 403
+    ],
+    40401 => [
+        'message'        => 'Error, The route is not defined !!!',
+        'httpStatusCode' => 404
+    ],
+    40501 => [
+        'message'        => 'Error, The HTTP method not allowed !!!',
+        'httpStatusCode' => 405
+    ],
+    50001 => [
+        'message'        => 'Sorry, Internal Server Error !!!',
+        'httpStatusCode' => 500
+    ],
+    50002 => [
+        'message'        => 'Sorry, Can\'t working with Database !!!',
+        'httpStatusCode' => 500
+    ],
 ];
