@@ -13,11 +13,6 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function () {
         Route::group(['middleware' => 'api.auth'], function () {
             Route::resource('articles', 'ArticleController');
 
-            Route::group(['prefix' => 'profile'], function() {
-                Route::get('/getInfo', 'UserController@show');
-                Route::put('/update', 'UserController@update');
-            });
-
             Route::post('signout', 'AuthController@postSignOut');
         });
     });

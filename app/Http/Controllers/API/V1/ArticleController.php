@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\ArticleRequest;
 use App\Http\Requests\APIRequest;
+use App\Http\Requests\BaseRequest;
 use App\Repositories\ArticleRepositoryInterface;
 use App\Services\FileUploadServiceInterface;
 use App\Repositories\ImageRepositoryInterface;
+use App\Http\Responses\API\V1\Response;
+use App\Services\APIUserServiceInterface;
 
 class ArticleController extends Controller
 {
@@ -19,103 +23,72 @@ class ArticleController extends Controller
     /** @var ImageRepositoryInterface $imageRepository */
     protected $imageRepository;
 
+    /** @var ImageRepositoryInterface $imageRepository */
+    protected $userService;
+
     public function __construct(
         ArticleRepositoryInterface  $articleRepository,
         FileUploadServiceInterface  $fileUploadService,
-        ImageRepositoryInterface    $imageRepository
+        ImageRepositoryInterface    $imageRepository,
+        APIUserServiceInterface     $userService
     ) {
         $this->articleRepository    = $articleRepository;
         $this->fileUploadService    = $fileUploadService;
         $this->imageRepository      = $imageRepository;
+        $this->userService          = $userService;
     }
 
-    public function index(APIRequest $request)
+    public function index(BaseRequest $request)
     {
         $data = $request->all();
-        $paramsAllow = [
-            'enum'    => [
-                'order'     => ['id', 'title', 'keywords', 'description', 'content', 'locale', 'publish_started_at'],
-                'direction' => ['asc', 'desc']
-            ],
-            'numeric' => [
-                '>=0' => ['offset', 'limit']
-            ]
-        ];
-        $paramsRequire = ['order', 'direction', 'offset', 'limit'];
-        $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
-        if ($validate['code'] != 100) {
-            return $this->response($validate['code']);
-        }
-        $data = $validate['data'];
 
         $articles = $this->articleRepository->get($data['order'], $data['direction'], $data['offset'], $data['limit']); // change get() to geEnabled as requirement
         foreach( $articles as $key => $article ) {
             $articles[$key] = $article->toAPIArray();
         }
 
-        return $this->response(100, $articles);
+        return Response::response(200, $articles);
     }
 
     public function show($id, APIRequest $request)
     {
         if( !is_numeric($id) || ($id <= 0) ) {
-            return $this->response(104);
+            return Response::response(40001);
         }
 
         $article = $this->articleRepository->find($id);
         if( empty($article) ) {
-            return $this->response(902);
+            return Response::response(204);
         }
 
-        if( $article->author_id != $request['_user']['id'] ) {
-            return $this->response(107);
-        }
-
-
-        return $this->response(100, $article->toAPIArray());
+        return Response::response(200, $article->toAPIArray());
     }
 
-    public function store(APIRequest $request)
+    public function store(ArticleRequest $request)
     {
-        $data = $request->all();
-        $paramsAllow = [
-            'string'   => [
+        $data = $request->only(
+            [
                 'slug',
                 'title',
                 'keywords',
                 'description',
-                'content'
-            ],
-            'enum'     => [
-                'locale' => ['en', 'ja', 'th']
-            ],
-            'numeric'  => [
-                '>=0' => ['is_enabled'],
-                '<=1' => ['is_enabled']
-            ],
-            'datetime' => [
-                'publish_started_at' => 'Y-m-d H:i:s',
-                'publish_ended_at'   => 'Y-m-d H:i:s'
+                'content',
+                'locale',
+                'publish_started_at',
+                'publish_ended_at',
             ]
-        ];
-        $paramsRequire = ['title', 'content', 'publish_started_at'];
-        $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
-        if ($validate['code'] != 100) {
-            return $this->response($validate['code']);
-        }
-        $data = $validate['data'];
-
-        $data['publish_started_at'] = isset($data['publish_started_at']) ? \DateTimeHelper::convertToStorageDateTime($data['publish_started_at']) : null;
-        $data['publish_ended_at']   = isset($data['publish_ended_at']) ? \DateTimeHelper::convertToStorageDateTime($data['publish_ended_at']) : null;
+        );
+        $data['locale'] = $request->get('locale', 'vn');
+        $data['is_enabled'] = $request->get('is_enabled', 0);
 
         try {
             $article = $this->articleRepository->create($data);
         } catch (\Exception $e) {
-            return $this->response(901);
+            return Response::response(50002);
         }
 
         if( empty( $article ) ) {
-            return $this->response(901);
+            return Response::response(50002);
         }
 
         if ($request->hasFile('cover_image')) {
@@ -138,56 +111,37 @@ class ArticleController extends Controller
             }
         }
 
-        return $this->response(100, $article->toAPIArray());
+        return Response::response(200, $article->toAPIArray());
     }
 
-    public function update($id, APIRequest $request)
+    public function update($id, ArticleRequest $request)
     {
         if( !is_numeric($id) || ($id <= 0) ) {
-            return $this->response(104);
+            return Response::response(40001);
         }
 
         $article = $this->articleRepository->find($id);
         if( empty($article) ) {
-            return $this->response(902);
+            return Response::response(204);
         }
 
-        $data = $request->all();
-        $paramsAllow = [
-            'string'   => [
+        $data = $request->only(
+            [
                 'slug',
                 'title',
                 'keywords',
                 'description',
-                'content'
-            ],
-            'enum'     => [
-                'locale' => ['en', 'ja', 'th']
-            ],
-            'numeric'  => [
-                '>=0' => ['is_enabled'],
-                '<=1' => ['is_enabled']
-            ],
-            'datetime' => [
-                'publish_started_at' => 'Y-m-d H:i:s',
-                'publish_ended_at'   => 'Y-m-d H:i:s'
+                'content',
+                'locale',
+                'publish_started_at',
+                'publish_ended_at',
             ]
-        ];
-        $paramsRequire = ['title', 'content', 'publish_started_at'];
-        $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
-        if ($validate['code'] != 100) {
-            return $this->response($validate['code']);
-        }
-        $data = $validate['data'];
-
-        $data['publish_started_at'] = isset($data['publish_started_at']) ? \DateTimeHelper::convertToStorageDateTime($data['publish_started_at']) : null;
-        $data['publish_ended_at']   = isset($data['publish_ended_at']) ? \DateTimeHelper::convertToStorageDateTime($data['publish_ended_at']) : null;
-
+        );
 
         try {
             $this->articleRepository->update($article, $data);
         } catch (\Exception $e) {
-            return $this->response(901);
+            return Response::response(50002);
         }
 
         if( $request->hasFile( 'cover_image' ) ) {
@@ -216,30 +170,26 @@ class ArticleController extends Controller
             }
         }
 
-        return $this->response(100, $article->toAPIArray());
+        return Response::response(200, $article->toAPIArray());
     }
 
-    public function destroy($id, APIRequest $request)
+    public function destroy($id)
     {
         if( !is_numeric($id) || ($id <= 0) ) {
-            return $this->response(104);
+            return Response::response(40001);
         }
 
         $article = $this->articleRepository->find($id);
         if( empty($article) ) {
-            return $this->response(902);
+            return Response::response(204);
         }
 
-        if( $article->author_id != $request['_user']['id'] ) {
-            return $this->response(107);
-        }
-        
         try {
             $this->articleRepository->delete($article);
         } catch (\Exception $e) {
-            return $this->response(901);
+            return Response::response(50002);
         }
 
-        return $this->response(100);
+        return Response::response(200);
     }
 }
