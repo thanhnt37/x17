@@ -5,12 +5,14 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\PsrServerRequest;
 use App\Http\Requests\API\V1\RefreshTokenRequest;
-use App\Http\Requests\APIRequest;
+use App\Http\Requests\API\V1\SignInRequest;
+use App\Http\Requests\API\V1\SignUpRequest;
 use App\Services\UserServiceInterface;
 use App\Services\APIUserServiceInterface;
 use App\Repositories\UserRepositoryInterface;
 use League\OAuth2\Server\AuthorizationServer;
 use Zend\Diactoros\Response as Psr7Response;
+use App\Http\Responses\API\V1\Response;
 
 class AuthController extends Controller
 {
@@ -24,7 +26,7 @@ class AuthController extends Controller
     protected $server;
 
     public function __construct(
-        UserServiceInterface     $userService,
+        UserServiceInterface        $userService,
         UserRepositoryInterface     $userRepository,
         AuthorizationServer         $server
     )
@@ -34,53 +36,38 @@ class AuthController extends Controller
         $this->server               = $server;
     }
 
-    public function signIn(APIRequest $request)
+    public function signIn(SignInRequest $request)
     {
-        $data = $request->all();
-        $paramsAllow = [
-            'string'  => [
+        $data = $request->only(
+            [
                 'email',
                 'password',
                 'grant_type',
                 'client_id',
                 'client_secret'
             ]
-        ];
-        $paramsRequire = [
-            'email',
-            'password',
-            'grant_type',
-            'client_id',
-            'client_secret'
-        ];
-        $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
-        if ($validate['code'] != 100) {
-            return $this->response($validate['code']);
-        }
-        $data = $validate['data'];
-        $data['username'] = $data['email'];
+        );
 
         $check = $this->userService->checkClient($request);
         if( !$check ) {
-            return $this->response(101);
+            return Response::response(40101);
         }
 
         $user = $this->userService->signIn($data);
         if (empty($user)) {
-            dd($user);
-            return $this->response(101);
+            return Response::response(40101);
         }
 
+        $data['username'] = $data['email'];
         $serverRequest = PsrServerRequest::createFromRequest($request, $data);
 
         return $this->server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
     }
 
-    public function signUp(APIRequest $request)
+    public function signUp(SignUpRequest $request)
     {
-        $data = $request->all();
-        $paramsAllow = [
-            'string'   => [
+        $data = $request->only(
+            [
                 'name',
                 'email',
                 'password',
@@ -88,50 +75,26 @@ class AuthController extends Controller
                 'client_id',
                 'client_secret',
                 'telephone',
+                'birthday',
                 'locale',
-                'address'
-            ],
-            'numeric'  => [
-                '>=0' => ['gender'],
-                '<=1' => ['gender']
-            ],
-            'datetime' => [
-                'birthday' => 'Y-m-d'
             ]
-        ];
-        $paramsRequire = [
-            'name',
-            'email',
-            'password',
-            'grant_type',
-            'client_id',
-            'client_secret',
-            'gender',
-            'telephone',
-            'birthday',
-        ];
-        $validate = $request->checkParams($data, $paramsAllow, $paramsRequire);
-        if ($validate['code'] != 100) {
-            return $this->response($validate['code']);
-        }
-        $data = $validate['data'];
+        );
 
         $check = $this->userService->checkClient($request);
         if( !$check ) {
-            return $this->response(101);
+            return Response::response(40101);
         }
 
         $userDeleted = $this->userRepository->findByEmail($data['email'], true);
         if (!empty($userDeleted)) {
-            return $this->response(111);
+            return Response::response(40002);
         }
 
         $user = $this->userService->signUp($data);
 
         $data['username'] = $data['email'];
         $serverRequest = PsrServerRequest::createFromRequest($request, $data);
-
-
+        
         $response = $this->server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
         return $response->withStatus(201);
     }
