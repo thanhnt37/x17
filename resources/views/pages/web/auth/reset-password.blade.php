@@ -1,4 +1,4 @@
-@extends('layouts.user.application', ['noFrame' => true, 'bodyClasses' => ''])
+@extends('layouts.web.application', ['noFrame' => true, 'bodyClasses' => ''])
 
 @section('metadata')
 @stop
@@ -18,7 +18,7 @@ Password Reset
 @stop
 
 @section('content')
-<form action="{!! action('User\PasswordController@postResetPassword') !!}" method="post">
+<form action="{!! action('Web\PasswordController@postResetPassword') !!}" method="post">
     {!! csrf_field() !!}
     <input type="hidden" name="token" value="{{ $token }}">
     <input type="email" name="email" placeholder="Email">

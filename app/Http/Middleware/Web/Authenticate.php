@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Middleware\User;
+namespace App\Http\Middleware\Web;
 
 use App\Services\UserServiceInterface;
+use Closure;
 
-class RedirectIfAuthenticated
+class Authenticate
 {
     /** @var UserServiceInterface */
     protected $userService;
@@ -27,11 +28,16 @@ class RedirectIfAuthenticated
      *
      * @return mixed
      */
-    public function handle($request, \Closure $next)
+    public function handle($request, Closure $next)
     {
-        if ($this->userService->isSignedIn()) {
-            return redirect()->action('User\IndexController@index');
+        if (!$this->userService->isSignedIn()) {
+            if ($request->ajax()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return \RedirectHelper::guest(action('User\AuthController@getSignIn'));
+            }
         }
+        view()->share('authUser', $this->userService->getUser());
 
         return $next($request);
     }

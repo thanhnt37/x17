@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\SignUpRequest;
@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function getSignIn()
     {
-        return view('pages.user.auth.signin', [
+        return view('pages.web.auth.signin', [
         ]);
     }
 
@@ -27,15 +27,15 @@ class AuthController extends Controller
     {
         $user = $this->userService->signIn($request->all());
         if (empty($user)) {
-            return redirect()->action('User\AuthController@getSignIn');
+            return redirect()->action('Web\AuthController@getSignIn');
         }
 
-        return \RedirectHelper::intended(action('User\IndexController@index'));
+        return \RedirectHelper::intended(action('Web\IndexController@index'));
     }
 
     public function getSignUp()
     {
-        return view('pages.user.auth.signup', [
+        return view('pages.web.auth.signup', [
         ]);
     }
 
@@ -43,9 +43,9 @@ class AuthController extends Controller
     {
         $user = $this->userService->signUp($request->all());
         if (empty($user)) {
-            return redirect()->action('User\AuthController@getSignUp');
+            return redirect()->action('Web\AuthController@getSignUp');
         }
 
-        return \RedirectHelper::intended(action('User\IndexController@index'));
+        return \RedirectHelper::intended(action('Web\IndexController@index'));
     }
 }

@@ -48,10 +48,10 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUserRoutes()
     {
         Route::group([
-            'middleware' => 'user',
+            'middleware' => 'web',
             'namespace'  => $this->namespace,
         ], function ($router) {
-            require base_path('routes/user.php');
+            require base_path('routes/web.php');
         });
     }
 

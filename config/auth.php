@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'users',
+        'guard'     => 'web',
         'passwords' => 'users',
     ],
 
@@ -36,13 +36,13 @@ return [
     */
 
     'guards' => [
-        'users' => [
-            'driver' => 'session',
-            'provider' => 'users',
+        'web' => [
+            'driver'   => 'session',
+            'provider' => 'web',
         ],
 
         'admins' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'admins',
         ],
 
@@ -70,19 +70,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'web'    => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model'  => App\Models\User::class,
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\AdminUser::class,
+            'model'  => App\Models\AdminUser::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -105,17 +100,17 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'email' => 'auth.emails.password',
-            'table' => 'password_resets',
-            'expire' => 60,
+        'web'  => [
+            'provider' => 'web',
+            'email'    => 'auth.emails.password',
+            'table'    => 'password_resets',
+            'expire'   => 60,
         ],
         'admins' => [
             'provider' => 'admins',
-            'email' => 'auth.emails.password',
-            'table' => 'admin_password_resets',
-            'expire' => 60,
+            'email'    => 'auth.emails.password',
+            'table'    => 'admin_password_resets',
+            'expire'   => 60,
         ],
     ],
 

@@ -20,7 +20,7 @@ class Kernel extends HttpKernel
     ];
 
     protected $middlewareGroups = [
-        'user' => [
+        'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -59,9 +59,9 @@ class Kernel extends HttpKernel
         'admin.has_role.super_user' => \App\Http\Middleware\Admin\HasRoleSuperUser::class,
         'admin.has_role.admin'      => \App\Http\Middleware\Admin\HasRoleAdmin::class,
         'admin.values'              => \App\Http\Middleware\Admin\SetDefaultValues::class,
-        'user.auth'                 => \App\Http\Middleware\User\Authenticate::class,
-        'user.guest'                => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
-        'user.values'               => \App\Http\Middleware\User\SetDefaultValues::class,
+        'web.auth'                  => \App\Http\Middleware\Web\Authenticate::class,
+        'web.guest'                 => \App\Http\Middleware\Web\RedirectIfAuthenticated::class,
+        'web.values'                => \App\Http\Middleware\Web\SetDefaultValues::class,
         'throttle'                  => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'bindings'                  => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'api.auth'                  => \App\Http\Middleware\API\V1\Authenticate::class,

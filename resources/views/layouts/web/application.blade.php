@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title', config('site.name', ''))</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    @include('layouts.user.metadata')
-    @include('layouts.user.styles')
+    @include('layouts.web.metadata')
+    @include('layouts.web.styles')
     @section('styles')
     @show
     <meta name="csrf-token" content="{!! csrf_token() !!}">
@@ -15,9 +15,9 @@
 @if( isset($noFrame) && $noFrame == true )
 @yield('content')
 @else
-@include('layouts.user.frame')
+@include('layouts.web.frame')
 @endif
-@include('layouts.user.scripts')
+@include('layouts.web.scripts')
 @section('scripts')
 @show
 </body>

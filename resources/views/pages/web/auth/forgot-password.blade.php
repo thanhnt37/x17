@@ -1,4 +1,4 @@
-@extends('layouts.user.application', ['noFrame' => true, 'bodyClasses' => ''])
+@extends('layouts.web.application', ['noFrame' => true, 'bodyClasses' => ''])
 
 @section('metadata')
 @stop
@@ -18,7 +18,7 @@
 @stop
 
 @section('content')
-    <form action="{!! action('User\PasswordController@postForgotPassword') !!}" method="post">
+    <form action="{!! action('Web\PasswordController@postForgotPassword') !!}" method="post">
         {!! csrf_field() !!}
         <input type="email" name="email" placeholder="Email">
         <button type="submit">@lang('user.pages.auth.buttons.forgot')</button>

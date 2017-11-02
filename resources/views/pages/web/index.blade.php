@@ -1,4 +1,4 @@
-@extends('layouts.user.application')
+@extends('layouts.web.application')
 
 @section('metadata')
 @stop

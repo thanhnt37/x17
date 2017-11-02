@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\ServiceAuthController;
 use App\Services\UserServiceInterface;
@@ -11,9 +11,9 @@ class FacebookServiceAuthController extends ServiceAuthController
 {
     protected $driver = 'facebook';
 
-    protected $redirectAction = 'User\IndexController@index';
+    protected $redirectAction = 'Web\IndexController@index';
 
-    protected $errorRedirectAction = 'User\AuthController@getSignUp';
+    protected $errorRedirectAction = 'Web\AuthController@getSignUp';
 
     public function __construct(
         UserServiceInterface $authenticatableService,
