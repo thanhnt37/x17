@@ -1,0 +1,293 @@
+@CHARSET "UTF-8";
+
+.glyphicon {
+    font-family: 'Glyphicons Halflings' !important;
+}
+.fa {
+    font-family: 'FontAwesome' !important;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Roboto-Light";
+}
+.hidden {
+    display: none;
+}
+.shown {
+    display: block;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+/* header */
+.header .header-logo {
+    text-align: center;
+    padding: 30px 0;
+}
+.header .header-logo img {
+    width: 270px;
+}
+.header .header-banner {
+    margin: auto 0;
+}
+/* end */
+/*----------------------------------------------------------*/
+/* navbar for desktop */
+.navbar {
+    background: rgb(125, 206, 55);
+    position: relative;
+    transition: top 0.7s ease-in-out;
+    -webkit-transition: top 0.7s ease-in-out;
+    width: 100%;
+}
+.navbar.scroll-down {
+    position: fixed;
+    top: -56px;
+}
+.navbar.scroll-up {
+    position: fixed;
+    top: 0;
+    z-index: 98;
+}
+.nav-item {
+    padding: 0 10px;
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgb(38, 135, 224);
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    font-weight: bold;
+}
+.navbar-brand, #search-icon-mobile {
+    display: none;
+}
+/* end */
+/*----------------------------------------------------------*/
+/* search box for desktop */
+#search-box-desktop {
+    position: relative;
+    font-size: 18px;
+}
+#search-input-desktop {
+    width: 300px;
+    padding: 8px 50px;
+    border-radius: 50px;
+    -webkit-transition: 1s;
+    transition: 1s;
+}
+#search-input-desktop:focus {
+    width: 350px;
+}
+#search-box-desktop label[for="search-input-desktop"] {
+    position: absolute;
+    left: 18px;
+    top: 10px;
+}
+/* end */
+
+@media (max-width: 991px) {
+    /* navbar for mobile */
+    body > header.header {
+        display: none;
+    }
+    .navbar-toggler-icon {
+        width: 1em;
+        height: 1em;
+    }
+    .navbar-brand {
+        display: block;
+    }
+    #search-icon-mobile {
+        display: block;
+        font-size: 1.3em;
+        color: rgba(0,0,0,.5);
+    }
+    /* end */
+
+    /* search box for mobile */
+    #search-box-mobile {
+        position: fixed;
+        width: 100%;
+        font-size: 18px;
+        padding: 0 10px;
+        z-index: 98;
+    }
+    #search-input-mobile {
+        width: 100%;
+        padding: 8px 50px;
+        border-radius: 50px;
+    }
+    #search-box-mobile label[for="search-input-mobile"] {
+        position: absolute;
+        left: 35px;
+        top: 18px;
+    }
+    /* end */
+}
+@media (max-width: 767px) {
+    #search-box-mobile label[for="search-input-mobile"] {
+        top: 13px;
+    }
+}
+/* end */
+/*----------------------------------------------------------*/
+/* left navigation */
+.wrap-left-navigation {
+    width: 100%;
+    background: gainsboro;
+    opacity: 0.4;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: 99;
+}
+#left-navigation {
+    background: ghostwhite;
+    width: 280px;
+    height: 100%;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: -280px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: 100;
+    overflow-y: scroll;
+    padding-bottom: 30px;
+}
+#left-navigation.open {
+    left: 0;
+}
+.user-profile {
+    text-align: center;
+    padding: 20px 0;
+    background: azure;
+}
+#user-avatar {
+    border-radius: 200px;
+}
+.user-profile label[for="user-avatar"] {
+    margin-top: 15px;
+}
+#left-navigation .nav-link {
+    padding-left: 15px;
+}
+#left-navigation .nav-item.active {
+    background: rgb(125, 206, 55);
+}
+/* end */
+/*----------------------------------------------------------*/
+/* footer and subscribe form */
+
+body > footer {
+    padding: 50px 0;
+    background: black;
+    border-top: 2px solid rgb(125, 206, 55);
+    border-bottom: 5px solid rgb(125, 206, 55);
+}
+body > footer img {
+    max-width: 300px;
+    margin-bottom: 5px;
+}
+body > footer hr {
+    border-top: 1px solid #212529;
+    width: 120px;
+}
+body > footer p {
+    font-size: 0.8rem;
+}
+body > footer p a {
+    color: rgb(99, 146, 50);
+}
+@media (max-width: 767px) {
+    body > footer img {
+        max-width: 250px;
+    }
+}
+@media (max-width: 575px) {
+    body > footer img {
+        max-width: 200px;
+    }
+}
+#subscribe-form {
+    background-color: rgb(232, 234, 235);
+    padding: 40px 0 20px 0;
+}
+#subscribe-form .col-lg-7 {
+    text-align: right;
+}
+#subscribe-form .col-lg-7 img {
+    max-width: 120px;
+    vertical-align: text-bottom;
+}
+#subscribe-form .col-lg-7 section {
+    display: inline-block;
+    width: 80%;
+    max-width: 370px;
+    margin-left: 20px;
+}
+#subscribe-form .col-lg-7 section h4 {
+    text-align: left;
+}
+#subscribe-form .col-lg-7 section p {
+    text-align: justify;
+    color: #828181;
+}
+#subscribe-form .col-lg-5 h4 {
+    margin-bottom: 10px;
+}
+#subscribe-form .col-lg-5 form {
+    position: relative;
+    max-width: 400px;
+}
+#subscribe-form .col-lg-5 form input {
+    width: 100%;
+    height: 40px;
+    padding-left: 20px;
+}
+#subscribe-form .col-lg-5 form span {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(125, 206, 55);
+    display: inline-block;
+    background-image: url(../../../common/logo/fly-white.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+@media (max-width: 991px) {
+    #subscribe-form .col-lg-7 {
+        text-align: center;
+    }
+    #subscribe-form .col-lg-5 {
+        margin-top: 20px;
+    }
+    #subscribe-form .col-lg-5 h4 {
+        max-width: 400px;
+        margin: 0 auto 10px auto;
+    }
+    #subscribe-form .col-lg-5 form {
+        margin: 0 auto;
+    }
+}
+@media (max-width: 575px) {
+    #subscribe-form {
+        padding: 35px 0;
+    }
+    #subscribe-form .col-lg-7 {
+        display: none;
+    }
+    #subscribe-form .col-lg-5 {
+        margin-top: 0;
+    }
+}
+/* end*/
