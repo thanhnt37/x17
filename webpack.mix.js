@@ -18,20 +18,28 @@ mix
         'popper.js/dist/umd/popper.js': ['Popper', 'window.Popper']
     })
 
+    .copyDirectory('node_modules/components-font-awesome/fonts', 'public/static/web/2017/fonts')
+    .copyDirectory('node_modules/roboto-fontface/fonts', 'public/static/web/fonts')
+
+    .sass(
+        'resources/assets/web/2017/sass/layout.scss',
+        'public/static/web/2017/css/layout.css'
+    ).sass(
+        'resources/assets/web/2017/sass/home.scss',
+        'public/static/web/2017/css/home.css'
+    );
+
+mix
     .styles(
         [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/roboto-fontface/css/roboto/roboto-fontface.css',
             'node_modules/components-font-awesome/css/font-awesome.min.css',
-            'resources/assets/web/2017/css/layout.css',
-            'resources/assets/web/2017/css/home.css'
+            'public/static/web/2017/css/layout.css',
+            'public/static/web/2017/css/home.css'
         ],
         'public/static/web/2017/css/styles.css'
     )
-
-    .copyDirectory('node_modules/components-font-awesome/fonts', 'public/static/web/2017/fonts')
-    .copyDirectory('node_modules/roboto-fontface/fonts', 'public/static/web/fonts')
-
     .js(
         [
             'node_modules/jquery/dist/jquery.slim.min.js',
