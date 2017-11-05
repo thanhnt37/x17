@@ -37,3 +37,4 @@ public/static/web/2017/css
 public/static/web/2017/js
 mix-manifest.json
 package-lock.json
+npm-debug.log

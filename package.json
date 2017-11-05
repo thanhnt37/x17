@@ -19,7 +19,10 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "components-font-awesome": "^4.6.3",
     "popper.js": "^1.12.6",
+    "roboto-fontface": "^0.8.0",
     "tether": "^1.4.0"
   }
 }
