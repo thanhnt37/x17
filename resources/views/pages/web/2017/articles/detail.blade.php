@@ -15,7 +15,9 @@
 <header class="header container">
     <div class="row">
         <div class="col-lg-4 header-logo">
-            <img src="{!! \URLHelper::asset('logo/logo.png', 'common') !!}" alt="xcode.vn" class="">
+            <a href="/">
+                <img src="{!! \URLHelper::asset('logo/logo.png', 'common') !!}" alt="xcode.vn" class="">
+            </a>
         </div>
         <div class="col-lg-8 header-banner">
             <img src="http://via.placeholder.com/728x90" alt="xcode.vn" class="">
@@ -139,22 +141,35 @@
     <section class="container" style="padding-top: 25px;">
         <div class="row">
             <div class="col-lg-8">
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">XCODE.VN</a></li>
+                        <li class="breadcrumb-item"><a href="#">Javascript</a></li>
+                        <li class="breadcrumb-item"><a href="#">NodeJS</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Functional Reactive Programming là gì?</li>
+                    </ol>
+                </nav>
                 <article id="article-detail">
+                    <h3>Functional Reactive Programming là gì?</h3>
+                    <p class="publish-date"><time datetime="23/09/2017">23/09/2017</time> trong <a href="#">Javascript</a>/<a href="#">NodeJS</a></p>
+
+                    <section class="social-share" style="padding: 7px 0 10px 10px;">
+                        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true">
+                        </div>
+                        <div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/"></div>
+                        <div class="g-plus" data-action="share"></div>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </section>
+
+                    <img src="http://via.placeholder.com/730x350" alt="" class="cover-image">
+
+                    <p class="descriptions">
+                        Functional Reactive Programming (FRP) là mô hình lập trình hướng tới luồng dữ liệu và sự lan truyền thay đổi. Ttrong FRP, ta có một loại dữ liệu thể hiện được "giá trị thay đổi theo thời gian", ta có thể áp dụng các hàm cơ bản đặc trưng của functional programming (ví dụ như map, reduce, scan...). Ví dụ, trong mô hình lập trình thông thường - imperative programming - khi ta có a = b + c, giá trị của a thu được chính là tổng giá trị của b và c tại thời điểm chạy câu lệnh, sau thời điểm đó giá trị b, c có thể thay đổi nhưng sẽ không làm thay đổi giá trị của a
+                    </p>
+
                     <section class="article-content">
                         <div class="md-contents post-content">
-                            <h2 id="functional-reactive-programming-la-gi-0">Functional Reactive Programming là gì?</h2>
-                            <p><a href="http://en.wikipedia.org/wiki/Functional_reactive_programming" target="_blank">Functional
-                                    Reactive Programming</a> (FRP) là mô hình lập trình hướng tới luồng dữ liệu và sự lan
-                                truyền thay đổi. Ttrong FRP, ta có một loại dữ liệu thể hiện được "giá trị thay đổi theo
-                                thời gian", ta có thể áp dụng các hàm cơ bản đặc trưng của functional programming (ví dụ như
-                                map, reduce, scan...). Ví dụ, trong mô hình lập trình thông thường - imperative programming
-                                - khi ta có <code>a = b + c</code>, giá trị của <code>a</code> thu được chính là tổng giá
-                                trị của <code>b</code> và <code>c</code> tại thời điểm chạy câu lệnh, sau thời điểm đó giá
-                                trị <code>b</code>, <code>c</code> có thể thay đổi nhưng sẽ không làm thay đổi giá trị của
-                                <code>a</code>. Đối với FRP thì khác, giá trị của <code>a</code> luôn tự động cập nhật theo
-                                giá tri của <code>b</code> và <code>c</code>. Việc này giống như bảng tính Excel vậy, trong
-                                một ô nếu ta ghi công thức <code>=A1+B1</code> thì khi giá trị của ô <code>A1</code> hay
-                                <code>B1</code> được cập nhật, thì giá trị ô bảng tính vừa rồi cũng được cập nhật theo.</p>
                             <h2 id="observable-1">Observable</h2>
                             <p>Về cơ bản, "giá trị thay đổi theo thời gian" trong FRP có hai loại giống như bất cứ loại dữ
                                 liệu nào trong tự nhiên: rời rạc và liên tục. Tuy nhiên, do bản chất của máy tính, việc cài
@@ -444,6 +459,7 @@
                                 hướng dẫn từng bước để máy tính thực hiện theo ý ta.</p>
                         </div>
                     </section>
+
                     <section class="article-footer">
                         <section class="social-share">
                             <h5>Thấy hay thì chia sẻ bạn bè nhé !</h5>
