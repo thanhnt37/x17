@@ -1,0 +1,120 @@
+
+aside {
+	margin-top: 10px;
+	border-left: 1px solid #ccc;
+
+	.site-index {
+		padding-top: 10px;
+		padding-left: 25px;
+
+		ul {
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				padding: 5px 0;
+				padding-left: 20px;
+
+				a {
+					color: black;
+					text-decoration: none;
+				}
+				a:hover {
+					color: #408a4b;
+				}
+			}
+			li.active {
+				border-left: 2px solid #7dce37;
+				color: #7dce37;
+
+				a {
+					color: inherit;
+				}
+			}
+		}
+	}
+}
+/*---------------*/
+#article-detail {
+	text-align: justify;
+
+	.article-footer {
+		.tags {
+			margin-top: 10px;
+
+			h5 {
+				display: inline-block;
+			}
+			ul {
+				display: inline-block;
+				padding-left: 10px;
+
+				li {
+					display: inline-block;
+					margin-right: 15px;
+
+					a {
+						color: #828181;
+					}
+					a:hover {
+						color: rgb(125, 206, 55);
+					}
+				}
+			}
+		}
+		.social-share {
+			background: #f8f8f8;
+			padding: 20px 10px;
+
+			h5 {
+				padding-left: 20px;
+				margin-bottom: 0;
+				font-family: Roboto-LightItalic;
+			}
+			img {
+				width: 45px;
+				margin-right: 5px;
+			}
+			#___plus_0 {
+				vertical-align: middle !important;
+				margin-top: 3px !important;
+			}
+			#twitter-widget-0 {
+				vertical-align: middle;
+				margin-top: 3px;
+			}
+		}
+		.like-fanpage {
+			position: relative;
+
+			img:first-child {
+				width: 100%;
+			}
+			.fanpage {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+
+				h6 {
+					display: inline-block;
+					vertical-align: top;
+					text-align: right;
+					margin-right: 10px;
+					color: white;
+					line-height: 1.4rem;
+					margin-top: 20px;
+				}
+				img:first-child {
+					position: absolute;
+					top: 65px;
+					left: 230px;
+					width: 45px;
+				}
+			}
+		}
+	}
+}
+/*---------------*/
+#fb-comments, #fb-comments span, #fb-comments span iframe {
+	width: 100% !important;
+}

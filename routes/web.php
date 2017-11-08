@@ -2,6 +2,8 @@
 
 \Route::group(['middleware' => ['web.values']], function () {
     \Route::get('/', 'Web\IndexController@index');
+    \Route::get('/{category}', 'Web\ArticleController@category');
+    \Route::get('/{category}/{slug}', 'Web\ArticleController@show');
 
     \Route::group(['middleware' => ['web.guest']], function () {
         \Route::get('signin', 'Web\AuthController@getSignIn');
