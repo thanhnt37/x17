@@ -22,11 +22,8 @@ mix
     .copyDirectory('node_modules/roboto-fontface/fonts', 'public/static/web/fonts')
 
     .sass(
-        'resources/assets/web/2017/sass/layout.scss',
-        'public/static/web/2017/css/layout.css'
-    ).sass(
-        'resources/assets/web/2017/sass/home.scss',
-        'public/static/web/2017/css/home.css'
+        'resources/assets/web/2017/sass/application.scss',
+        'public/static/web/2017/css/app.css'
     );
 
 mix
@@ -35,8 +32,7 @@ mix
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/roboto-fontface/css/roboto/roboto-fontface.css',
             'node_modules/components-font-awesome/css/font-awesome.min.css',
-            'public/static/web/2017/css/layout.css',
-            'public/static/web/2017/css/home.css'
+            'public/static/web/2017/css/app.css'
         ],
         'public/static/web/2017/css/styles.css'
     )

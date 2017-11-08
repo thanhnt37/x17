@@ -1,32 +1,3 @@
-@import "config";
-
-@CHARSET "UTF-8";
-
-.glyphicon {
-	font-family: 'Glyphicons Halflings' !important;
-}
-
-.fa {
-	font-family: 'FontAwesome' !important;
-}
-
-body {
-	width: 100%;
-	overflow-x: hidden;
-	font-family: "Roboto-Light";
-}
-
-.hidden {
-	display: none;
-}
-
-.shown {
-	display: block;
-}
-
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-}
 
 /* header */
 .header {
