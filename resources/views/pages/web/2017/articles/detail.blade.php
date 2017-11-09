@@ -138,7 +138,7 @@
 </section>
 
 <main>
-    <section class="container" style="padding-top: 25px;">
+    <section id="article-page" class="container">
         <div class="row">
             <div class="col-lg-8">
                 <nav aria-label="breadcrumb" role="navigation">
@@ -463,13 +463,15 @@
                     <section class="article-footer">
                         <section class="social-share">
                             <h5>Thấy hay thì chia sẻ bạn bè nhé !</h5>
-                            <img src="{!! \URLHelper::asset('icon/arrow.png', 'common') !!}" alt="">
-                            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true">
-                            </div>
-                            <div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/"></div>
-                            <div class="g-plus" data-action="share"></div>
-                            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
-                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            <section>
+                                <img src="{!! \URLHelper::asset('icon/arrow.png', 'common') !!}" alt="">
+                                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true">
+                                </div>
+                                <div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/"></div>
+                                <div class="g-plus" data-action="share"></div>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </section>
                         </section>
 
                         <section class="tags">
@@ -497,9 +499,73 @@
                             </section>
                         </section>
                     </section>
-                </article>
 
-                <div id="fb-comments" class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+                    <div id="fb-comments" class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+
+                    <section class="article-suggests">
+                        <h4>CÓ THỂ BẠN QUAN TÂM</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <article>
+                                    <header>
+                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <p>
+                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
+                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
+                                        </p>
+                                    </header>
+                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
+                                    </a>
+                                </article>
+                            </div>
+                            <div class="col-md-6">
+                                <article>
+                                    <header>
+                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <p>
+                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
+                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
+                                        </p>
+                                    </header>
+                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
+                                    </a>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <article>
+                                    <header>
+                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <p>
+                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
+                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
+                                        </p>
+                                    </header>
+                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
+                                    </a>
+                                </article>
+                            </div>
+                            <div class="col-md-6">
+                                <article>
+                                    <header>
+                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <p>
+                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
+                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
+                                        </p>
+                                    </header>
+                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
+                                    </a>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                </article>
             </div>
             <div class="col-lg-4" style="padding: 0;">
                 <aside>

@@ -1,129 +1,210 @@
 
-aside {
-	margin-top: 10px;
-	border-left: 1px solid #ccc;
+#article-page {
+	padding-top: 25px;
 
-	.site-index {
-		padding-top: 10px;
-		padding-left: 25px;
+	aside {
+		margin-top: 10px;
+		border-left: 1px solid #ccc;
 
-		ul {
-			list-style: none;
-			padding-left: 0;
+		.site-index {
+			padding-top: 10px;
+			padding-left: 25px;
 
-			li {
-				padding: 5px 0;
-				padding-left: 20px;
-
-				a {
-					color: black;
-					text-decoration: none;
-				}
-				a:hover {
-					color: #408a4b;
-				}
-			}
-			li.active {
-				border-left: 2px solid #7dce37;
-				color: #7dce37;
-
-				a {
-					color: inherit;
-				}
-			}
-		}
-	}
-}
-/*---------------*/
-#article-detail {
-	text-align: justify;
-
-	.publish-date {
-		font-size: 0.8rem;
-		color: #828181;
-	}
-	.cover-image {
-		width: 100%;
-		margin: 20px 0;
-	}
-	.social-share {
-		background: #f8f8f8;
-		padding: 20px 10px;
-
-		h5 {
-			padding-left: 20px;
-			margin-bottom: 0;
-			font-family: Roboto-LightItalic;
-		}
-		img {
-			width: 45px;
-			margin-right: 5px;
-		}
-		#___plus_0, #___plus_1 {
-			vertical-align: middle !important;
-			margin-top: 3px !important;
-		}
-		#twitter-widget-0, #twitter-widget-1 {
-			vertical-align: middle;
-			margin-top: 3px;
-		}
-	}
-
-	.article-footer {
-		.tags {
-			margin-top: 10px;
-
-			h5 {
-				display: inline-block;
-			}
 			ul {
-				display: inline-block;
-				padding-left: 10px;
+				list-style: none;
+				padding-left: 0;
 
 				li {
-					display: inline-block;
-					margin-right: 15px;
+					padding: 5px 0;
+					padding-left: 20px;
 
 					a {
-						color: #828181;
+						color: black;
+						text-decoration: none;
 					}
 					a:hover {
-						color: rgb(125, 206, 55);
+						color: #408a4b;
 					}
 				}
-			}
-		}
-		.like-fanpage {
-			position: relative;
+				li.active {
+					border-left: 2px solid #7dce37;
+					color: #7dce37;
 
-			img:first-child {
-				width: 100%;
-			}
-			.fanpage {
-				position: absolute;
-				top: 20px;
-				right: 30px;
-
-				h6 {
-					display: inline-block;
-					vertical-align: top;
-					text-align: right;
-					margin-right: 10px;
-					color: white;
-					line-height: 1.4rem;
-					margin-top: 20px;
-				}
-				img:first-child {
-					position: absolute;
-					top: 65px;
-					left: 230px;
-					width: 45px;
+					a {
+						color: inherit;
+					}
 				}
 			}
 		}
 	}
-}
-/*---------------*/
-#fb-comments, #fb-comments span, #fb-comments span iframe {
-	width: 100% !important;
+
+	#article-detail {
+		text-align: justify;
+
+		h3 {
+			text-align: left;
+		}
+		.publish-date {
+			font-size: 0.8rem;
+			color: #828181;
+		}
+		.cover-image {
+			width: 100%;
+			margin: 20px 0;
+		}
+		.social-share {
+			background: #f8f8f8;
+			padding: 20px 10px;
+
+			h5 {
+				padding-left: 20px;
+				margin-bottom: 0;
+				font-family: Roboto-LightItalic;
+			}
+			img {
+				width: 45px;
+				margin-right: 5px;
+			}
+			.fb_iframe_widget_fluid {
+				display: inline-block;
+			}
+			#___plus_0, #___plus_1 {
+				vertical-align: middle !important;
+				margin-top: 3px !important;
+			}
+			#twitter-widget-0, #twitter-widget-1 {
+				vertical-align: middle;
+				margin-top: 3px;
+			}
+		}
+
+		.article-footer {
+			.tags {
+				margin-top: 10px;
+				text-align: left;
+
+				h5 {
+					display: inline-block;
+				}
+				ul {
+					display: inline-block;
+					padding-left: 10px;
+
+					li {
+						display: inline-block;
+						margin-right: 15px;
+
+						a {
+							color: #828181;
+						}
+						a:hover {
+							color: rgb(125, 206, 55);
+						}
+					}
+				}
+			}
+			.like-fanpage {
+				position: relative;
+
+				img:first-child {
+					width: 100%;
+				}
+				.fanpage {
+					position: absolute;
+					top: 20px;
+					right: 30px;
+
+					h6 {
+						display: inline-block;
+						vertical-align: top;
+						text-align: right;
+						margin-right: 10px;
+						color: white;
+						line-height: 1.4rem;
+						margin-top: 20px;
+					}
+					img:first-child {
+						position: absolute;
+						top: 65px;
+						left: 230px;
+						width: 45px;
+					}
+				}
+			}
+		}
+
+		#fb-comments, #fb-comments span, #fb-comments span iframe {
+			width: 100% !important;
+		}
+
+		.article-suggests {
+			padding: 25px;
+			border-top: 1px solid #e3e6e8;
+
+			.col-md-6 {
+				padding: 5px;
+			}
+			article:hover img {
+				@include scale3d;
+			}
+			article {
+				overflow: hidden;
+
+				header {
+					position: absolute;
+					bottom: 0;
+					padding: 0 0 0 20px;
+					z-index: 90;
+
+					h5 {
+						text-align: left;
+						margin-bottom: 5px;
+						color: white;
+
+						a {
+							color: inherit;
+						}
+					}
+					p {
+						color: white;
+						font-size: 0.75rem;
+
+						a {
+							color: inherit;
+						}
+					}
+				}
+				img {
+					width: 100%;
+					@include transition(0.5);
+				}
+			}
+		}
+	}
+
+	@media (max-width: 991px) {
+		aside {
+			display: none;
+		}
+	}
+	@media (max-width: 575px) {
+		.like-fanpage {
+			display: none;
+		}
+	}
+	@media (max-width: 400px) {
+		.social-share {
+			h5 {
+				margin-bottom: 10px !important;
+				padding: 0;
+				text-align: center;
+			}
+			section {
+				text-align: center;
+			}
+			section > img {
+				display: none;
+			}
+		}
+	}
 }
