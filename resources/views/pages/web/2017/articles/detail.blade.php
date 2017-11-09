@@ -568,6 +568,7 @@
                 </article>
             </div>
             <div class="col-lg-4" style="padding: 0;">
+                <img class="show-aside" src="{!! \URLHelper::asset('icon/show_aside.png', 'common') !!}" alt="">
                 <aside>
                     <section class="ads-300x250 text-center">
                         <h6>Quảng Cáo</h6>

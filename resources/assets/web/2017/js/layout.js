@@ -7,11 +7,19 @@ $('#search-icon-mobile').on('click', function () {
 
 //   begin: show search box for mobile
 $('#menu').on('click', function () {
+    $('.show-aside').css('z-index', '98');
     $('.wrap-left-navigation').css('display', 'block');
     $('#left-navigation').toggleClass('open');
 });
+$('.show-aside').on('click', function () {
+    $('.wrap-left-navigation').toggle();
+    $('.show-aside').toggleClass('open');
+    $('aside').toggleClass('open');
+});
 $('.wrap-left-navigation').on('click', function () {
-    $('#left-navigation').toggleClass('open');
+    $('#left-navigation').removeClass('open');
+    $('aside').removeClass('open');
+    $('.show-aside').removeClass('open').css('z-index', '100');
     $('.wrap-left-navigation').css('display', 'none');
 });
 //  end
