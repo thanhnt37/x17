@@ -37,6 +37,11 @@
 			}
 		}
 	}
+	aside.fixed {
+		position: fixed;
+		top: -310px;
+		border-left: 1px solid #ccc;
+	}
 
 	#article-detail {
 		text-align: justify;
