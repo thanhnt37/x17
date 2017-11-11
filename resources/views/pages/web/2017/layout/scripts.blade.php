@@ -1,0 +1,1 @@
+<script src="{!! \URLHelper::asset('js/script.js', 'web/2017') !!}"></script>

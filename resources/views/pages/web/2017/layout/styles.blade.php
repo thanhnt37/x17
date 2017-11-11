@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="{!! \URLHelper::asset('css/styles.css', 'web/2017') !!}">
