@@ -1,11 +1,26 @@
 .ads-300x250 {
+	text-align: center;
+
 	h6 {
 		text-align: left;
-		margin-bottom: 15px;
-		padding-left: 10px;
 	}
-	hr {
-		border-top: 1px solid #ccc;
-		width: 80%;
+	hr.hr-top {
+		margin-top: 0;
+	}
+	hr.hr-bottom {
+		margin-bottom: 0;
+	}
+}
+.ads-300x600 {
+	text-align: center;
+
+	h6 {
+		text-align: left;
+	}
+	hr.hr-top {
+		margin-top: 0;
+	}
+	hr.hr-bottom {
+		margin-bottom: 0;
 	}
 }

@@ -154,7 +154,7 @@
                                                 <a href="/jquery-ajax">JQuery/Ajax</a>
                                                 <time datetime="23/09/2017">23/09/2017</time>
                                             </p>
-                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
                                         </section>
                                     </article>
                                     <article>
@@ -164,7 +164,7 @@
                                                 <a href="/jquery-ajax">JQuery/Ajax</a>
                                                 <time datetime="23/09/2017">23/09/2017</time>
                                             </p>
-                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
                                         </section>
                                     </article>
                                     <article>
@@ -174,7 +174,7 @@
                                                 <a href="/jquery-ajax">JQuery/Ajax</a>
                                                 <time datetime="23/09/2017">23/09/2017</time>
                                             </p>
-                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
                                         </section>
                                     </article>
                                     <article>
@@ -184,7 +184,7 @@
                                                 <a href="/jquery-ajax">JQuery/Ajax</a>
                                                 <time datetime="23/09/2017">23/09/2017</time>
                                             </p>
-                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
                                         </section>
                                     </article>
                                     <article>
@@ -194,15 +194,12 @@
                                                 <a href="/jquery-ajax">JQuery/Ajax</a>
                                                 <time datetime="23/09/2017">23/09/2017</time>
                                             </p>
-                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
                                         </section>
                                     </article>
                                 </div>
                                 <div class="col-lg-12" >
-                                    <div class="ads-300x600">
-
-                                    </div>
-                                    <img src="http://via.placeholder.com/300x600" alt="">
+                                    @include('pages.web.advertises.300x600')
                                 </div>
                             </div>
                         </div>

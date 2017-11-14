@@ -484,11 +484,8 @@
             <div class="col-lg-4" style="padding: 0;">
                 <img class="show-aside" src="{!! \URLHelper::asset('icon/show_aside.png', 'common') !!}" alt="">
                 <aside>
-                    <section class="ads-300x250 text-center">
-                        <h6>Quảng Cáo</h6>
-                        <img src="http://via.placeholder.com/300x250" alt="">
-                        <hr>
-                    </section>
+                    @include('pages.web.advertises.300x250')
+
                     <section class="site-index">
                         <h5>INDEX</h5>
                         <ul>
