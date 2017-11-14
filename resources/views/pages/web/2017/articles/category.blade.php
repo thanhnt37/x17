@@ -30,7 +30,7 @@
 
                 <section id="featured-content">
                     <div class="row">
-                        <div class="col-lg-4 order-2" style="min-height: 300px; border: 1px solid;">
+                        <div class="col-lg-4 order-2 newest-articles">
                             <div class="row">
                                 <div class="col-lg-12 col-md-6">
                                     <article>
@@ -111,26 +111,97 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 order-3" style="min-height: 300px; border: 1px solid;">
+                        <div class="col-lg-4 order-3 hot-articles">
                             <div class="row">
-                                <div class="col-lg-12" style="border: 1px solid;">
-                                    <img src="http://via.placeholder.com/300x550" alt="">
+                                <div class="col-lg-12" >
+                                    <article class="big-article">
+                                        <header>
+                                            <h6>Javascript</h6>
+                                            <h3>Tương lai nào cho Lập trình front-end</h3>
+                                        </header>
+                                        <img src="http://via.placeholder.com/300x500" alt="">
+                                    </article>
                                 </div>
-                                <div class="col-lg-12" style="border: 1px solid;">
-                                    <img src="http://via.placeholder.com/420x340" alt="">
+                                <div class="col-lg-12" >
+                                    <article class="medium-article">
+                                        <header>
+                                            <h6>Javascript</h6>
+                                            <h4>Tương lai nào cho Lập trình front-end</h4>
+                                        </header>
+                                        <img src="http://via.placeholder.com/420x340" alt="">
+                                    </article>
                                 </div>
-                                <div class="col-lg-12" style="border: 1px solid;">
-                                    <img src="http://via.placeholder.com/420x340" alt="">
+                                <div class="col-lg-12" >
+                                    <article class="medium-article">
+                                        <header>
+                                            <h6>Javascript</h6>
+                                            <h4>Tương lai nào cho Lập trình front-end</h4>
+                                        </header>
+                                        <img src="http://via.placeholder.com/420x340" alt="">
+                                    </article>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4 order-4" style="min-height: 300px; border: 1px solid;">
+                        <div class="col-lg-4 order-4 series-article" >
                             <div class="row">
-                                <div class="col-lg-12" style="min-height: 300px; border: 1px solid;">
-                                    <img src="http://via.placeholder.com/300x600" alt="">
+                                <div class="col-lg-12" >
+                                    {{--<h3>SERIES NỔI BẬT</h3>--}}
+                                    <article>
+                                        <img src="http://via.placeholder.com/100x100" alt="">
+                                        <section class="info">
+                                            <p class="category">
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </p>
+                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                        </section>
+                                    </article>
+                                    <article>
+                                        <img src="http://via.placeholder.com/100x100" alt="">
+                                        <section class="info">
+                                            <p class="category">
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </p>
+                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                        </section>
+                                    </article>
+                                    <article>
+                                        <img src="http://via.placeholder.com/100x100" alt="">
+                                        <section class="info">
+                                            <p class="category">
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </p>
+                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                        </section>
+                                    </article>
+                                    <article>
+                                        <img src="http://via.placeholder.com/100x100" alt="">
+                                        <section class="info">
+                                            <p class="category">
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </p>
+                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                        </section>
+                                    </article>
+                                    <article>
+                                        <img src="http://via.placeholder.com/100x100" alt="">
+                                        <section class="info">
+                                            <p class="category">
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </p>
+                                            <h5>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h5>
+                                        </section>
+                                    </article>
                                 </div>
-                                <div class="col-lg-12" style="min-height: 300px; border: 1px solid;">
+                                <div class="col-lg-12" >
+                                    <div class="ads-300x600">
+
+                                    </div>
                                     <img src="http://via.placeholder.com/300x600" alt="">
                                 </div>
                             </div>
