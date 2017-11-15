@@ -12,7 +12,7 @@
 			}
 			header {
 				position: absolute;
-				bottom: 5px;
+				bottom: 0;
 				left: 50px;
 
 				span {
@@ -72,8 +72,6 @@
 					margin-bottom: 20px;
 
 					article {
-						//-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-						//box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 						background: white;
 						height: 100%;
 
@@ -83,7 +81,7 @@
 
 							img {
 								width: 100%;
-								min-height: 120px;
+								min-height: 130px;
 								@include transition(0.5);
 							}
 							img:hover {
@@ -98,7 +96,7 @@
 							}
 						}
 						h5 {
-							padding: 5px 15px;
+							padding: 0 15px;
 
 							a {
 								color: black;
@@ -121,7 +119,7 @@
 						margin-bottom: 10px;
 						width: 100%;
 					}
-					.big-article, .medium-article {
+					article {
 						header {
 							position: absolute;
 							bottom: 20px;
@@ -293,13 +291,45 @@
 
 	@media (max-width: 991px) {
 		.wrap-content {
+			#breadcrumb {
+				img {
+					width: 100%;
+					min-height: 100px;
+				}
+				header {
+					bottom: 0;
+					left: 30px;
+
+					span {
+						width: 35px;
+						height: 35px;
+						line-height: 33px;
+					}
+					h2 {
+						font-size: 1.8rem;
+					}
+					ul {
+						font-size: 0.8rem;
+						margin-bottom: 10px;
+					}
+				}
+			}
+
 			#featured-content {
-				.col-lg-4:nth-child(2) {
+				.hot-articles {
 					order: 1;
 
 					.col-lg-12 {
+						padding: 0 15px;
+
 						img {
 							content: url("http://via.placeholder.com/970x250");
+							max-width: inherit;
+						}
+						article {
+							header {
+								width: 95%;
+							}
 						}
 					}
 				}

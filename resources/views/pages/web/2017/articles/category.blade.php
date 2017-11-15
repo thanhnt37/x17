@@ -221,11 +221,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -245,11 +245,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -269,11 +269,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -293,11 +293,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -317,11 +317,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -341,11 +341,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -365,11 +365,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -389,11 +389,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -413,11 +413,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
@@ -437,11 +437,11 @@
                                     <a href="/jquery-ajax">JQuery/Ajax</a>
                                     <time datetime="23/09/2017">23/09/2017</time>
                                 </p>
-                                <h4 class="title">
+                                <h5 class="title">
                                     <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
                                         Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                     </a>
-                                </h4>
+                                </h5>
                                 <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
                                 <section class="counter">
                                     <span><i class="fa fa-eye"></i> 254</span>
