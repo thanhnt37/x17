@@ -273,6 +273,17 @@
 		}
 		.col-lg-4 {
 			border-left: 1px solid #efefef;
+
+			.hr-top {
+				margin-top: 0;
+			}
+			.ads-300x250, .ads-300x600 {
+				margin-bottom: 20px;
+
+				.hr-top, .hr-bottom, h6 {
+					display: none;
+				}
+			}
 		}
 	}
 

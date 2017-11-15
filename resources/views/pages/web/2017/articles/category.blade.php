@@ -415,7 +415,15 @@
                         </section>
                     </div>
 
-                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <hr class="hr-top">
+                        <h6>Quảng Cáo</h6>
+                        
+                        @include('pages.web.advertises.300x250')
+                        @include('pages.web.advertises.300x600')
+                        @include('pages.web.advertises.300x600')
+                        @include('pages.web.advertises.300x600')
+                    </div>
                 </div>
             </div>
         </section>
