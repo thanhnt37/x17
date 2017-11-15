@@ -208,7 +208,7 @@
             </section>
         </section>
 
-        <section id="normal-content" style="min-height: 100px;">
+        <section id="normal-content">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">

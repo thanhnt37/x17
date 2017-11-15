@@ -289,6 +289,7 @@
 		}
 	}
 
+	// Medium devices (tablets, less than 992px)
 	@media (max-width: 991px) {
 		.wrap-content {
 			#breadcrumb {
@@ -335,5 +336,112 @@
 				}
 			}
 		}
+		#normal-content {
+			.col-lg-4 {
+				display: none;
+			}
+		}
 	}
+
+	// Extra small devices (portrait phones, less than 576px)
+	@media (max-width: 575px) {
+		.wrap-content {
+			#breadcrumb {
+				header {
+					left: 10px;
+
+					span {
+						width: 30px;
+						height: 30px;
+						line-height: 28px;
+					}
+					h2 {
+						font-size: 1.4rem;
+					}
+					ul {
+						margin: 0;
+
+						li {
+							margin-bottom: 5px;
+						}
+					}
+				}
+			}
+
+			#featured-content {
+				.hot-articles {
+					order: 1;
+
+					.col-lg-12 {
+						img {
+							content: url("http://via.placeholder.com/560x390");
+							max-width: inherit;
+							min-height: inherit;
+						}
+						article {
+							header {
+								width: 90%;
+								left: 20px;
+								bottom: 10px;
+
+								h6 {
+									font-size: 0.95rem;
+								}
+								h3, h4 {
+									font-size: 1.35rem;
+								}
+							}
+						}
+					}
+				}
+				.series-article {
+					.col-lg-12:nth-child(2) {
+						padding: 0;
+					}
+				}
+			}
+		}
+
+		#normal-content {
+			.col-lg-8 {
+				article {
+					img {
+						width: 100%;
+						max-width: inherit;
+					}
+					.details {
+						display: block;
+						width: 100%;
+						border: none;
+						border-bottom: 1px solid #efefef;
+						padding-bottom: 20px;
+						height: inherit;
+
+						.descriptions {
+							margin-bottom: 10px;
+						}
+						.counter {
+							position: relative;
+						}
+					}
+				}
+				.view-more {
+					margin-top: 40px;
+
+					button {
+						width: 85%;
+						margin: 0 auto;
+						display: inherit;
+						background-color: rgb(125, 206, 55);
+						border: none;
+						border-radius: 0;
+					}
+				}
+			}
+			.col-lg-4 {
+				display: none;
+			}
+		}
+	}
+
 }
