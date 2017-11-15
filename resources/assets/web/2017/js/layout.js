@@ -34,11 +34,12 @@ $(document).ready(function() {
             if( window.scrollY >= $offset ) {
                 $('body').css('padding-top', '56px');
 
-                isScrollUp = (window.scrollY < previous);
+                isScrollUp = (window.scrollY < (previous - 20));
+                isScrollDown = (window.scrollY > (previous + 20));
 
                 if (isScrollUp) {
                     $('nav').removeClass('scroll-down').addClass('scroll-up');
-                } else {
+                } else if(isScrollDown){
                     $('#search-box-mobile').removeClass('shown').addClass('hidden');
                     $('nav').removeClass('scroll-up').addClass('scroll-down');
                 }
