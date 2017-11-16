@@ -30,7 +30,7 @@
 
                 <section id="main-content">
                     <div class="row">
-                        <div id="left-content" class="col-lg-8" style="min-height: 200px; border: 1px solid">
+                        <div id="left-content" class="col-lg-8">
                             <div id="slides-show" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#slides-show" data-slide-to="0" class="active"></li>
@@ -293,7 +293,23 @@
                             </section>
                         </div>
 
-                        <div id="right-content" class="col-lg-4" style="min-height: 200px; border: 1px solid">
+                        <div id="right-content" class="col-lg-4">
+                            <section class="subscribe-form-2">
+                                <header>
+                                    <h3>ĐĂNG KÝ EMAIL</h3>
+                                    <p>Để cập nhật thêm nhiều tin tức công nghệ mới mỗi ngày</p>
+                                    <form action="#">
+                                        <input type="text" placeholder="Email của bạn" class="form-control">
+                                        <span></span>
+                                    </form>
+                                </header>
+                                <img src="{!! \URLHelper::asset('icon/bg_subscribe-form.jpg', 'common') !!}" alt="">
+                            </section>
+
+                            @include('pages.web.advertises.300x600')
+                            @include('pages.web.advertises.300x600')
+                            @include('pages.web.advertises.300x600')
+                            @include('pages.web.advertises.300x600')
                         </div>
                     </div>
                 </section>
