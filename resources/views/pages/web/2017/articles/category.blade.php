@@ -38,7 +38,9 @@
                                             <a href="/jquery-ajax">
                                                 <img src="http://via.placeholder.com/970x250" alt="">
                                             </a>
-                                            <figcaption>JQuery/Ajax</figcaption>
+                                            <figcaption>
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                            </figcaption>
                                         </figure>
                                         <h5>
                                             <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ? Có gì hay ho không mà lắm thằng học thế </a>
@@ -49,7 +51,9 @@
                                     <article>
                                         <figure>
                                             <img src="http://via.placeholder.com/970x250" alt="">
-                                            <figcaption>React Native</figcaption>
+                                            <figcaption>
+                                                <a href="/react-native">React Native</a>
+                                            </figcaption>
                                         </figure>
                                         <h5>
                                             <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ?</a>
@@ -64,7 +68,9 @@
                                             <a href="/jquery-ajax">
                                                 <img src="http://via.placeholder.com/970x250" alt="">
                                             </a>
-                                            <figcaption>JQuery/Ajax</figcaption>
+                                            <figcaption>
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                            </figcaption>
                                         </figure>
                                         <h5>
                                             <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ? Có gì hay ho không mà lắm thằng học thế </a>
@@ -75,7 +81,9 @@
                                     <article>
                                         <figure>
                                             <img src="http://via.placeholder.com/970x250" alt="">
-                                            <figcaption>React Native</figcaption>
+                                            <figcaption>
+                                                <a href="/react-native">React Native</a>
+                                            </figcaption>
                                         </figure>
                                         <h5>
                                             <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ?</a>
@@ -90,7 +98,9 @@
                                             <a href="/jquery-ajax">
                                                 <img src="http://via.placeholder.com/970x250" alt="">
                                             </a>
-                                            <figcaption>JQuery/Ajax</figcaption>
+                                            <figcaption>
+                                                <a href="/jquery-ajax">JQuery/Ajax</a>
+                                            </figcaption>
                                         </figure>
                                         <h5>
                                             <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ? Có gì hay ho không mà lắm thằng học thế </a>
@@ -101,7 +111,9 @@
                                     <article>
                                         <figure>
                                             <img src="http://via.placeholder.com/970x250" alt="">
-                                            <figcaption>React Native</figcaption>
+                                            <figcaption>
+                                                <a href="/react-native">React Native</a>
+                                            </figcaption>
                                         </figure>
                                         <h5>
                                             <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ?</a>
@@ -116,28 +128,40 @@
                                 <div class="col-lg-12" >
                                     <article class="big-article">
                                         <header>
-                                            <h6>Javascript</h6>
-                                            <h3>Tương lai nào cho Lập trình front-end</h3>
+                                            <h6><a href="/javascript">Javascript</a></h6>
+                                            <h3>
+                                                <a href="/category/article-slug">Tương lai nào cho Lập trình front-end</a>
+                                            </h3>
                                         </header>
-                                        <img src="http://via.placeholder.com/300x500" alt="">
+                                        <a href="/category/article-slug">
+                                            <img src="http://via.placeholder.com/300x500" alt="">
+                                        </a>
                                     </article>
                                 </div>
                                 <div class="col-lg-12" >
                                     <article class="medium-article">
                                         <header>
-                                            <h6>Javascript</h6>
-                                            <h4>Tương lai nào cho Lập trình front-end</h4>
+                                            <h6><a href="/javascript">Javascript</a></h6>
+                                            <h4>
+                                                <a href="/category/article-slug">Tương lai nào cho Lập trình front-end</a>
+                                            </h4>
                                         </header>
-                                        <img src="http://via.placeholder.com/420x340" alt="">
+                                        <a href="/category/article-slug">
+                                            <img src="http://via.placeholder.com/420x340" alt="">
+                                        </a>
                                     </article>
                                 </div>
                                 <div class="col-lg-12" >
                                     <article class="medium-article">
                                         <header>
-                                            <h6>Javascript</h6>
-                                            <h4>Tương lai nào cho Lập trình front-end</h4>
+                                            <h6><a href="/javascript">Javascript</a></h6>
+                                            <h4>
+                                                <a href="/category/article-slug">Tương lai nào cho Lập trình front-end</a>
+                                            </h4>
                                         </header>
-                                        <img src="http://via.placeholder.com/420x340" alt="">
+                                        <a href="/category/article-slug">
+                                            <img src="http://via.placeholder.com/420x340" alt="">
+                                        </a>
                                     </article>
                                 </div>
                             </div>

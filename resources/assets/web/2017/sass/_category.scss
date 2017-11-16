@@ -32,6 +32,10 @@
 								left: 15px;
 								color: #828181;
 								font-size: 0.9rem;
+
+								a {
+									color: inherit;
+								}
 							}
 						}
 						h5 {
@@ -48,31 +52,41 @@
 
 			.hot-articles {
 				.col-lg-12 {
-					padding: 0;
 					text-align: center;
-					margin-bottom: 10px;
+					margin-bottom: 20px;
 
-					img {
-						max-width: 350px;
-						min-height: 299px;
-						margin-bottom: 10px;
-						width: 100%;
-					}
 					article {
+						overflow: hidden;
+
 						header {
 							position: absolute;
 							bottom: 20px;
 							left: 25px;
 							text-align: left;
 							width: 340px;
+							z-index: 90;
+
+							h6 {
+								color: $main-color;
+								font-weight: bolder;
+							}
+							h3, h4 {
+								color: white;
+								font-weight: bolder;
+							}
+							a {
+								color: inherit;
+								text-decoration: none;
+							}
 						}
-						h6 {
-							color: $main-color;
-							font-weight: bolder;
+						img {
+							max-width: 350px;
+							min-height: 299px;
+							width: 100%;
+							@include transition(0.5);
 						}
-						h3, h4 {
-							color: white;
-							font-weight: bolder;
+						img:hover {
+							@include scale3d;
 						}
 					}
 				}
@@ -106,7 +120,6 @@
 								padding-right: 10px;
 								border-right: 1px solid;
 								margin-right: 5px;
-								text-decoration: none;
 								color: inherit;
 							}
 						}
@@ -131,10 +144,6 @@
 			article {
 				margin-bottom: 20px;
 
-				a {
-					color: inherit;
-					text-decoration: none;
-				}
 				img {
 					width: 42%;
 					max-width: 300px;
@@ -159,12 +168,14 @@
 							padding-right: 10px;
 							border-right: 1px solid;
 							margin-right: 5px;
-							text-decoration: none;
 							color: inherit;
 						}
 					}
 					.title {
-
+						a {
+							color: inherit;
+							text-decoration: none;
+						}
 					}
 					.descriptions {
 						font-size: 0.95rem;
