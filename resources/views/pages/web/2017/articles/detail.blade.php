@@ -53,16 +53,23 @@
 
 @section('content')
     <section id="article-page" class="container">
+
+        <section id="breadcrumb">
+            <header>
+                <a href="/javascript"><span>J</span></a>
+                <h2><a href="/javascript">Javascript</a></h2>
+                <ul>
+                    <li><a href="jquery-ajax">JQuery/Ajax</a></li>
+                    <li class="active"><a href="nodejs">NodeJS</a></li>
+                    <li><a href="react-native">Reach Native</a></li>
+                    <li><a href="angular">Angular</a></li>
+                </ul>
+            </header>
+            <img src="http://via.placeholder.com/730x95" alt="">
+        </section>
+
         <div class="row">
             <div class="col-lg-8">
-                <nav aria-label="breadcrumb" role="navigation">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">XCODE.VN</a></li>
-                        <li class="breadcrumb-item"><a href="#">Javascript</a></li>
-                        <li class="breadcrumb-item"><a href="#">NodeJS</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Functional Reactive Programming là gì?</li>
-                    </ol>
-                </nav>
                 <article id="article-detail">
                     <h3>Functional Reactive Programming là gì?</h3>
                     <p class="publish-date"><time datetime="23/09/2017">23/09/2017</time> trong <a href="#">Javascript</a>/<a href="#">NodeJS</a></p>
@@ -499,5 +506,6 @@
                 </aside>
             </div>
         </div>
+
     </section>
 @stop

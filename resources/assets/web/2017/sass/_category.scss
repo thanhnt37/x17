@@ -3,67 +3,6 @@
 		background: $background;
 		padding-top: 20px;
 
-		#breadcrumb {
-			position: relative;
-			margin-bottom: 20px;
-
-			img {
-				width: 100%;
-			}
-			header {
-				position: absolute;
-				bottom: 0;
-				left: 50px;
-
-				span {
-					width: 50px;
-					height: 50px;
-					border: 1px solid;
-					display: inline-block;
-					border-radius: 50px;
-					text-align: center;
-					line-height: 48px;
-					background: aquamarine;
-					font-size: 20px;
-					font-weight: bolder;
-				}
-				h2 {
-					display: inline-block;
-					margin-left: 7px;
-					vertical-align: baseline;
-
-					a {
-						color: white;
-						text-decoration: none;
-					}
-				}
-				ul {
-					list-style: none;
-					padding-left: 0;
-					margin-top: 10px;
-
-					li {
-						display: inline-block;
-						padding: 2px 20px;
-						background-color: #d8d8d8;
-						border-radius: 20px;
-						margin-right: 5px;
-
-						a {
-							color: white;
-							text-decoration: none;
-						}
-					}
-					li:hover {
-						background-color: $main-color;
-					}
-					li.active {
-						background-color: $main-color;
-					}
-				}
-			}
-		}
-
 		#featured-content {
 			padding-bottom: 10px;
 
@@ -292,30 +231,6 @@
 	// Medium devices (tablets, less than 992px)
 	@media (max-width: 991px) {
 		.wrap-content {
-			#breadcrumb {
-				img {
-					width: 100%;
-					min-height: 100px;
-				}
-				header {
-					bottom: 0;
-					left: 30px;
-
-					span {
-						width: 35px;
-						height: 35px;
-						line-height: 33px;
-					}
-					h2 {
-						font-size: 1.8rem;
-					}
-					ul {
-						font-size: 0.8rem;
-						margin-bottom: 10px;
-					}
-				}
-			}
-
 			#featured-content {
 				.hot-articles {
 					order: 1;
@@ -346,28 +261,6 @@
 	// Extra small devices (portrait phones, less than 576px)
 	@media (max-width: 575px) {
 		.wrap-content {
-			#breadcrumb {
-				header {
-					left: 10px;
-
-					span {
-						width: 30px;
-						height: 30px;
-						line-height: 28px;
-					}
-					h2 {
-						font-size: 1.4rem;
-					}
-					ul {
-						margin: 0;
-
-						li {
-							margin-bottom: 5px;
-						}
-					}
-				}
-			}
-
 			#featured-content {
 				.hot-articles {
 					order: 1;
