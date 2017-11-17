@@ -1,0 +1,71 @@
+#page-not-found {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    padding-top: 40px;
+
+    img {
+        width: 80%;
+    }
+    h2 {
+        margin-top: 20px;
+        font-weight: bolder;
+    }
+    form {
+        width: 90%;
+        margin: 0 auto;
+        position: relative;
+
+        label {
+            position: absolute;
+            color: $sub-color;
+            margin: 0;
+            left: 25px;
+            top: 9px;
+        }
+        input {
+            padding-left: 50px;
+            height: 40px;
+            border-radius: 40px;
+        }
+    }
+    .internal-link {
+        margin-top: 15px;
+        font-weight: bolder;
+        margin-bottom: 25px;
+
+        a {
+            background: rgb(197, 179, 56);
+            color: black;
+            padding: 3px 20px;
+            border-radius: 20px;
+        }
+        a:first-of-type {
+            background: $main-color;
+            margin-right: 20px;
+        }
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px dashed $sub-color;
+            padding: 1px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+
+            a {
+                color: $sub-color;
+                text-decoration: none;
+            }
+        }
+        li:hover {
+            background: $main-color;
+        }
+    }
+}
