@@ -27,4 +27,11 @@ class ArticleController extends Controller
             []
         );
     }
+    public function series()
+    {
+        return view(
+            'pages.web.2017.articles.series',
+            []
+        );
+    }
 }
