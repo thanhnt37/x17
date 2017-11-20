@@ -104,7 +104,7 @@
 			}
 		}
 
-		#series-article {
+		#series-articles {
 			padding: 20px 0 50px 0;
 
 			.col-lg-8 {
@@ -119,7 +119,7 @@
 						width: 57%;
 						display: inline-block;
 						vertical-align: top;
-						height: 205px;
+						min-height: 205px;
 						padding-left: 10px;
 						position: relative;
 						border-top: 1px solid #efefef;
@@ -210,53 +210,57 @@
 
 	// Medium devices (tablets, less than 992px)
 	@media (max-width: 991px) {
-		#series-article {
-			.col-lg-4 {
-				display: none;
+		.wrap-content {
+			#series-articles {
+				.col-lg-4 {
+					display: none;
+				}
 			}
 		}
 	}
 
 	// Extra small devices (portrait phones, less than 576px)
 	@media (max-width: 575px) {
-		#series-article {
-			.col-lg-8 {
-				article {
-					img {
-						width: 100%;
-						max-width: inherit;
-					}
-					.details {
-						display: block;
-						width: 100%;
-						border: none;
-						border-bottom: 1px solid #efefef;
-						padding-bottom: 20px;
-						height: inherit;
-
-						.descriptions {
-							margin-bottom: 10px;
+		.wrap-content {
+			#series-articles {
+				.col-lg-8 {
+					article {
+						img {
+							width: 100%;
+							max-width: inherit;
 						}
-						.counter {
-							position: relative;
+						.details {
+							display: block;
+							width: 100%;
+							border: none;
+							border-bottom: 1px solid #efefef;
+							padding-bottom: 20px;
+							height: inherit;
+
+							.descriptions {
+								margin-bottom: 10px;
+							}
+							.counter {
+								position: relative;
+							}
+						}
+					}
+					.view-more {
+						margin-top: 40px;
+
+						button {
+							width: 85%;
+							margin: 0 auto;
+							display: inherit;
+							background-color: rgb(125, 206, 55);
+							border: none;
+							border-radius: 0;
 						}
 					}
 				}
-				.view-more {
-					margin-top: 40px;
-
-					button {
-						width: 85%;
-						margin: 0 auto;
-						display: inherit;
-						background-color: rgb(125, 206, 55);
-						border: none;
-						border-radius: 0;
-					}
+				.col-lg-4 {
+					display: none;
 				}
-			}
-			.col-lg-4 {
-				display: none;
 			}
 		}
 	}

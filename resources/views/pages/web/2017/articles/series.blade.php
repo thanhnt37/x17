@@ -109,7 +109,7 @@
                     </section>
                 </section>
 
-                <section id="series-article">
+                <section id="series-articles">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
