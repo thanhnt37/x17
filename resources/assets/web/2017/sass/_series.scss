@@ -211,6 +211,33 @@
 	// Medium devices (tablets, less than 992px)
 	@media (max-width: 991px) {
 		.wrap-content {
+			#series-info {
+				.series-title {
+					img {
+						height: 330px;
+					}
+					header {
+						padding-top: 0;
+
+						.category {
+							display: none;
+						}
+						.title {
+							display: block;
+							margin-top: 20px;
+
+							h4 {
+								margin-bottom: 0;
+							}
+						}
+					}
+				}
+				.series-descriptions {
+					padding: 10px 50px;
+					padding-top: 30px;
+				}
+			}
+
 			#series-articles {
 				.col-lg-4 {
 					display: none;
@@ -222,6 +249,21 @@
 	// Extra small devices (portrait phones, less than 576px)
 	@media (max-width: 575px) {
 		.wrap-content {
+			#series-info {
+				.series-title {
+					img {
+						height: 220px;
+					}
+					header {
+						padding-left: 0;
+					}
+				}
+				.series-descriptions {
+					padding: 0 30px;
+					padding-top: 30px;
+				}
+			}
+
 			#series-articles {
 				.col-lg-8 {
 					article {
