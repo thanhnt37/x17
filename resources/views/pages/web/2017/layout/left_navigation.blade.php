@@ -8,45 +8,27 @@
     </div>
 
     <ul class="navbar-nav mr-auto">
+
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                PHP
-            </a>
+            <a class="nav-link" href="/php">PHP</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                Javascript
-            </a>
+            <a class="nav-link" href="/javascript">Javascript</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                Databases
-            </a>
+            <a class="nav-link" href="/databases">Databases</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                Git
-            </a>
+            <a class="nav-link" href="/git">Git</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="#">
-                Server
-            </a>
+            <a class="nav-link" href="/server/series">Server</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                SEO
-            </a>
+            <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                Social
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                About me
-            </a>
+            <a class="nav-link" href="/404">Others</a>
         </li>
     </ul>
 </section>

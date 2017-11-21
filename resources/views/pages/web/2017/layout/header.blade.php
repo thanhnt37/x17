@@ -38,13 +38,13 @@
                     <a class="nav-link" href="/git">Git</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/server">Server</a>
+                    <a class="nav-link" href="/server/series">Server</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/others">Others</a>
+                    <a class="nav-link" href="/404">Others</a>
                 </li>
             </ul>
 
