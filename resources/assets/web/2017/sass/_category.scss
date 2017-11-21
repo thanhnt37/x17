@@ -151,8 +151,8 @@
 				.details {
 					width: 57%;
 					display: inline-block;
-					vertical-align: middle;
-					height: 210px;
+					vertical-align: top;
+					min-height: 205px;
 					padding-left: 10px;
 					position: relative;
 					border-top: 1px solid #efefef;
@@ -172,6 +172,7 @@
 						}
 					}
 					.title {
+						margin-top: 10px;
 						a {
 							color: inherit;
 							text-decoration: none;
@@ -249,11 +250,11 @@
 					.col-lg-12 {
 						padding: 0 15px;
 
-						img {
-							content: url("http://via.placeholder.com/970x250");
-							max-width: inherit;
-						}
 						article {
+							img {
+								content: url("http://via.placeholder.com/970x250");
+								max-width: inherit;
+							}
 							header {
 								width: 95%;
 							}
@@ -277,12 +278,12 @@
 					order: 1;
 
 					.col-lg-12 {
-						img {
-							content: url("http://via.placeholder.com/560x390");
-							max-width: inherit;
-							min-height: inherit;
-						}
 						article {
+							img {
+								content: url("http://via.placeholder.com/560x390");
+								max-width: inherit;
+								min-height: inherit;
+							}
 							header {
 								width: 90%;
 								left: 20px;

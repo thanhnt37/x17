@@ -39,9 +39,21 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="http://via.placeholder.com/730x350" alt="First slide" style="height: 450px;">
-                                        <div class="carousel-caption d-none d-md-block">
+                                        <img class="d-block w-100" src="http://via.placeholder.com/730x350" alt="First slide">
+                                        <div class="carousel-caption d-md-block">
                                             <h3>Cộng hòa xã hội chủ nghĩ Việt Nam</h3>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="http://via.placeholder.com/730x350" alt="First slide">
+                                        <div class="carousel-caption d-md-block">
+                                            <h3>Một là một mà hai là hai, nghe chưa ???</h3>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="http://via.placeholder.com/730x350" alt="First slide">
+                                        <div class="carousel-caption d-md-block">
+                                            <h3>Đừng đùa với nhà chùa con nhé !!!</h3>
                                         </div>
                                     </div>
                                 </div>

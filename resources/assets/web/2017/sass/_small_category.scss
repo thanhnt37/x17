@@ -8,14 +8,21 @@
 			#left-content {
 				#slides-show {
 					margin-bottom: 30px;
+					.carousel-inner {
+						.carousel-item {
+							img {
+								height: 430px;
+							}
+							.carousel-caption {
+								width: 100%;
+								left: 0;
+							}
+						}
+					}
 				}
 				article {
 					margin-bottom: 20px;
 
-					a {
-						color: inherit;
-						text-decoration: none;
-					}
 					img {
 						width: 42%;
 						max-width: 300px;
@@ -23,8 +30,8 @@
 					.details {
 						width: 57%;
 						display: inline-block;
-						vertical-align: middle;
-						height: 210px;
+						vertical-align: top;
+						min-height: 205px;
 						padding-left: 10px;
 						position: relative;
 						border-top: 1px solid #efefef;
@@ -40,12 +47,15 @@
 								padding-right: 10px;
 								border-right: 1px solid;
 								margin-right: 5px;
-								text-decoration: none;
 								color: inherit;
 							}
 						}
 						.title {
-
+							margin-top: 10px;
+							a {
+								color: inherit;
+								text-decoration: none;
+							}
 						}
 						.descriptions {
 							font-size: 0.95rem;
@@ -154,13 +164,80 @@
 	// Medium devices (tablets, less than 992px)
 	@media (max-width: 991px) {
 		.wrap-content {
-
 			#main-content {
 				#left-content {
-
+					#slides-show {
+						.carousel-inner {
+							.carousel-item {
+								img {
+									height: 380px;
+								}
+							}
+						}
+					}
 				}
 				#right-content {
 					display: none;
+				}
+			}
+		}
+	}
+
+
+	// Extra small devices (portrait phones, less than 576px)
+	@media (max-width: 575px) {
+		.wrap-content {
+
+			#main-content {
+				#left-content {
+					#slides-show {
+						.carousel-inner {
+							.carousel-item {
+								img {
+									height: 290px;
+								}
+								.carousel-caption {
+									h3 {
+										font-size: 1.5rem;
+									}
+								}
+							}
+						}
+					}
+					article {
+						img {
+							width: 100%;
+							max-width: inherit;
+							max-height: 200px;
+						}
+						.details {
+							display: block;
+							width: 100%;
+							border: none;
+							border-bottom: 1px solid #efefef;
+							padding-bottom: 20px;
+							height: inherit;
+
+							.descriptions {
+								margin-bottom: 10px;
+							}
+							.counter {
+								position: relative;
+							}
+						}
+					}
+					.view-more {
+						margin-top: 40px;
+
+						button {
+							width: 85%;
+							margin: 0 auto;
+							display: inherit;
+							background-color: rgb(125, 206, 55);
+							border: none;
+							border-radius: 0;
+						}
+					}
 				}
 			}
 		}
