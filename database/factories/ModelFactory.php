@@ -201,4 +201,14 @@ $factory->define(App\Models\Search::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\Models\ArticleIndex::class, function (Faker\Generator $faker)
+{
+    return [
+        'title'      => $faker->words,
+        'href'       => $faker->url,
+        'parent_id'  => 0,
+        'article_id' => 0,
+    ];
+});
+
 /* NEW MODEL FACTORY */
