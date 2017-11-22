@@ -22,15 +22,12 @@ return [
             'buckets'     => [
                 env('AWS_IMAGE_BUCKET'),
             ],
-            'size'        => [600, 400],
+            'size'        => [970, 250],
             'thumbnails'  => [
-                [400, 300],
-                [800, 600],
-                [640, 640],  // Instagram
-                [735, 1102], // Pinterest
-                [1024, 512], // Twitter Card
-                [1280, 628], // Facebook OGP
-                [1440, 900],
+                [560, 390], // hot article in home page
+                [420, 340], // newest article in home page
+                [730, 350], // cover image in page detail
+                [300, 500], // hot article in category page
             ],
             'seed_prefix' => 'article_cover',
             'format'      => 'png',
