@@ -107,7 +107,7 @@ $factory->define(
     function (Faker\Generator $faker)
     {
         return [
-            'slug'               => $faker->unique()->word(),
+            'slug'               => $faker->unique()->sentences(2, true),
             'title'              => $faker->sentence,
             'keywords'           => implode(',', $faker->words(5)),
             'description'        => $faker->sentences(3, true),
