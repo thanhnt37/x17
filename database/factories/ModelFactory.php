@@ -173,4 +173,15 @@ $factory->define(App\Models\Advertisement::class, function (Faker\Generator $fak
     ];
 });
 
+$factory->define(App\Models\Contact::class, function (Faker\Generator $faker)
+{
+    return [
+        'name'      => $faker->name(),
+        'email'     => $faker->email,
+        'telephone' => $faker->phoneNumber,
+        'content'   => $faker->sentences(10, true),
+        'user_id'   => 0,
+    ];
+});
+
 /* NEW MODEL FACTORY */
