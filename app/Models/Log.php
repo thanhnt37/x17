@@ -2,7 +2,38 @@
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Log extends Base {
+/**
+ * App\Models\Log
+ *
+ * @property int                 $id
+ * @property string              $user_name
+ * @property string              $email
+ * @property string              $action
+ * @property string              $table
+ * @property int                 $record_id
+ * @property string              $query
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property \Carbon\Carbon      $created_at
+ * @property \Carbon\Carbon      $updated_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Log onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereQuery($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereRecordId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereTable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Log whereUserName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Log withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Log withoutTrashed()
+ * @mixin \Eloquent
+ */
+class Log extends Base
+{
 
     const TYPE_ACTION_SELECT = 'select';
     const TYPE_ACTION_INSERT = 'create';
@@ -50,7 +81,8 @@ class Log extends Base {
     /*
      * API Presentation
      */
-    public function toAPIArray() {
+    public function toAPIArray()
+    {
         return [
             'id'        => $this->id,
             'user_name' => $this->user_name,

@@ -7,25 +7,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * App\Models\File.
  *
- * @property int $id
- * @property string $url
- * @property string $title
- * @property string $entity_type
- * @property int $entity_id
- * @property bool $is_local
- * @property int $file_category_type
- * @property string $s3_key
- * @property string $s3_bucket
- * @property string $s3_region
- * @property string $s3_extension
- * @property string $media_type
- * @property string $format
- * @property int $file_size
- * @property bool $is_enabled
+ * @property int            $id
+ * @property string         $url
+ * @property string         $title
+ * @property string         $entity_type
+ * @property int            $entity_id
+ * @property bool           $is_local
+ * @property int            $file_category_type
+ * @property string         $s3_key
+ * @property string         $s3_bucket
+ * @property string         $s3_region
+ * @property string         $s3_extension
+ * @property string         $media_type
+ * @property string         $format
+ * @property int            $file_size
+ * @property bool           $is_enabled
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File whereUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File whereTitle($value)
@@ -45,6 +44,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File whereDeletedAt($value)
  * @mixin \Eloquent
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\File onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\File withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\File withoutTrashed()
  */
 class File extends Base
 {

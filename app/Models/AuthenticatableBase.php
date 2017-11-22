@@ -18,15 +18,24 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
+/**
+ * App\Models\AuthenticatableBase
+ *
+ * @property-read \App\Models\Image $profileImage
+ * @property-write mixed            $password
+ * @mixin \Eloquent
+ */
 class AuthenticatableBase extends LocaleStorableBase implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
     public function setPasswordAttribute($password)
     {
-        if (empty($password)) {
+        if (empty($password))
+        {
             $this->attributes['password'] = '';
-        } else {
+        } else
+        {
             $this->attributes['password'] = \Hash::make($password);
         }
     }
@@ -52,12 +61,15 @@ class AuthenticatableBase extends LocaleStorableBase implements AuthenticatableC
 
     public function getProfileImageUrl($width = 0, $height = 0)
     {
-        if ($this->profile_image_id == 0) {
+        if ($this->profile_image_id == 0)
+        {
             return \URLHelper::asset('img/user.png', 'common');
         }
-        if ($width == 0 && $height == 0) {
+        if ($width == 0 && $height == 0)
+        {
             return $this->profileImage->url;
-        } else {
+        } else
+        {
             return $this->profileImage->url;
         }
     }

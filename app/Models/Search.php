@@ -1,6 +1,23 @@
 <?php namespace App\Models;
 
 
+/**
+ * App\Models\Search
+ *
+ * @property int            $id
+ * @property string         $keyword
+ * @property string         $alias
+ * @property int|null       $count
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Search whereAlias($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Search whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Search whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Search whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Search whereKeyword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Search whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Search extends Base
 {
 

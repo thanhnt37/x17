@@ -2,6 +2,31 @@
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Series
+ *
+ * @property int                    $id
+ * @property string                 $name
+ * @property string|null            $description
+ * @property int|null               $cover_image_id
+ * @property \Carbon\Carbon|null    $deleted_at
+ * @property \Carbon\Carbon         $created_at
+ * @property \Carbon\Carbon         $updated_at
+ * @property-read \App\Models\Image $coverImage
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Series onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereCoverImageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Series whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Series withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Series withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Series extends Base
 {
 
@@ -32,7 +57,7 @@ class Series extends Base
      */
     protected $hidden = [];
 
-    protected $dates  = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     protected $presenter = \App\Presenters\SeriesPresenter::class;
 
@@ -48,7 +73,7 @@ class Series extends Base
         return $this->hasOne(\App\Models\Image::class, 'id', 'cover_image_id');
     }
 
-    
+
 
     // Utility Functions
 

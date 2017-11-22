@@ -2,6 +2,34 @@
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\ArticleIndex
+ *
+ * @property int                                $id
+ * @property string                             $title
+ * @property string                             $href
+ * @property int|null                           $parent_id
+ * @property int                                $article_id
+ * @property \Carbon\Carbon|null                $deleted_at
+ * @property \Carbon\Carbon                     $created_at
+ * @property \Carbon\Carbon                     $updated_at
+ * @property-read \App\Models\Article           $article
+ * @property-read \App\Models\ArticleIndex|null $parent
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\ArticleIndex onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereArticleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereHref($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ArticleIndex whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\ArticleIndex withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\ArticleIndex withoutTrashed()
+ * @mixin \Eloquent
+ */
 class ArticleIndex extends Base
 {
 

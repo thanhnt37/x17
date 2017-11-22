@@ -6,7 +6,6 @@ namespace App\Models;
  * App\Models\LocaleStorableBase.
  *
  * @property string $locale
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\LocaleStorableBase whereLocale($value)
  * @mixin \Eloquent
  */

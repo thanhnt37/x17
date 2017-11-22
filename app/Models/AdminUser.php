@@ -7,20 +7,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * App\Models\AdminUser.
  *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property int $last_notification_id
- * @property string $api_access_token
- * @property int $profile_image_id
- * @property string $remember_token
- * @property \Carbon\Carbon $deleted_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Image $profileImage
+ * @property int                                                                       $id
+ * @property string                                                                    $name
+ * @property string                                                                    $email
+ * @property string                                                                    $password
+ * @property int                                                                       $last_notification_id
+ * @property string                                                                    $api_access_token
+ * @property int                                                                       $profile_image_id
+ * @property string                                                                    $remember_token
+ * @property \Carbon\Carbon                                                            $deleted_at
+ * @property \Carbon\Carbon                                                            $created_at
+ * @property \Carbon\Carbon                                                            $updated_at
+ * @property-read \App\Models\Image                                                    $profileImage
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\AdminUserRole[] $roles
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser whereEmail($value)
@@ -33,10 +32,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser whereUpdatedAt($value)
  * @mixin \Eloquent
- *
- * @property string $locale
- *
+ * @property string                                                                    $locale
  * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser whereLocale($value)
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\AdminUser withoutTrashed()
  */
 class AdminUser extends AuthenticatableBase
 {
@@ -105,19 +107,24 @@ class AdminUser extends AuthenticatableBase
     public function hasRole($targetRole, $checkSubRoles = true)
     {
         $roles = [];
-        foreach ($this->roles as $role) {
+        foreach ($this->roles as $role)
+        {
             $roles[] = $role->role;
         }
-        if (in_array($targetRole, $roles)) {
+        if (in_array($targetRole, $roles))
+        {
             return true;
         }
-        if (!$checkSubRoles) {
+        if (!$checkSubRoles)
+        {
             return false;
         }
         $roleConfigs = config('admin_user.roles', []);
-        foreach ($roles as $role) {
+        foreach ($roles as $role)
+        {
             $subRoles = array_get($roleConfigs, "$role.sub_roles", []);
-            if (in_array($targetRole, $subRoles)) {
+            if (in_array($targetRole, $subRoles))
+            {
                 return true;
             }
         }

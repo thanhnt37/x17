@@ -16,7 +16,6 @@ namespace App\Models;
  * @property \Carbon\Carbon        $sent_at
  * @property \Carbon\Carbon        $created_at
  * @property \Carbon\Carbon        $updated_at
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserNotification whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserNotification whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserNotification whereCategoryType($value)
@@ -29,7 +28,6 @@ namespace App\Models;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserNotification whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserNotification whereUpdatedAt($value)
  * @mixin \Eloquent
- *
  * @property-read \App\Models\User $user
  */
 class UserNotification extends Notification

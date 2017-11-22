@@ -5,17 +5,16 @@ namespace App\Models;
 /**
  * App\Models\UserServiceAuthentication.
  *
- * @property int $id
- * @property int $user_id
- * @property string $name
- * @property string $email
- * @property string $service
- * @property int $service_id
- * @property string $service_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property int                   $id
+ * @property int                   $user_id
+ * @property string                $name
+ * @property string                $email
+ * @property string                $service
+ * @property int                   $service_id
+ * @property string                $service_token
+ * @property \Carbon\Carbon        $created_at
+ * @property \Carbon\Carbon        $updated_at
  * @property-read \App\Models\User $user
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereService($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereServiceId($value)

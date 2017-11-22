@@ -3,7 +3,6 @@
 namespace App\Presenters;
 
 use Illuminate\Support\Facades\Redis;
-use App\Models\Parent;
 use App\Models\Article;
 
 class ArticleIndexPresenter extends BasePresenter

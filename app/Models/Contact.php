@@ -2,6 +2,35 @@
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Contact
+ *
+ * @property int                        $id
+ * @property string|null                $name
+ * @property string|null                $email
+ * @property string|null                $telephone
+ * @property string                     $content
+ * @property int|null                   $user_id
+ * @property \Carbon\Carbon|null        $deleted_at
+ * @property \Carbon\Carbon             $created_at
+ * @property \Carbon\Carbon             $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contact onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereTelephone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contact withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Contact withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Contact extends Base
 {
 

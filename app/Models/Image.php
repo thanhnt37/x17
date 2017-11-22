@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
- *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereTitle($value)
@@ -49,6 +48,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Image whereDeletedAt($value)
  * @mixin \Eloquent
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Image withoutTrashed()
  */
 class Image extends Base
 {
@@ -111,7 +115,8 @@ class Image extends Base
      */
     public function getUrl()
     {
-        if (config('app.offline_mode', false)) {
+        if (config('app.offline_mode', false))
+        {
             return \URL::to('static/img/local/local.png');
         }
 
@@ -126,12 +131,15 @@ class Image extends Base
      */
     public function getThumbnailUrl($width, $height)
     {
-        if (config('app.offline_mode', false)) {
+        if (config('app.offline_mode', false))
+        {
             return \URL::to('static/img/local/local.png');
         }
 
-        if (empty($this->url)) {
-            if ($height == 0) {
+        if (empty($this->url))
+        {
+            if ($height == 0)
+            {
                 $height = intval($width / 4 * 3);
             }
 
@@ -143,33 +151,43 @@ class Image extends Base
 
         $conf = array_get($confList, $categoryType);
 
-        if (empty($conf)) {
+        if (empty($conf))
+        {
             return $this->getUrl();
         }
 
         $size = array_get($conf, 'size');
-        if ($width === $size[0] && $height === $size[1]) {
+        if ($width === $size[0] && $height === $size[1])
+        {
             return $this->getUrl();
         }
 
-        if (preg_match(' /^(.+?)\.([^\.]+)$/', $this->url, $match)) {
+        if (preg_match(' /^(.+?)\.([^\.]+)$/', $this->url, $match))
+        {
             $base = $match[1];
             $ext = $match[2];
 
-            foreach (array_get($conf, 'thumbnails', []) as $thumbnail) {
-                if ($width === $thumbnail[0] && $height === $thumbnail[1]) {
+            foreach (array_get($conf, 'thumbnails', []) as $thumbnail)
+            {
+                if ($width === $thumbnail[0] && $height === $thumbnail[1])
+                {
                     return $base . '_' . $thumbnail[0] . '_' . $thumbnail[1] . '.' . $ext;
                 }
-                if ($thumbnail[1] == 0 && $height == 0 && $width <= $thumbnail[0]) {
+                if ($thumbnail[1] == 0 && $height == 0 && $width <= $thumbnail[0])
+                {
                     return $base . '_' . $thumbnail[0] . '_' . $thumbnail[1] . '.' . $ext;
                 }
-                if ($thumbnail[1] == 0 && $height != 0 && $size[1] != 0) {
-                    if (floor($width / $height * 1000) === floor($size[0] / $size[1] * 1000) && $width <= $thumbnail[0]) {
+                if ($thumbnail[1] == 0 && $height != 0 && $size[1] != 0)
+                {
+                    if (floor($width / $height * 1000) === floor($size[0] / $size[1] * 1000) && $width <= $thumbnail[0])
+                    {
                         return $base . '_' . $thumbnail[0] . '_' . $thumbnail[1] . '.' . $ext;
                     }
                 }
-                if ($thumbnail[1] > 0 && $height > 0) {
-                    if (floor($width / $height * 1000) === floor($thumbnail[0] / $thumbnail[1] * 1000) && $width <= $thumbnail[0]) {
+                if ($thumbnail[1] > 0 && $height > 0)
+                {
+                    if (floor($width / $height * 1000) === floor($thumbnail[0] / $thumbnail[1] * 1000) && $width <= $thumbnail[0])
+                    {
                         return $base . '_' . $thumbnail[0] . '_' . $thumbnail[1] . '.' . $ext;
                     }
                 }
