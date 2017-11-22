@@ -107,11 +107,11 @@ $factory->define(
     function (Faker\Generator $faker)
     {
         return [
-            'slug'               => $faker->unique()->sentences(2, true),
+            'slug'               => $faker->unique()->slug(),
             'title'              => $faker->sentence,
             'keywords'           => implode(',', $faker->words(5)),
             'description'        => $faker->sentences(3, true),
-            'content'            => $faker->sentences(3, true),
+            'content'            => $faker->sentences(30, true),
             'series_id'          => 0,
             'category_id'        => 0,
             'is_enabled'         => true,
@@ -207,7 +207,7 @@ $factory->define(App\Models\ArticleIndex::class, function (Faker\Generator $fake
 {
     return [
         'title'      => $faker->sentence,
-        'href'       => $faker->url,
+        'href'       => $faker->slug(),
         'parent_id'  => 0,
         'article_id' => 0,
     ];
@@ -225,7 +225,7 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker)
 {
     return [
         'name'           => $faker->unique()->sentences(2, true),
-        'slug'           => $faker->unique()->sentences(2, true),
+        'slug'           => $faker->unique()->slug(),
         'wildcard'       => $faker->word,
         'color'          => $faker->colorName,
         'order'          => 0,
