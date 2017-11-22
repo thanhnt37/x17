@@ -10,23 +10,24 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) 
+        {
+            $table->engine = 'MyISAM';
+            
             $table->bigIncrements('id');
 
-            $table->string('slug')->default('');
-            $table->string('title')->nullable();
+            $table->string('slug')->unique();
+            $table->string('title');
 
-            $table->text('keywords')->nullable();
-            $table->text('description')->nullable();
+            $table->text('keywords')->nullable()->default('');
+            $table->text('description')->nullable()->default('');
 
-            $table->mediumText('content')->nullable();
+            $table->mediumText('content')->default('');
 
-            $table->bigInteger('cover_image_id')->default(0);
+            $table->bigInteger('series_id')->nullable()->default(0);
 
-            $table->string('locale')->default('ja');
-
-            $table->boolean('is_enabled')->default(true);
-            $table->timestamp('publish_started_at')->default('2000-01-01 00:00:00');
+            $table->boolean('is_enabled')->nullable()->default(true);
+            $table->timestamp('publish_started_at')->nullable()->default('2000-01-01 00:00:00');
             $table->timestamp('publish_ended_at')->nullable();
 
             $table->softDeletes();
