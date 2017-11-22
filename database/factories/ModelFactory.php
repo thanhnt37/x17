@@ -184,4 +184,13 @@ $factory->define(App\Models\Contact::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\Models\Follower::class, function (Faker\Generator $faker)
+{
+    return [
+        'email'        => $faker->email,
+        'user_id'      => 0,
+        'is_subscribe' => true,
+    ];
+});
+
 /* NEW MODEL FACTORY */
