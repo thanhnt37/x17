@@ -21,7 +21,7 @@ class SeriesTest extends TestCase
         $seriesModel = new Series();
 
         $seriesData = factory(Series::class)->make();
-        foreach( $seriesData->toFillableArray() as $key => $value ) {
+        foreach( $seriesData->toArray() as $key => $value ) {
             $seriesModel->$key = $value;
         }
         $seriesModel->save();

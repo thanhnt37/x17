@@ -107,7 +107,7 @@ $factory->define(
     function (Faker\Generator $faker)
     {
         return [
-            'slug'               => $faker->word,
+            'slug'               => $faker->unique()->word(),
             'title'              => $faker->sentence,
             'keywords'           => implode(',', $faker->words(5)),
             'description'        => $faker->sentences(3, true),
@@ -204,7 +204,7 @@ $factory->define(App\Models\Search::class, function (Faker\Generator $faker)
 $factory->define(App\Models\ArticleIndex::class, function (Faker\Generator $faker)
 {
     return [
-        'title'      => $faker->words,
+        'title'      => $faker->sentence,
         'href'       => $faker->url,
         'parent_id'  => 0,
         'article_id' => 0,

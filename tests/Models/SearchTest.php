@@ -21,7 +21,7 @@ class SearchTest extends TestCase
         $searchModel = new Search();
 
         $searchData = factory(Search::class)->make();
-        foreach( $searchData->toFillableArray() as $key => $value ) {
+        foreach( $searchData->toArray() as $key => $value ) {
             $searchModel->$key = $value;
         }
         $searchModel->save();

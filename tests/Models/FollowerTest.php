@@ -21,7 +21,7 @@ class FollowerTest extends TestCase
         $followerModel = new Follower();
 
         $followerData = factory(Follower::class)->make();
-        foreach( $followerData->toFillableArray() as $key => $value ) {
+        foreach( $followerData->toArray() as $key => $value ) {
             $followerModel->$key = $value;
         }
         $followerModel->save();

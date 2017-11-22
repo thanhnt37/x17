@@ -21,7 +21,7 @@ class AdvertisementTest extends TestCase
         $advertisementModel = new Advertisement();
 
         $advertisementData = factory(Advertisement::class)->make();
-        foreach( $advertisementData->toFillableArray() as $key => $value ) {
+        foreach( $advertisementData->toArray() as $key => $value ) {
             $advertisementModel->$key = $value;
         }
         $advertisementModel->save();

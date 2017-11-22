@@ -21,7 +21,7 @@ class ContactTest extends TestCase
         $contactModel = new Contact();
 
         $contactData = factory(Contact::class)->make();
-        foreach( $contactData->toFillableArray() as $key => $value ) {
+        foreach( $contactData->toArray() as $key => $value ) {
             $contactModel->$key = $value;
         }
         $contactModel->save();

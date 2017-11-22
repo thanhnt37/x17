@@ -21,7 +21,7 @@ class ArticleImageTest extends TestCase
         $articleImageModel = new ArticleImage();
 
         $articleImageData = factory(ArticleImage::class)->make();
-        foreach( $articleImageData->toFillableArray() as $key => $value ) {
+        foreach( $articleImageData->toArray() as $key => $value ) {
             $articleImageModel->$key = $value;
         }
         $articleImageModel->save();

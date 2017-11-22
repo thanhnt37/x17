@@ -35,7 +35,11 @@ class ArticleControllerTest extends TestCase
 
     public function testStoreModel()
     {
-        $article = factory(\App\Models\Article::class)->make();
+        $article = factory(\App\Models\Article::class)->make(
+            [
+                'slug' => 'unique_value_1'
+            ]
+        );
         $this->action('POST', 'Admin\ArticleController@store', [
                 '_token' => csrf_token(),
             ] + $article->toArray());
@@ -44,7 +48,11 @@ class ArticleControllerTest extends TestCase
 
     public function testEditModel()
     {
-        $article = factory(\App\Models\Article::class)->create();
+        $article = factory(\App\Models\Article::class)->make(
+            [
+                'slug' => 'unique_value_2'
+            ]
+        );
         $this->action('GET', 'Admin\ArticleController@show', [$article->id]);
         $this->assertResponseOk();
     }

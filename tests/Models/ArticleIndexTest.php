@@ -21,7 +21,7 @@ class ArticleIndexTest extends TestCase
         $articleIndexModel = new ArticleIndex();
 
         $articleIndexData = factory(ArticleIndex::class)->make();
-        foreach( $articleIndexData->toFillableArray() as $key => $value ) {
+        foreach( $articleIndexData->toArray() as $key => $value ) {
             $articleIndexModel->$key = $value;
         }
         $articleIndexModel->save();
