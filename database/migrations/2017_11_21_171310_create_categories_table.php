@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('wildcard')->nullable()->default('');
             $table->string('color')->nullable()->default('');
 

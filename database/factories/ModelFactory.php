@@ -219,4 +219,16 @@ $factory->define(App\Models\ArticleImage::class, function (Faker\Generator $fake
     ];
 });
 
+$factory->define(App\Models\Category::class, function (Faker\Generator $faker)
+{
+    return [
+        'name'           => $faker->unique()->sentences(2, true),
+        'slug'           => $faker->unique()->sentences(2, true),
+        'wildcard'       => $faker->word,
+        'color'          => $faker->colorName,
+        'parent_id'      => 0,
+        'cover_image_id' => 0,
+    ];
+});
+
 /* NEW MODEL FACTORY */
