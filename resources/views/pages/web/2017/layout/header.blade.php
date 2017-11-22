@@ -23,13 +23,41 @@
     </span>
 
     <section class="container">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1" style="position: relative">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/php">PHP</a>
+
+                    <section class="sub-category">
+                        <header>
+                            <a href="/javascript"><span>P</span></a>
+                            <h2><a href="/javascript">PHP</a></h2>
+                            <ul>
+                                <li><a href="jquery-ajax">Cơ bản</a></li>
+                                <li class="active"><a href="nodejs">Nâng Cao</a></li>
+                                <li><a href="react-native">Laravel</a></li>
+                                <li><a href="angular">CakePHP</a></li>
+                            </ul>
+                        </header>
+                        <img src="http://via.placeholder.com/730x95" alt="">
+                    </section>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/javascript">Javascript</a>
+
+                    <section class="sub-category">
+                        <header>
+                            <a href="/javascript"><span>J</span></a>
+                            <h2><a href="/javascript">Javascript</a></h2>
+                            <ul>
+                                <li><a href="jquery-ajax">JQuery/Ajax</a></li>
+                                <li class="active"><a href="nodejs">NodeJS</a></li>
+                                <li><a href="react-native">Reach Native</a></li>
+                                <li><a href="angular">Angular</a></li>
+                            </ul>
+                        </header>
+                        <img src="http://via.placeholder.com/730x95" alt="">
+                    </section>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/databases">Databases</a>
