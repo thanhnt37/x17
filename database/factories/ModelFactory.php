@@ -211,4 +211,12 @@ $factory->define(App\Models\ArticleIndex::class, function (Faker\Generator $fake
     ];
 });
 
+$factory->define(App\Models\ArticleImage::class, function (Faker\Generator $faker)
+{
+    return [
+        'article_id' => 0,
+        'image_id'   => 0,
+    ];
+});
+
 /* NEW MODEL FACTORY */
