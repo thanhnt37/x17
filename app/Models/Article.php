@@ -1,47 +1,11 @@
-<?php
+<?php namespace App\Models;
 
-namespace App\Models;
-
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
-/**
- * App\Models\Article.
- *
- * @property int                    $id
- * @property string                 $slug
- * @property string                 $title
- * @property string                 $keywords
- * @property string                 $description
- * @property string                 $content
- * @property int                    $cover_image_id
- * @property string                 $locale
- * @property bool                   $is_enabled
- * @property \Carbon\Carbon         $publish_started_at
- * @property \Carbon\Carbon         $publish_ended_at
- * @property \Carbon\Carbon         $deleted_at
- * @property \Carbon\Carbon         $created_at
- * @property \Carbon\Carbon         $updated_at
- * @property-read \App\Models\Image $coverImage
- *
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereKeywords($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereContent($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereCoverImageId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereLocale($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereIsEnabled($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article wherePublishStartedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article wherePublishEndedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereUpdatedAt($value)
- * @mixin \Eloquent
- */
 class Article extends Base
 {
+
     use SoftDeletes;
     use Sluggable;
 
@@ -51,8 +15,6 @@ class Article extends Base
      * @var string
      */
     protected $table = 'articles';
-
-    protected $presenter = \App\Presenters\ArticlePresenter::class;
 
     /**
      * The attributes that are mass assignable.
@@ -65,8 +27,7 @@ class Article extends Base
         'keywords',
         'description',
         'content',
-        'cover_image_id',
-        'locale',
+        'series_id',
         'is_enabled',
         'publish_started_at',
         'publish_ended_at',
@@ -81,6 +42,8 @@ class Article extends Base
 
     protected $dates = ['publish_started_at', 'publish_ended_at', 'deleted_at'];
 
+    protected $presenter = \App\Presenters\ArticlePresenter::class;
+
     public static function boot()
     {
         parent::boot();
@@ -88,25 +51,12 @@ class Article extends Base
     }
 
     // Relations
-    public function coverImage()
+    public function series()
     {
-        return $this->hasOne('App\Models\Image', 'id', 'cover_image_id');
+        return $this->belongsTo(\App\Models\Series::class, 'series_id', 'id');
     }
 
-    // Utility Functions
-    /**
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        $now = \DateTimeHelper::now();
-        if ($this->publish_started_at <= $now && ($this->publish_ended_at == null || $now <= $this->publish_ended_at) && $this->is_enabled) {
-            return true;
-        }
-
-        return false;
-    }
-
+    // define for Sluggable
     public function sluggable()
     {
         return [
@@ -116,23 +66,34 @@ class Article extends Base
         ];
     }
 
+
+    // Utility Functions
+    public function isEnabled()
+    {
+        $now = date("Y-m-d H:i:s");
+        if ($this->publish_started_at <= $now && ($this->publish_ended_at == null || $now <= $this->publish_ended_at) && $this->is_enabled) {
+            return true;
+        }
+
+        return false;
+    }
+
     /*
      * API Presentation
      */
     public function toAPIArray()
     {
         return [
-            'id'                 => $this->id,
             'slug'               => $this->slug,
             'title'              => $this->title,
             'keywords'           => $this->keywords,
             'description'        => $this->description,
             'content'            => $this->content,
-            'cover_image_id'     => $this->cover_image_id,
-            'locale'             => $this->locale,
+            'series_id'          => $this->series_id,
             'is_enabled'         => $this->is_enabled,
             'publish_started_at' => $this->publish_started_at,
             'publish_ended_at'   => $this->publish_ended_at,
         ];
     }
+
 }
