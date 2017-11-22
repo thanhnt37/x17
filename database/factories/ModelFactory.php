@@ -226,6 +226,7 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker)
         'slug'           => $faker->unique()->sentences(2, true),
         'wildcard'       => $faker->word,
         'color'          => $faker->colorName,
+        'order'          => 0,
         'parent_id'      => 0,
         'cover_image_id' => 0,
     ];

@@ -24,6 +24,7 @@ class Category extends Base
         'slug',
         'wildcard',
         'color',
+        'order',
         'parent_id',
         'cover_image_id',
     ];
@@ -68,6 +69,7 @@ class Category extends Base
             'slug'           => $this->slug,
             'wildcard'       => $this->wildcard,
             'color'          => $this->color,
+            'order'          => $this->order,
             'parent_id'      => $this->parent_id,
             'cover_image_id' => $this->cover_image_id,
         ];

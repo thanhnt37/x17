@@ -26,6 +26,8 @@ class CreateCategoriesTable extends Migration
             $table->bigInteger('parent_id')->nullable()->default(0);
             $table->bigInteger('cover_image_id')->nullable()->default(0);
 
+            $table->integer('order')->nullable()->default(0);
+
             $table->index('parent_id');
 
             $table->softDeletes();
