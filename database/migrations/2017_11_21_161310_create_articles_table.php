@@ -25,6 +25,7 @@ class CreateArticlesTable extends Migration
             $table->mediumText('content')->default('');
 
             $table->bigInteger('series_id')->nullable()->default(0);
+            $table->bigInteger('category_id')->nullable()->default(0);
 
             $table->boolean('is_enabled')->nullable()->default(true);
             $table->timestamp('publish_started_at')->nullable()->default('2000-01-01 00:00:00');

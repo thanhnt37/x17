@@ -113,6 +113,7 @@ $factory->define(
             'description'        => $faker->sentences(3, true),
             'content'            => $faker->sentences(3, true),
             'series_id'          => 0,
+            'category_id'        => 0,
             'is_enabled'         => true,
             'publish_started_at' => $faker->dateTime,
             'publish_ended_at'   => null,
@@ -159,6 +160,7 @@ $factory->define(App\Models\Series::class, function (Faker\Generator $faker)
     return [
         'name'           => $faker->sentence,
         'description'    => $faker->sentences(10, true),
+        'category_id'    => 0,
         'cover_image_id' => 0,
     ];
 });

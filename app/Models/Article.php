@@ -67,6 +67,7 @@ class Article extends Base
         'description',
         'content',
         'series_id',
+        'category_id',
         'is_enabled',
         'publish_started_at',
         'publish_ended_at',
@@ -93,6 +94,10 @@ class Article extends Base
     public function series()
     {
         return $this->belongsTo(\App\Models\Series::class, 'series_id', 'id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
     }
 
     // define for Sluggable
@@ -130,6 +135,7 @@ class Article extends Base
             'description'        => $this->description,
             'content'            => $this->content,
             'series_id'          => $this->series_id,
+            'category_id'        => $this->category_id,
             'is_enabled'         => $this->is_enabled,
             'publish_started_at' => $this->publish_started_at,
             'publish_ended_at'   => $this->publish_ended_at,
