@@ -193,4 +193,13 @@ $factory->define(App\Models\Follower::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\Models\Search::class, function (Faker\Generator $faker)
+{
+    return [
+        'keyword' => $faker->word,
+        'alias'   => $faker->word,
+        'count'   => 0,
+    ];
+});
+
 /* NEW MODEL FACTORY */

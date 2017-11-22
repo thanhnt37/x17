@@ -18,7 +18,7 @@ class CreateSearchesTable extends Migration
 
             $table->bigIncrements('id');
 
-            $table->string('key');
+            $table->string('keyword');
             $table->string('alias');
 
             $table->unsignedBigInteger('count')->nullable()->default(0);
