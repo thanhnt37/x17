@@ -3,20 +3,28 @@
 namespace App\Http\Middleware\Web;
 
 use App\Services\UserServiceInterface;
+use App\Repositories\CategoryRepositoryInterface;
 
 class SetDefaultValues
 {
-    /** @var UserServiceInterface */
+    /** @var \App\Services\UserServiceInterface */
     protected $userService;
+
+    /** @var \App\Repositories\CategoryRepositoryInterface */
+    protected $categoryRepository;
 
     /**
      * Create a new filter instance.
      *
-     * @param UserServiceInterface $userService
+     * @params  UserServiceInterface        $userService
+     *          CategoryRepositoryInterface $categoryRepository
      */
-    public function __construct(UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
+    public function __construct(
+        UserServiceInterface        $userService,
+        CategoryRepositoryInterface $categoryRepository
+    ) {
+        $this->userService          = $userService;
+        $this->categoryRepository   = $categoryRepository;
     }
 
     /**
@@ -31,6 +39,8 @@ class SetDefaultValues
     {
         $user = $this->userService->getUser();
         \View::share('authUser', $user);
+        $categories = $this->categoryRepository->getByParentId(0);
+        \View::share('categories', $categories);
 
         return $next($request);
     }

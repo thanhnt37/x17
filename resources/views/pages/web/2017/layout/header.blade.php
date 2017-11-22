@@ -25,55 +25,27 @@
     <section class="container">
         <div class="collapse navbar-collapse" id="navbarSupportedContent1" style="position: relative">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/php">PHP</a>
+                @foreach( $categories as $category )
+                    @php $childs = $category->childs; @endphp
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{$category->slug}}">{{$category->name}}</a>
 
-                    <section class="sub-category">
-                        <header>
-                            <a href="/javascript"><span>P</span></a>
-                            <h2><a href="/javascript">PHP</a></h2>
-                            <ul>
-                                <li><a href="jquery-ajax">Cơ bản</a></li>
-                                <li class="active"><a href="nodejs">Nâng Cao</a></li>
-                                <li><a href="react-native">Laravel</a></li>
-                                <li><a href="angular">CakePHP</a></li>
-                            </ul>
-                        </header>
-                        <img src="http://via.placeholder.com/730x95" alt="">
-                    </section>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/javascript">Javascript</a>
-
-                    <section class="sub-category">
-                        <header>
-                            <a href="/javascript"><span>J</span></a>
-                            <h2><a href="/javascript">Javascript</a></h2>
-                            <ul>
-                                <li><a href="jquery-ajax">JQuery/Ajax</a></li>
-                                <li class="active"><a href="nodejs">NodeJS</a></li>
-                                <li><a href="react-native">Reach Native</a></li>
-                                <li><a href="angular">Angular</a></li>
-                            </ul>
-                        </header>
-                        <img src="http://via.placeholder.com/730x95" alt="">
-                    </section>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/databases">Databases</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/git">Git</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/server/series">Server</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/404">Others</a>
-                </li>
+                        @if( count($childs) )
+                            <section class="sub-category">
+                                <header>
+                                    <a href="/{{$category->slug}}"><span>{{$category->wildcard}}</span></a>
+                                    <h2><a href="/{{$category->slug}}">{{$category->name}}</a></h2>
+                                    <ul>
+                                        @foreach( $childs as $child )
+                                            <li><a href="/{{$category->slug}}/{{$child->slug}}">{{$child->name}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </header>
+                                <img src="http://via.placeholder.com/730x95" alt="">
+                            </section>
+                        @endif
+                    </li>
+                @endforeach
             </ul>
 
             <section id="search-box-desktop">

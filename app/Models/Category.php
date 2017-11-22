@@ -51,6 +51,10 @@ class Category extends Base
     {
         return $this->belongsTo(\App\Models\Category::class, 'parent_id', 'id');
     }
+    public function childs()
+    {
+        return $this->hasMany(\App\Models\Category::class, 'parent_id', 'id')->orderBy('order', 'asc');
+    }
 
     public function coverImage()
     {
