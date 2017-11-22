@@ -164,4 +164,13 @@ $factory->define(App\Models\Series::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(App\Models\Advertisement::class, function (Faker\Generator $faker)
+{
+    return [
+        'url'  => $faker->url,
+        'type' => $faker->word,
+        'size' => $faker->word,
+    ];
+});
+
 /* NEW MODEL FACTORY */
