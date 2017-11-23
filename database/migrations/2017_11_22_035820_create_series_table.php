@@ -22,6 +22,9 @@ class CreateSeriesTable extends Migration
             
             $table->text('description')->nullable()->default('');
 
+            $table->bigInteger('voted')->nullable()->default(0);
+            $table->bigInteger('read')->nullable()->default(0);
+            
             $table->bigInteger('category_id')->nullable()->default(0);
             $table->bigInteger('cover_image_id')->nullable()->default(0);
 

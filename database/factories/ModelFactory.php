@@ -112,6 +112,8 @@ $factory->define(
             'keywords'           => implode(',', $faker->words(5)),
             'description'        => $faker->sentences(3, true),
             'content'            => $faker->sentences(30, true),
+            'voted'              => $faker->numberBetween(0, 100),
+            'read'               => $faker->numberBetween(0, 1000),
             'series_id'          => 0,
             'category_id'        => 0,
             'is_enabled'         => true,
@@ -160,6 +162,8 @@ $factory->define(App\Models\Series::class, function (Faker\Generator $faker)
     return [
         'name'           => $faker->sentence,
         'description'    => $faker->sentences(10, true),
+        'voted'          => $faker->numberBetween(0, 100),
+        'read'           => $faker->numberBetween(0, 1000),
         'category_id'    => 0,
         'cover_image_id' => 0,
     ];

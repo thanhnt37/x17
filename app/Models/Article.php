@@ -12,7 +12,10 @@ use Cviebrock\EloquentSluggable\Sluggable;
  * @property string|null                  $keywords
  * @property string|null                  $description
  * @property string                       $content
+ * @property int|null                     $voted
+ * @property int|null                     $read
  * @property int|null                     $series_id
+ * @property int|null                     $category_id
  * @property int|null                     $is_enabled
  * @property \Carbon\Carbon|null          $publish_started_at
  * @property \Carbon\Carbon|null          $publish_ended_at
@@ -66,6 +69,8 @@ class Article extends Base
         'keywords',
         'description',
         'content',
+        'voted',
+        'read',
         'series_id',
         'category_id',
         'is_enabled',
@@ -95,6 +100,7 @@ class Article extends Base
     {
         return $this->belongsTo(\App\Models\Series::class, 'series_id', 'id');
     }
+
     public function category()
     {
         return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
@@ -134,6 +140,8 @@ class Article extends Base
             'keywords'           => $this->keywords,
             'description'        => $this->description,
             'content'            => $this->content,
+            'voted'              => $this->voted,
+            'read'               => $this->read,
             'series_id'          => $this->series_id,
             'category_id'        => $this->category_id,
             'is_enabled'         => $this->is_enabled,

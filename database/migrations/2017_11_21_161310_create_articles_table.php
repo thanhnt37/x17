@@ -24,6 +24,9 @@ class CreateArticlesTable extends Migration
 
             $table->mediumText('content')->default('');
 
+            $table->bigInteger('voted')->nullable()->default(0);
+            $table->bigInteger('read')->nullable()->default(0);
+
             $table->bigInteger('series_id')->nullable()->default(0);
             $table->bigInteger('category_id')->nullable()->default(0);
 

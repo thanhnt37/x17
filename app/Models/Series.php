@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int                    $id
  * @property string                 $name
  * @property string|null            $description
+ * @property int|null               $voted
+ * @property int|null               $read
+ * @property int|null               $category_id
  * @property int|null               $cover_image_id
  * @property \Carbon\Carbon|null    $deleted_at
  * @property \Carbon\Carbon         $created_at
@@ -47,6 +50,8 @@ class Series extends Base
     protected $fillable = [
         'name',
         'description',
+        'voted',
+        'read',
         'category_id',
         'cover_image_id',
     ];
@@ -73,6 +78,7 @@ class Series extends Base
     {
         return $this->hasOne(\App\Models\Image::class, 'id', 'cover_image_id');
     }
+
     public function category()
     {
         return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
@@ -91,6 +97,8 @@ class Series extends Base
             'id'             => $this->id,
             'name'           => $this->name,
             'description'    => $this->description,
+            'voted'          => $this->voted,
+            'read'           => $this->read,
             'category_id'    => $this->category_id,
             'cover_image_id' => $this->cover_image_id,
         ];
