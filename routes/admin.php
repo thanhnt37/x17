@@ -1,6 +1,6 @@
 <?php
 
-\Route::group(['prefix' => 'admin', 'middleware' => ['admin.values']], function () {
+\Route::group(['middleware' => ['admin.values']], function () {
 
     \Route::group(['middleware' => ['admin.guest']], function () {
         \Route::get('signin', 'Admin\AuthController@getSignIn');
