@@ -28,16 +28,18 @@
                 @foreach( $categories as $category )
                     @php $childs = $category->childs; @endphp
                     <li class="nav-item">
-                        <a class="nav-link" href="/{{$category->slug}}">{{$category->name}}</a>
+                        <a class="nav-link" href="{{$category->slug}}">{{$category->name}}</a>
 
                         @if( count($childs) )
                             <section class="sub-category">
                                 <header>
-                                    <a href="/{{$category->slug}}"><span>{{$category->wildcard}}</span></a>
-                                    <h2><a href="/{{$category->slug}}">{{$category->name}}</a></h2>
+                                    <a href="{{$category->slug}}">
+                                        <span style="background: {{$category->color}}">{{$category->wildcard}}</span>
+                                    </a>
+                                    <h2><a href="{{$category->slug}}">{{$category->name}}</a></h2>
                                     <ul>
                                         @foreach( $childs as $child )
-                                            <li><a href="/{{$category->slug}}/{{$child->slug}}">{{$child->name}}</a></li>
+                                            <li><a href="{{$child->slug}}">{{$child->name}}</a></li>
                                         @endforeach
                                     </ul>
                                 </header>

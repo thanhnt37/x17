@@ -42,6 +42,9 @@
 .nav-item:hover .sub-category {
 	display: block;
 }
+.nav-item:hover {
+	background: #efefef;
+}
 
 .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
 	color: rgb(38, 135, 224);
@@ -61,7 +64,7 @@
 	position: absolute;
 	width: 100%;
 	left: 0;
-	top: 48px;
+	top: 50px;
 	border: 1px solid;
 	margin-bottom: 20px;
 	z-index: 98;

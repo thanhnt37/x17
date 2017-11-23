@@ -42,6 +42,9 @@ class SetDefaultValues
         $categories = $this->categoryRepository->getByParentId(0);
         \View::share('categories', $categories);
 
+        $currentCategory = $this->categoryRepository->findBySlug($request->category);
+        \View::share('currentCategory', $currentCategory);
+
         return $next($request);
     }
 }

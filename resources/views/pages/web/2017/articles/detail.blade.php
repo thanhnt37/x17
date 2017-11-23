@@ -54,19 +54,7 @@
 @section('content')
     <section id="article-page" class="container">
 
-        <section id="breadcrumb">
-            <header>
-                <a href="/javascript"><span>J</span></a>
-                <h2><a href="/javascript">Javascript</a></h2>
-                <ul>
-                    <li><a href="jquery-ajax">JQuery/Ajax</a></li>
-                    <li class="active"><a href="nodejs">NodeJS</a></li>
-                    <li><a href="react-native">Reach Native</a></li>
-                    <li><a href="angular">Angular</a></li>
-                </ul>
-            </header>
-            <img src="http://via.placeholder.com/730x95" alt="">
-        </section>
+        @include('pages.web.2017.elements.breadcrumb')
 
         <div class="row">
             <div class="col-lg-8">
