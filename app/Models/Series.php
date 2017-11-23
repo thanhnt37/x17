@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * App\Models\Series
  *
  * @property int                    $id
- * @property string                 $name
+ * @property string                 $slug
+ * @property string                 $title
  * @property string|null            $description
  * @property int|null               $voted
  * @property int|null               $read
@@ -48,7 +49,8 @@ class Series extends Base
      * @var array
      */
     protected $fillable = [
-        'name',
+        'slug',
+        'title',
         'description',
         'voted',
         'read',
@@ -94,8 +96,8 @@ class Series extends Base
     public function toAPIArray()
     {
         return [
-            'id'             => $this->id,
-            'name'           => $this->name,
+            'slug'           => $this->slug,
+            'title'          => $this->title,
             'description'    => $this->description,
             'voted'          => $this->voted,
             'read'           => $this->read,

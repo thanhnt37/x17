@@ -160,7 +160,8 @@ $factory->define(
 $factory->define(App\Models\Series::class, function (Faker\Generator $faker)
 {
     return [
-        'name'           => $faker->sentence,
+        'slug'           => $faker->unique()->slug(),
+        'title'          => $faker->sentence(6),
         'description'    => $faker->sentences(10, true),
         'voted'          => $faker->numberBetween(0, 100),
         'read'           => $faker->numberBetween(0, 1000),

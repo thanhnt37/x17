@@ -18,8 +18,9 @@ class CreateSeriesTable extends Migration
 
             $table->bigIncrements('id');
 
-            $table->string('name');
-            
+            $table->string('slug')->unique();
+            $table->string('title');
+
             $table->text('description')->nullable()->default('');
 
             $table->bigInteger('voted')->nullable()->default(0);
