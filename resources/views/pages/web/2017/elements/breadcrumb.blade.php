@@ -6,14 +6,14 @@
 @endif
 <section id="breadcrumb">
     <header>
-        <a href="{{$category->slug}}">
+        <a href="/{{$category->slug}}">
             <span style="background: {{$category->color}}">{{$category->wildcard}}</span>
         </a>
-        <h2><a href="{{$category->slug}}">{{$category->name}}</a></h2>
+        <h2><a href="/{{$category->slug}}">{{$category->name}}</a></h2>
         <ul>
             @foreach( $childs as $child )
                 <li @if($child->slug == $currentCategory->slug) class="active" @endif>
-                    <a href="{{$child->slug}}">{{$child->name}}</a>
+                    <a href="/{{$child->slug}}">{{$child->name}}</a>
                 </li>
             @endforeach
         </ul>
