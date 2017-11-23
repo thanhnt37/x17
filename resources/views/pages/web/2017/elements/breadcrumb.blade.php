@@ -18,5 +18,5 @@
             @endforeach
         </ul>
     </header>
-    <img src="http://via.placeholder.com/730x95" alt="">
+    <img src="{{$category->coverImage->url}}" alt="{{$category->slug}}" title="{{$category->slug}}">
 </section>
