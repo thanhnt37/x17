@@ -28,4 +28,23 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
     {
         return Article::whereSlug($slug)->first();
     }
+
+    /**
+     * @param $numberArticle
+     *
+     * @return mixed
+     */
+    public function getFeaturedArticles($numberArticle)
+    {
+        return $this->getBlankModel()->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+    }
+    /**
+     * @param $numberArticle
+     *
+     * @return mixed
+     */
+    public function getViewedArticles($numberArticle)
+    {
+        return $this->getBlankModel()->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
+    }
 }

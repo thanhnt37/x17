@@ -108,10 +108,10 @@ $factory->define(
     {
         return [
             'slug'               => $faker->unique()->slug(),
-            'title'              => $faker->sentence,
+            'title'              => $faker->sentence(6),
             'keywords'           => implode(',', $faker->words(5)),
-            'description'        => $faker->sentences(3, true),
-            'content'            => $faker->sentences(30, true),
+            'description'        => $faker->sentences(10, true),
+            'content'            => $faker->sentences(100, true),
             'voted'              => $faker->numberBetween(0, 100),
             'read'               => $faker->numberBetween(0, 1000),
             'series_id'          => 0,

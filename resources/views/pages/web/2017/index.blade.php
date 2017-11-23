@@ -16,67 +16,38 @@
             <section class="container">
                 <section id="featured-articles">
                     <div class="row">
+                        @php
+                            $bigArticle = $featuredArticles[0];
+                            unset($featuredArticles[0]);
+                        @endphp
                         <div class="col-lg-6 wrap-featured-articles">
                             <article class="featured-article featured-article-big">
                                 <header>
-                                    <h3><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h3>
-                                    <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
+                                    <h3><a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">{{$bigArticle->title}}</a></h3>
+                                    <time datetime="23/09/2017">23/09/2017</time>
                                 </header>
-                                <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                    <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
+                                <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">
+                                    <img src="http://via.placeholder.com/560x390" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
                                 </a>
                             </article>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="row">
-                                <div class="col-sm-6 wrap-featured-articles">
-                                    <article class="featured-article featured-article-small">
-                                        <header>
-                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
-                                        </header>
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                        </a>
-                                    </article>
-                                </div>
-                                <div class="col-sm-6 wrap-featured-articles">
-                                    <article class="featured-article featured-article-small">
-                                        <header>
-                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
-                                        </header>
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                        </a>
-                                    </article>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-sm-6 wrap-featured-articles">
-                                    <article class="featured-article featured-article-small">
-                                        <header>
-                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
-                                        </header>
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                        </a>
-                                    </article>
-                                </div>
-                                <div class="col-sm-6 wrap-featured-articles">
-                                    <article class="featured-article featured-article-small">
-                                        <header>
-                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
-                                        </header>
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                        </a>
-                                    </article>
-                                </div>
-                            </div>
+                        <div class="col-lg-6">
+                            @foreach($featuredArticles as $index => $smallArticle)
+                                @if( $index%2 ) <div class="row"> @endif
+                                    <div class="col-sm-6 wrap-featured-articles">
+                                        <article class="featured-article featured-article-small">
+                                            <header>
+                                                <h5><a href="{!! action('Web\ArticleController@detail', [$smallArticle->category->slug, $smallArticle->slug]) !!}">{{$smallArticle->title}}</a></h5>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </header>
+                                            <a href="{!! action('Web\ArticleController@detail', [$smallArticle->category->slug, $smallArticle->slug]) !!}">
+                                                <img src="http://via.placeholder.com/560x390" alt="{{$smallArticle->slug}}" title="{{$smallArticle->slug}}">
+                                            </a>
+                                        </article>
+                                    </div>
+                                @if( !($index%2) ) </div> @endif
+                            @endforeach
                         </div>
                     </div>
                 </section>
@@ -84,174 +55,45 @@
                 <section id="newest-articles">
                     <h5>BÀI VIẾT MỚI NHẤT</h5>
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 wrap-newest-articles">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="" height="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
-                                        </header>
-                                        <footer>
-                                            <span>J</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
+                        @foreach( $viewedArticles as $index => $viewedArticle )
+                            @if( ($index%2) == 0 )
+                                <div class="col-lg-3 col-md-6 wrap-newest-articles">
+                                    <div class="row">
+                            @endif
+                                        <div class="col-sm-12">
+                                            <article class="newest-article @if( (($index%4) == 0) || (($index%4) == 3) ) newest-article--long @else newest-article--short @endif">
+                                                <a href="{!! action('Web\ArticleController@detail', [$viewedArticle->category->slug, $viewedArticle->slug]) !!}">
+                                                    <img src="http://via.placeholder.com/420x340" alt="{{$viewedArticle->slug}}" title="{{$viewedArticle->slug}}">
+                                                </a>
+                                                <header>
+                                                    <h6><a href="{!! action('Web\ArticleController@detail', [$viewedArticle->category->slug, $viewedArticle->slug]) !!}">{{$viewedArticle->title}}</a></h6>
+                                                    <p>{{substr($viewedArticle->description, 0, 130)}}...</p>
+                                                </header>
+                                                <footer>
+                                                    @php
+                                                        $bigCategory = isset($viewedArticle->category->parent->slug) && !empty($viewedArticle->category->parent->slug) ? $viewedArticle->category->parent : $viewedArticle->category;
+                                                    @endphp
+                                                    <span style="background: {{$bigCategory->color}};">
+                                                        <a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->wildcard}}</a>
+                                                    </span>
+                                                    <section>
+                                                        @if( $bigCategory != $viewedArticle->category )
+                                                            <p><a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->name}}</a></p>
+                                                            <p><a href="{!! action('Web\ArticleController@category', [$viewedArticle->category->slug]) !!}">{{$viewedArticle->category->name}}</a></p>
+                                                        @else
+                                                            <p><a href="{!! action('Web\ArticleController@category', [$viewedArticle->category->slug]) !!}">{{$viewedArticle->category->name}}</a></p>
+                                                            <p>&nbsp;</p>
+                                                        @endif
+                                                    </section>
+                                                    <time datetime="23/09/2017">23/09/2017</time>
+                                                </footer>
+                                            </article>
+                                        </div>
+                            @if( ($index%2) == 1 )
+                                    </div>
                                 </div>
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
-                                        </header>
-                                        <footer>
-                                            <span style="background: #d1ff7f">P</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['php']) !!}">PHP</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['laravel']) !!}">Laravel</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 wrap-newest-articles">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
-                                        </header>
-                                        <footer>
-                                            <span style="background: #d1ff7f">P</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['php']) !!}">PHP</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['laravel']) !!}">Laravel</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="" height="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
-                                        </header>
-                                        <footer>
-                                            <span>J</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 wrap-newest-articles">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="" height="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
-                                        </header>
-                                        <footer>
-                                            <span>J</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
-                                        </header>
-                                        <footer>
-                                            <span style="background: #d1ff7f">P</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['php']) !!}">PHP</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['laravel']) !!}">Laravel</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 wrap-newest-articles">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
-                                        </header>
-                                        <footer>
-                                            <span style="background: #d1ff7f">P</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['php']) !!}">PHP</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['laravel']) !!}">Laravel</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                                <div class="col-sm-12">
-                                    <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                                            <img src="http://via.placeholder.com/420x340" alt="" height="">
-                                        </a>
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
-                                            <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
-                                        </header>
-                                        <footer>
-                                            <span>J</span>
-                                            <section>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                                <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                            </section>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </footer>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </section>
 

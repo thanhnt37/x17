@@ -10,4 +10,18 @@ interface ArticleRepositoryInterface extends SingleKeyModelRepositoryInterface
      * @return mixed
      */
     public function findBySlug($slug);
+
+    /**
+     * @param $numberArticle
+     *
+     * @return mixed
+     */
+    public function getFeaturedArticles($numberArticle);
+
+    /**
+     * @param $numberArticle
+     *
+     * @return mixed
+     */
+    public function getViewedArticles($numberArticle);
 }

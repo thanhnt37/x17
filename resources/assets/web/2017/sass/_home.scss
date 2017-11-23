@@ -18,7 +18,7 @@
 		/*-----------------------------------------------------*/
 		#featured-articles {
 			article {
-				margin-bottom: 6px;
+				margin-bottom: 5px;
 				overflow: hidden;
 			}
 			img {
@@ -67,7 +67,7 @@
 				article.featured-article-small {
 					header {
 						position: absolute;
-						bottom: 15px;
+						bottom: 7px;
 						padding: 0 10px 0 20px;
 						z-index: 90;
 
@@ -149,10 +149,16 @@
 
 						h6 {
 							font-size: 1.2rem;
+							height: 45px;
+							overflow: hidden;
 
 							a {
 								color: inherit;
 							}
+						}
+						p {
+							height: 100px;
+							overflow: hidden;
 						}
 					}
 					footer {
