@@ -20,17 +20,19 @@ class ArticleController extends Controller
             []
         );
     }
-    public function show()
-    {
-        return view(
-            'pages.web.2017.articles.detail',
-            []
-        );
-    }
-    public function series()
+
+    public function series($category)
     {
         return view(
             'pages.web.2017.articles.series',
+            []
+        );
+    }
+
+    public function detail($category, $slug)
+    {
+        return view(
+            'pages.web.2017.articles.detail',
             []
         );
     }

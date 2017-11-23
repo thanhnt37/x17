@@ -19,10 +19,10 @@
                         <div class="col-lg-6 wrap-featured-articles">
                             <article class="featured-article featured-article-big">
                                 <header>
-                                    <h3><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h3>
-                                    <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">23/09/2017</a></time>
+                                    <h3><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h3>
+                                    <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
                                 </header>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                     <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                 </a>
                             </article>
@@ -32,10 +32,10 @@
                                 <div class="col-sm-6 wrap-featured-articles">
                                     <article class="featured-article featured-article-small">
                                         <header>
-                                            <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">23/09/2017</a></time>
+                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
                                         </header>
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                         </a>
                                     </article>
@@ -43,10 +43,10 @@
                                 <div class="col-sm-6 wrap-featured-articles">
                                     <article class="featured-article featured-article-small">
                                         <header>
-                                            <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">23/09/2017</a></time>
+                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
                                         </header>
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                         </a>
                                     </article>
@@ -57,10 +57,10 @@
                                 <div class="col-sm-6 wrap-featured-articles">
                                     <article class="featured-article featured-article-small">
                                         <header>
-                                            <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">23/09/2017</a></time>
+                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
                                         </header>
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                         </a>
                                     </article>
@@ -68,10 +68,10 @@
                                 <div class="col-sm-6 wrap-featured-articles">
                                     <article class="featured-article featured-article-small">
                                         <header>
-                                            <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">23/09/2017</a></time>
+                                            <h5><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                            <time datetime="23/09/2017"><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">23/09/2017</a></time>
                                         </header>
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                         </a>
                                     </article>
@@ -88,11 +88,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="" height="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
                                         </header>
                                         <footer>
@@ -107,11 +107,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
                                         </header>
                                         <footer>
@@ -130,11 +130,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
                                         </header>
                                         <footer>
@@ -149,11 +149,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="" height="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
                                         </header>
                                         <footer>
@@ -172,11 +172,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="" height="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
                                         </header>
                                         <footer>
@@ -191,11 +191,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
                                         </header>
                                         <footer>
@@ -214,11 +214,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--short">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['laravel', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc</p>
                                         </header>
                                         <footer>
@@ -233,11 +233,11 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <article class="newest-article newest-article--long">
-                                        <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                        <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                                             <img src="http://via.placeholder.com/420x340" alt="" height="">
                                         </a>
                                         <header>
-                                            <h6><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive programing là gì ?</a></h6>
                                             <p>Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. Cộng hòa xã hội chủ nghĩa việt nam, độc lập tự do hạnh phúc. </p>
                                         </header>
                                         <footer>
@@ -316,7 +316,7 @@
         <section id="normal-content">
             <section class="container">
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -331,7 +331,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -366,7 +366,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -381,7 +381,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -416,7 +416,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -431,7 +431,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -466,7 +466,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -481,7 +481,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -516,7 +516,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -531,7 +531,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -566,7 +566,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -581,7 +581,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -616,7 +616,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -631,7 +631,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 
@@ -666,7 +666,7 @@
                 </article>
 
                 <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
                         <img src="http://via.placeholder.com/970x250" alt="">
                     </a>
                     <section class="normal-article__descriptions">
@@ -681,7 +681,7 @@
                                 </section>
                             </section>
                             <h4>
-                                <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
+                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
                             </h4>
                         </header>
 

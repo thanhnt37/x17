@@ -417,13 +417,13 @@
                             <div class="col-md-6">
                                 <article>
                                     <header>
-                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
                                         <p>
                                             <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
                                             <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
                                         </p>
                                     </header>
-                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                         <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                     </a>
                                 </article>
@@ -431,13 +431,13 @@
                             <div class="col-md-6">
                                 <article>
                                     <header>
-                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
                                         <p>
                                             <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
                                             <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
                                         </p>
                                     </header>
-                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                         <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                     </a>
                                 </article>
@@ -447,13 +447,13 @@
                             <div class="col-md-6">
                                 <article>
                                     <header>
-                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
                                         <p>
                                             <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
                                             <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
                                         </p>
                                     </header>
-                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                         <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                     </a>
                                 </article>
@@ -461,13 +461,13 @@
                             <div class="col-md-6">
                                 <article>
                                     <header>
-                                        <h5><a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
+                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
                                         <p>
                                             <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
                                             <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
                                         </p>
                                     </header>
-                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                         <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
                                     </a>
                                 </article>

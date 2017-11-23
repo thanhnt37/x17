@@ -7,7 +7,7 @@ Route::group(['middleware' => ['web.values']], function () {
     });
     Route::get('/{category}', 'Web\ArticleController@category');
     Route::get('/{category}/series', 'Web\ArticleController@series');
-    Route::get('/{category}/{slug}', 'Web\ArticleController@show');
+    Route::get('/{category}/{slug}', 'Web\ArticleController@detail');
 
     Route::group(['middleware' => ['web.guest']], function () {
         Route::get('signin', 'Web\AuthController@getSignIn');

@@ -72,7 +72,7 @@
                             </section>
                             <section class="title">
                                 <h4>
-                                    <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">Series hướng dẫn lập trình React Native cơ bản</a>
+                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Series hướng dẫn lập trình React Native cơ bản</a>
                                 </h4>
 
                                 <section class="social-share">
@@ -108,7 +108,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -128,7 +128,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -148,7 +148,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -168,7 +168,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -188,7 +188,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -208,7 +208,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -228,7 +228,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -248,7 +248,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -268,7 +268,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
@@ -288,7 +288,7 @@
                                     </a>
                                     <section class="details">
                                         <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@show', ['category', 'article-slug']) !!}">
+                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
                                                 Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
                                             </a>
                                         </h5>
