@@ -38,6 +38,7 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
     {
         return $this->getBlankModel()->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
     }
+    
     /**
      * @param $numberArticle
      *

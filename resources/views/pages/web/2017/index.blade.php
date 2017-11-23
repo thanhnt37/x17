@@ -99,58 +99,26 @@
 
                 <section id="featured-series">
                     <h5>SERIES NỔI BẬT</h5>
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <article class="featured-serie">
-                                <header>
-                                    <h5>
-                                        <a href="#">Series lập trình PHP nâng cao</a>
-                                    </h5>
-                                </header>
-                                <a href="#">
-                                    <img src="http://via.placeholder.com/650x240" alt="">
-                                </a>
-                            </article>
-                        </div>
-                        <div class="col-lg-5">
-                            <article class="featured-serie">
-                                <header>
-                                    <h5>
-                                        <a href="#">Series lập trình PHP nâng cao</a>
-                                    </h5>
-                                </header>
-                                <a href="#">
-                                    <img src="http://via.placeholder.com/650x240" alt="">
-                                </a>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <article class="featured-serie">
-                                <header>
-                                    <h5>
-                                        <a href="#">Series lập trình PHP nâng cao</a>
-                                    </h5>
-                                </header>
-                                <a href="#">
-                                    <img src="http://via.placeholder.com/650x240" alt="">
-                                </a>
-                            </article>
-                        </div>
-                        <div class="col-lg-7">
-                            <article class="featured-serie">
-                                <header>
-                                    <h5>
-                                        <a href="#">Series lập trình PHP nâng cao</a>
-                                    </h5>
-                                </header>
-                                <a href="#">
-                                    <img src="http://via.placeholder.com/650x240" alt="">
-                                </a>
-                            </article>
-                        </div>
-                    </div>
+                    @foreach( $featuredSeries as $index => $series )
+                        @if( ($index%2) == 0 )
+                            <div class="row">
+                        @endif
+                                <div class="@if( (($index%4) == 0) || ($index%4) == 3 ) col-lg-7 @else col-lg-5 @endif">
+                                    <article class="featured-serie">
+                                        <header>
+                                            <h5>
+                                                <a href="#">{{$series->title}}</a>
+                                            </h5>
+                                        </header>
+                                        <a href="#">
+                                            <img src="{{$series->coverImage->url}}" alt="{{$series->slug}}" title="{{$series->slug}}">
+                                        </a>
+                                    </article>
+                                </div>
+                        @if( ($index%2) == 1 )
+                            </div>
+                        @endif
+                    @endforeach
                 </section>
             </section>
         </section>
