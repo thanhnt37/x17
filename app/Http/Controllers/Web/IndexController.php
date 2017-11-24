@@ -27,12 +27,14 @@ class IndexController extends Controller
         $featuredArticles   = $this->articleRepository->getFeaturedArticles(5);
         $viewedArticles     = $this->articleRepository->getViewedArticles(8);
         $featuredSeries     = $this->seriesRepository->getFeaturedSeries(4);
+        $normalArticles     = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
 
         return view('pages.web.2017.index',
             [
                 'featuredArticles' => $featuredArticles,
                 'viewedArticles'   => $viewedArticles,
                 'featuredSeries'   => $featuredSeries,
+                'normalArticles'   => $normalArticles,
             ]
         );
     }

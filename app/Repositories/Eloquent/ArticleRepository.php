@@ -24,9 +24,21 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
         ];
     }
 
-    public function findBySlug($slug)
+
+    public function getEnabled($order, $direction, $offset, $limit)
     {
-        return Article::whereSlug($slug)->first();
+        $query = $this->getBlankModel();
+
+        $now = date('Y-m-d H:i:s');
+        $query = $query->where('is_enabled', '=', true)
+            ->where('publish_started_at', '<=', $now)
+            ->where(function($query) use ($now)
+                {
+                    $query->whereNull('publish_ended_at')->orWhere('publish_ended_at', '>', $now);
+                }
+            );
+
+        return $query->orderBy($order, $direction)->offset($offset)->limit($limit)->get();
     }
 
     /**

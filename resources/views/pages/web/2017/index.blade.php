@@ -125,405 +125,61 @@
 
         <section id="normal-content">
             <section class="container">
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
+
+                @foreach( $normalArticles as $normalArticle )
+                    <article class="normal-article">
+                        <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">
+                            <img src="http://via.placeholder.com/970x250" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                        </a>
+                        <section class="normal-article__descriptions">
+                            <header>
+                                <section class="normal-article__category">
+                                    @php
+                                        $bigCategory = isset($normalArticle->category->parent->slug) && !empty($normalArticle->category->parent->slug) ? $normalArticle->category->parent : $normalArticle->category;
+                                    @endphp
+                                    <span style="background: {{$bigCategory->color}};">
+                                        <a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->wildcard}}</a>
+                                    </span>
                                     <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
+                                        <section>
+                                            @if( $bigCategory != $normalArticle->category )
+                                                <p><a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->name}}</a></p>
+                                                <p><a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a></p>
+                                            @else
+                                                <p><a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a></p>
+                                                <p>&nbsp;</p>
+                                            @endif
+                                        </section>
                                     </section>
                                 </section>
+                                <h4>
+                                    <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">{{$normalArticle->title}}</a>
+                                </h4>
+                            </header>
+
+                            <p>{!! $normalArticle->description !!}</p>
+
+                            <ul class="normal-article__tags">
+                                @php
+                                    $tags = explode(',', $normalArticle->keywords);
+                                @endphp
+                                @foreach( $tags as $tag )
+                                    <li>
+                                        <a href="/tags/{{$tag}}" data-wpel-link="internal">#{{$tag}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            <section class="normal-article__counter">
+                                <span><i class="fa fa-eye"></i> {{$normalArticle->read}}</span>
+                                <span><i class="fa fa-commenting-o"></i> {{$normalArticle->voted}}</span>
+                                <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
+                                <time datetime="23/09/2017">23/09/2017</time>
                             </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
+                            <hr class="clearfix">
                         </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
-
-                <article class="normal-article">
-                    <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">
-                        <img src="http://via.placeholder.com/970x250" alt="">
-                    </a>
-                    <section class="normal-article__descriptions">
-                        <header>
-                            <section class="normal-article__category">
-                                <span>J</span>
-                                <section>
-                                    <section>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                        <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
-                                    </section>
-                                </section>
-                            </section>
-                            <h4>
-                                <a href="{!! action('Web\ArticleController@detail', ['nodejs', 'article-slug']) !!}">Reactive Programming có gì hay ?</a>
-                            </h4>
-                        </header>
-
-                        <p>Khả năng nhận diện khuôn mặt Face ID hoạt động tốt kể cả trong ngăn tủ tối om, hai anh em sinh đôi thử hóa trang cũng không thể đánh lừa được hay màn hình OLED của Apple có cách thể hiện giống LCD, do Samsung chế tạo dưới những yêu cầu riêng của Apple, được Apple tinh chỉnh hay trình điều khiển màn hình riêng của Apple là những thông tin thú vị mà chúng ta biết dựa vào những bài đánh giá iPhone X đầu tiên.</p>
-
-                        <ul class="normal-article__tags">
-                            <li>
-                                <a href="#" data-wpel-link="internal">#javascript</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#reactive</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#redux</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#RxJS</a>
-                            </li>
-                            <li>
-                                <a href="#" data-wpel-link="internal">#laravel</a>
-                            </li>
-                        </ul>
-
-                        <section class="normal-article__counter">
-                            <span><i class="fa fa-eye"></i> 254</span>
-                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                            <time datetime="23/09/2017">23/09/2017</time>
-                        </section>
-                        <hr class="clearfix">
-                    </section>
-                </article>
+                    </article>
+                @endforeach
 
                 <section class="view-more">
                     <button class="btn btn-light">Xem thêm</button>
