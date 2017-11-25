@@ -25,39 +25,60 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
     }
 
 
-    public function getEnabled($order, $direction, $offset, $limit)
+    public function getEnabled($order, $direction, $offset, $limit, $categoryIds = [])
     {
-        $query = $this->getBlankModel();
+        $query = $this->isPublish($this->getBlankModel());
 
+        if( count($categoryIds) >= 1 ) {
+            return $query->whereIn('category_id', $categoryIds)->offset($offset)->limit($limit)->get();
+        }
+
+        return $query->orderBy($order, $direction)->offset($offset)->limit($limit)->get();
+    }
+
+    /**
+     * @params  $numberArticle
+     *          $categoryIds
+     *
+     * @return mixed
+     */
+    public function getFeaturedArticles($numberArticle, $categoryIds = [])
+    {
+        $query = $this->isPublish($this->getBlankModel());
+
+        if( count($categoryIds) >= 1 ) {
+            return $query->whereIn('category_id', $categoryIds)->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+        }
+
+        return $query->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+    }
+
+    /**
+     * @params  $numberArticle
+     *          $categoryIds
+     *
+     * @return mixed
+     */
+    public function getViewedArticles($numberArticle, $categoryIds = [])
+    {
+        $query = $this->isPublish($this->getBlankModel());
+
+        if( count($categoryIds) >= 1 ) {
+            return $query->whereIn('category_id', $categoryIds)->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
+        }
+
+        return $query->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
+    }
+
+    private function isPublish($query)
+    {
         $now = date('Y-m-d H:i:s');
-        $query = $query->where('is_enabled', '=', true)
+        return $query->where('is_enabled', '=', true)
             ->where('publish_started_at', '<=', $now)
             ->where(function($query) use ($now)
                 {
                     $query->whereNull('publish_ended_at')->orWhere('publish_ended_at', '>', $now);
                 }
             );
-
-        return $query->orderBy($order, $direction)->offset($offset)->limit($limit)->get();
-    }
-
-    /**
-     * @param $numberArticle
-     *
-     * @return mixed
-     */
-    public function getFeaturedArticles($numberArticle)
-    {
-        return $this->getBlankModel()->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
-    }
-    
-    /**
-     * @param $numberArticle
-     *
-     * @return mixed
-     */
-    public function getViewedArticles($numberArticle)
-    {
-        return $this->getBlankModel()->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
     }
 }

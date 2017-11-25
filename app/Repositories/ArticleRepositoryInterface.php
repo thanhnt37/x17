@@ -5,16 +5,18 @@ namespace App\Repositories;
 interface ArticleRepositoryInterface extends SingleKeyModelRepositoryInterface
 {
     /**
-     * @param $numberArticle
+     * @params  $numberArticle
+     *          $categoryIds
      *
      * @return mixed
      */
-    public function getFeaturedArticles($numberArticle);
+    public function getFeaturedArticles($numberArticle, $categoryIds = []);
 
     /**
-     * @param $numberArticle
+     * @params  $numberArticle
+     *          $categoryIds
      *
      * @return mixed
      */
-    public function getViewedArticles($numberArticle);
+    public function getViewedArticles($numberArticle, $categoryIds = []);
 }
