@@ -158,6 +158,10 @@
 			article {
 				margin-bottom: 20px;
 
+				a {
+					color: inherit;
+					text-decoration: none;
+				}
 				img {
 					width: 42%;
 					max-width: 300px;
@@ -184,9 +188,16 @@
 							margin-right: 5px;
 							color: inherit;
 						}
+						a:hover {
+							text-decoration: underline;
+						}
 					}
 					.title {
 						margin-top: 10px;
+						max-height: 45px;
+						min-height: 25px;
+						overflow: hidden;
+
 						a {
 							color: inherit;
 							text-decoration: none;
@@ -194,6 +205,9 @@
 					}
 					.descriptions {
 						font-size: 0.95rem;
+						height: 90px;
+						overflow: hidden;
+						margin-bottom: 30px;
 					}
 					.counter {
 						color: #828181;
