@@ -20,139 +20,62 @@
                 <section id="featured-content">
                     <div class="row">
                         <div class="col-lg-4 order-2 newest-articles">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-6">
-                                    <article>
-                                        <figure>
-                                            <a href="/jquery-ajax">
-                                                <img src="http://via.placeholder.com/970x250" alt="">
-                                            </a>
-                                            <figcaption>
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                            </figcaption>
-                                        </figure>
-                                        <h5>
-                                            <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ? Có gì hay ho không mà lắm thằng học thế </a>
-                                        </h5>
-                                    </article>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <article>
-                                        <figure>
-                                            <img src="http://via.placeholder.com/970x250" alt="">
-                                            <figcaption>
-                                                <a href="/react-native">React Native</a>
-                                            </figcaption>
-                                        </figure>
-                                        <h5>
-                                            <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ?</a>
-                                        </h5>
-                                    </article>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-6">
-                                    <article>
-                                        <figure>
-                                            <a href="/jquery-ajax">
-                                                <img src="http://via.placeholder.com/970x250" alt="">
-                                            </a>
-                                            <figcaption>
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                            </figcaption>
-                                        </figure>
-                                        <h5>
-                                            <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ? Có gì hay ho không mà lắm thằng học thế </a>
-                                        </h5>
-                                    </article>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <article>
-                                        <figure>
-                                            <img src="http://via.placeholder.com/970x250" alt="">
-                                            <figcaption>
-                                                <a href="/react-native">React Native</a>
-                                            </figcaption>
-                                        </figure>
-                                        <h5>
-                                            <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ?</a>
-                                        </h5>
-                                    </article>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-6">
-                                    <article>
-                                        <figure>
-                                            <a href="/jquery-ajax">
-                                                <img src="http://via.placeholder.com/970x250" alt="">
-                                            </a>
-                                            <figcaption>
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                            </figcaption>
-                                        </figure>
-                                        <h5>
-                                            <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ? Có gì hay ho không mà lắm thằng học thế </a>
-                                        </h5>
-                                    </article>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <article>
-                                        <figure>
-                                            <img src="http://via.placeholder.com/970x250" alt="">
-                                            <figcaption>
-                                                <a href="/react-native">React Native</a>
-                                            </figcaption>
-                                        </figure>
-                                        <h5>
-                                            <a href="http://localhost:8000/category/article-slug">Reactive programing là gì ?</a>
-                                        </h5>
-                                    </article>
-                                </div>
-                            </div>
+                            @foreach( $viewedArticles as $index => $viewedArticle )
+                                @if( ($index%2) == 0 ) <div class="row"> @endif
+                                    <div class="col-lg-12 col-md-6">
+                                        <article>
+                                            <figure>
+                                                <a href="{!! action('Web\ArticleController@detail', [$viewedArticle->category->slug, $viewedArticle->slug]) !!}">
+                                                    <img src="http://via.placeholder.com/970x250"  alt="{{$viewedArticle->slug}}" title="{{$viewedArticle->slug}}">
+                                                </a>
+                                                <figcaption>
+                                                    <a href="{!! action('Web\ArticleController@category', [$viewedArticle->category->slug]) !!}">{{$viewedArticle->category->name}}</a>
+                                                </figcaption>
+                                            </figure>
+                                            <h5>
+                                                <a href="{!! action('Web\ArticleController@detail', [$viewedArticle->category->slug, $viewedArticle->slug]) !!}">{{$viewedArticle->title}}</a>
+                                            </h5>
+                                        </article>
+                                    </div>
+                                @if( ($index%2) == 1 ) </div> @endif
+                            @endforeach
                         </div>
 
                         <div class="col-lg-4 order-3 hot-articles">
                             <div class="row">
+                                @php
+                                    $bigArticle = $featuredArticles[0];
+                                    unset($featuredArticles[0]);
+                                @endphp
                                 <div class="col-lg-12" >
                                     <article class="big-article">
                                         <header>
-                                            <h6><a href="/javascript">Javascript</a></h6>
+                                            <h6><a href="{!! action('Web\ArticleController@category', [$bigArticle->category->slug]) !!}">{{$bigArticle->category->name}}</a></h6>
                                             <h3>
-                                                <a href="/category/article-slug">Tương lai nào cho Lập trình front-end</a>
+                                                <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">{{$bigArticle->title}}</a>
                                             </h3>
                                         </header>
-                                        <a href="/category/article-slug">
-                                            <img src="http://via.placeholder.com/300x500" alt="">
+                                        <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">
+                                            <img src="http://via.placeholder.com/300x500"  alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
                                         </a>
                                     </article>
                                 </div>
-                                <div class="col-lg-12" >
-                                    <article class="medium-article">
-                                        <header>
-                                            <h6><a href="/javascript">Javascript</a></h6>
-                                            <h4>
-                                                <a href="/category/article-slug">Tương lai nào cho Lập trình front-end</a>
-                                            </h4>
-                                        </header>
-                                        <a href="/category/article-slug">
-                                            <img src="http://via.placeholder.com/420x340" alt="">
-                                        </a>
-                                    </article>
-                                </div>
-                                <div class="col-lg-12" >
-                                    <article class="medium-article">
-                                        <header>
-                                            <h6><a href="/javascript">Javascript</a></h6>
-                                            <h4>
-                                                <a href="/category/article-slug">Tương lai nào cho Lập trình front-end</a>
-                                            </h4>
-                                        </header>
-                                        <a href="/category/article-slug">
-                                            <img src="http://via.placeholder.com/420x340" alt="">
-                                        </a>
-                                    </article>
-                                </div>
+
+                                @foreach( $featuredArticles as $featuredArticle )
+                                    <div class="col-lg-12" >
+                                        <article class="medium-article">
+                                            <header>
+                                                <h6><a href="{!! action('Web\ArticleController@category', [$featuredArticle->category->slug]) !!}">{{$featuredArticle->category->name}}</a></h6>
+                                                <h4>
+                                                    <a href="{!! action('Web\ArticleController@detail', [$featuredArticle->category->slug, $featuredArticle->slug]) !!}">{{$featuredArticle->title}}</a>
+                                                </h4>
+                                            </header>
+                                            <a href="{!! action('Web\ArticleController@detail', [$featuredArticle->category->slug, $featuredArticle->slug]) !!}">
+                                                <img src="http://via.placeholder.com/420x340"  alt="{{$featuredArticle->slug}}" title="{{$featuredArticle->slug}}">
+                                            </a>
+                                        </article>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 

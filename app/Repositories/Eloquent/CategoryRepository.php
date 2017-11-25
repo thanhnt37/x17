@@ -23,4 +23,35 @@ class CategoryRepository extends SingleKeyModelRepository implements CategoryRep
         ];
     }
 
+    /**
+     * @param   $categoryId
+     *
+     * @return  array
+     */
+    public function getAllChilds($categoryId)
+    {
+        $ids = [];
+        $category = $this->find($categoryId);
+        if( !empty($category) ) {
+            $this->recursiveAllChilds($category, $ids);
+        }
+
+        return $ids;
+    }
+
+    private function recursiveAllChilds(Category $category, &$ids = [])
+    {
+        array_push($ids, $category->id);
+
+        $childs = $category->childs;
+        if( !count($childs) ) {
+            return $ids;
+        }
+
+        foreach( $childs as $child ) {
+            $this->recursiveAllChilds($child, $ids);
+        }
+
+        return $ids;
+    }
 }

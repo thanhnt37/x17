@@ -165,7 +165,7 @@
                                 @endphp
                                 @foreach( $tags as $tag )
                                     <li>
-                                        <a href="/tags/{{$tag}}" data-wpel-link="internal">#{{$tag}}</a>
+                                        <a href="/tags/{{str_slug($tag)}}" data-wpel-link="internal">#{{$tag}}</a>
                                     </li>
                                 @endforeach
                             </ul>
