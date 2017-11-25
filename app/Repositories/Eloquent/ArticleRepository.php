@@ -70,6 +70,24 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
         return $query->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
     }
 
+
+    /**
+     * @params  $numberArticle
+     *          $categoryIds
+     *
+     * @return mixed
+     */
+    public function getSeriesArticles($numberArticle, $categoryIds = [])
+    {
+        $query = $this->isPublish($this->getBlankModel());
+
+        if( count($categoryIds) >= 1 ) {
+            return $query->whereIn('category_id', $categoryIds)->where('series_id', '<>', 0)->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+        }
+
+        return $query->where('series_id', '<>', 0)->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+    }
+
     private function isPublish($query)
     {
         $now = date('Y-m-d H:i:s');

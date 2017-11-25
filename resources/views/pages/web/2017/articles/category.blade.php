@@ -82,58 +82,24 @@
                         <div class="col-lg-4 order-4 series-article" >
                             <div class="row">
                                 <div class="col-lg-12" >
-                                    {{--<h3>SERIES NỔI BẬT</h3>--}}
-                                    <article>
-                                        <img src="http://via.placeholder.com/100x100" alt="">
-                                        <section class="info">
-                                            <p class="category">
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                                <time datetime="23/09/2017">23/09/2017</time>
-                                            </p>
-                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
-                                        </section>
-                                    </article>
-                                    <article>
-                                        <img src="http://via.placeholder.com/100x100" alt="">
-                                        <section class="info">
-                                            <p class="category">
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                                <time datetime="23/09/2017">23/09/2017</time>
-                                            </p>
-                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
-                                        </section>
-                                    </article>
-                                    <article>
-                                        <img src="http://via.placeholder.com/100x100" alt="">
-                                        <section class="info">
-                                            <p class="category">
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                                <time datetime="23/09/2017">23/09/2017</time>
-                                            </p>
-                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
-                                        </section>
-                                    </article>
-                                    <article>
-                                        <img src="http://via.placeholder.com/100x100" alt="">
-                                        <section class="info">
-                                            <p class="category">
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                                <time datetime="23/09/2017">23/09/2017</time>
-                                            </p>
-                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
-                                        </section>
-                                    </article>
-                                    <article>
-                                        <img src="http://via.placeholder.com/100x100" alt="">
-                                        <section class="info">
-                                            <p class="category">
-                                                <a href="/jquery-ajax">JQuery/Ajax</a>
-                                                <time datetime="23/09/2017">23/09/2017</time>
-                                            </p>
-                                            <h6>Cái gì cũng phải từ từ, từ từ thì khoai mới nhừ</h6>
-                                        </section>
-                                    </article>
+                                    @foreach( $seriesArticles as $seriesArticle )
+                                        <article>
+                                            <a href="{!! action('Web\ArticleController@detail', [$seriesArticle->category->slug, $seriesArticle->slug]) !!}">
+                                                <img src="http://via.placeholder.com/100x100" alt="{{$seriesArticle->slug}}" title="{{$seriesArticle->slug}}">
+                                            </a>
+                                            <section class="info">
+                                                <p class="category">
+                                                    <a href="{!! action('Web\ArticleController@category', [$seriesArticle->category->slug]) !!}">{{$seriesArticle->category->name}}</a>
+                                                    <time datetime="23/09/2017">23/09/2017</time>
+                                                </p>
+                                                <h6>
+                                                    <a href="{!! action('Web\ArticleController@detail', [$seriesArticle->category->slug, $seriesArticle->slug]) !!}">{{$seriesArticle->title}}</a>
+                                                </h6>
+                                            </section>
+                                        </article>
+                                    @endforeach
                                 </div>
+
                                 <div class="col-lg-12" >
                                     @include('pages.web.advertises.300x600')
                                 </div>
