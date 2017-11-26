@@ -24,9 +24,9 @@ class IndexController extends Controller
 
     public function index()
     {
-        $featuredArticles   = $this->articleRepository->getFeaturedArticles(5);
-        $viewedArticles     = $this->articleRepository->getViewedArticles(8);
-        $featuredSeries     = $this->seriesRepository->getFeaturedSeries(4);
+        $featuredArticles   = $this->articleRepository->getFeaturedArticles([], 0, 5);
+        $viewedArticles     = $this->articleRepository->getViewedArticles([], 0, 8);
+        $featuredSeries     = $this->seriesRepository->getFeaturedSeries([], 0, 4);
         $normalArticles     = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
 
         return view('pages.web.2017.index',

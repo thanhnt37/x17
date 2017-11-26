@@ -42,15 +42,15 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
      *
      * @return mixed
      */
-    public function getFeaturedArticles($numberArticle, $categoryIds = [])
+    public function getFeaturedArticles($categoryIds = [], $offset = 0, $limit = 10)
     {
         $query = $this->isPublish($this->getBlankModel());
 
         if( count($categoryIds) >= 1 ) {
-            return $query->whereIn('category_id', $categoryIds)->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+            return $query->whereIn('category_id', $categoryIds)->orderBy('voted', 'desc')->orderBy('read', 'desc')->offset($offset)->limit($limit)->get();
         }
 
-        return $query->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+        return $query->orderBy('voted', 'desc')->orderBy('read', 'desc')->offset($offset)->limit($limit)->get();
     }
 
     /**
@@ -59,15 +59,15 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
      *
      * @return mixed
      */
-    public function getViewedArticles($numberArticle, $categoryIds = [])
+    public function getViewedArticles($categoryIds = [], $offset = 0, $limit = 10)
     {
         $query = $this->isPublish($this->getBlankModel());
 
         if( count($categoryIds) >= 1 ) {
-            return $query->whereIn('category_id', $categoryIds)->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
+            return $query->whereIn('category_id', $categoryIds)->orderBy('read', 'desc')->orderBy('voted', 'desc')->offset($offset)->limit($limit)->get();
         }
 
-        return $query->orderBy('read', 'desc')->orderBy('voted', 'desc')->skip(0)->take($numberArticle)->get();
+        return $query->orderBy('read', 'desc')->orderBy('voted', 'desc')->offset($offset)->limit($limit)->get();
     }
 
 
@@ -77,15 +77,15 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
      *
      * @return mixed
      */
-    public function getSeriesArticles($numberArticle, $categoryIds = [])
+    public function getSeriesArticles($categoryIds = [], $offset = 0, $limit = 10)
     {
         $query = $this->isPublish($this->getBlankModel());
 
         if( count($categoryIds) >= 1 ) {
-            return $query->whereIn('category_id', $categoryIds)->where('series_id', '<>', 0)->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+            return $query->whereIn('category_id', $categoryIds)->where('series_id', '<>', 0)->orderBy('voted', 'desc')->orderBy('read', 'desc')->offset($offset)->limit($limit)->get();
         }
 
-        return $query->where('series_id', '<>', 0)->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberArticle)->get();
+        return $query->where('series_id', '<>', 0)->orderBy('voted', 'desc')->orderBy('read', 'desc')->offset($offset)->limit($limit)->get();
     }
 
     /**
@@ -95,7 +95,7 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
      *
      * @return mixed
      */
-    public function getArticleInSeries($seriesId, $offset, $limit)
+    public function getArticleInSeries($seriesId, $offset = 0, $limit = 10)
     {
         $query = $this->isPublish($this->getBlankModel());
 

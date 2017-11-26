@@ -28,9 +28,9 @@ class SeriesRepository extends SingleKeyModelRepository implements SeriesReposit
      *
      * @return mixed
      */
-    public function getFeaturedSeries($numberSeries)
+    public function getFeaturedSeries($categoryIds = [], $offset = 0, $limit = 10)
     {
-        return $this->getBlankModel()->orderBy('voted', 'desc')->orderBy('read', 'desc')->skip(0)->take($numberSeries)->get();
+        return $this->getBlankModel()->orderBy('voted', 'desc')->orderBy('read', 'desc')->offset($offset)->limit($limit)->get();
     }
 
 }

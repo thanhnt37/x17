@@ -36,9 +36,9 @@ class ArticleController extends Controller
         }
 
         $categoryIds = $this->categoryRepository->getAllChilds($category->id);
-        $featuredArticles   = $this->articleRepository->getFeaturedArticles(3, $categoryIds);
-        $viewedArticles     = $this->articleRepository->getViewedArticles(6, $categoryIds);
-        $seriesArticles     = $this->articleRepository->getSeriesArticles(5, $categoryIds);
+        $featuredArticles   = $this->articleRepository->getFeaturedArticles($categoryIds, 0, 3);
+        $viewedArticles     = $this->articleRepository->getViewedArticles($categoryIds, 0, 6);
+        $seriesArticles     = $this->articleRepository->getSeriesArticles($categoryIds, 0, 5);
         $normalArticles     = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10, $categoryIds);
 
         $view = ( !empty($category->childs) && count($category->childs) ) ? 'pages.web.2017.articles.category' : 'pages.web.2017.articles.small_category';
