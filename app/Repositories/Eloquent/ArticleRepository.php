@@ -24,6 +24,12 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
         ];
     }
 
+    public function findBySlug($slug)
+    {
+        $query = $this->isPublish($this->getBlankModel());
+        
+        return $query->where('slug', '=', $slug)->first();
+    }
 
     public function getEnabled($order, $direction, $offset, $limit, $categoryIds = [])
     {

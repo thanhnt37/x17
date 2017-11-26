@@ -78,9 +78,20 @@ class ArticleController extends Controller
 
     public function detail($category, $slug)
     {
+        $article = $this->articleRepository->findBySlug($slug);
+        if( empty($article) ) {
+            return view('pages.web.2017.404');
+        }
+
+        if( $article->category->slug != $category ) {
+            return redirect()->action('Web\ArticleController@detail', [$article->category->slug, $article->slug]);
+        }
+
         return view(
             'pages.web.2017.articles.detail',
-            []
+            [
+                'article' => $article
+            ]
         );
     }
 }
