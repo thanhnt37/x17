@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ArticleRepositoryInterface;
+use App\Repositories\SeriesRepositoryInterface;
 
 class ArticleController extends Controller
 {
@@ -14,12 +15,17 @@ class ArticleController extends Controller
     /* @var \App\Repositories\ArticleRepositoryInterface */
     protected $articleRepository;
 
+    /* @var \App\Repositories\SeriesRepositoryInterface */
+    protected $seriesRepository;
+
     public function __construct(
         CategoryRepositoryInterface     $categoryRepository,
-        ArticleRepositoryInterface      $articleRepository
+        ArticleRepositoryInterface      $articleRepository,
+        SeriesRepositoryInterface       $seriesRepository
     ) {
         $this->categoryRepository       = $categoryRepository;
         $this->articleRepository        = $articleRepository;
+        $this->seriesRepository         = $seriesRepository;
     }
 
     public function category($categorySlug)
@@ -47,11 +53,26 @@ class ArticleController extends Controller
         );
     }
 
-    public function series($category)
+    public function series($category, $slug)
     {
+        // $slug   = 'series-' . $slug;
+        $series = $this->seriesRepository->findBySlug($slug);
+        if( empty($series) ) {
+            return view('pages.web.2017.404');
+        }
+
+        if( $series->category->slug != $category ) {
+            return redirect()->action('Web\ArticleController@series', [$series->category->slug, $series->slug]);
+        }
+
+        $articles = $this->articleRepository->getArticleInSeries($series->id, 0, 10);
+
         return view(
             'pages.web.2017.articles.series',
-            []
+            [
+                'series'   => $series,
+                'articles' => $articles,
+            ]
         );
     }
 

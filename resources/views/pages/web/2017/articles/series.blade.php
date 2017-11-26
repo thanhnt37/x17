@@ -60,19 +60,32 @@
 
                 <section id="series-info">
                     <section class="series-title">
-                        <img src="https://s3.envato.com/files/145553660/970x250.jpg" alt="">
+                        <a href="{!! action('Web\ArticleController@series', [$series->category->slug, $series->slug]) !!}">
+                            <img src="https://s3.envato.com/files/145553660/970x250.jpg" alt="{{$series->slug}}" title="{{$series->slug}}">
+                        </a>
                         <header>
                             <section class="category">
-                                <span>J</span>
+                                @php
+                                    $bigCategory = isset($series->category->parent->slug) && !empty($series->category->parent->slug) ? $series->category->parent : $series->category;
+                                @endphp
+                                <span style="background: {{$bigCategory->color}};">
+                                    <a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->wildcard}}</a>
+                                </span>
 
                                 <section>
-                                    <p><a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a></p>
-                                    <p><a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a></p>
+                                    @if( $bigCategory != $series->category )
+                                        <p><a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->name}}</a></p>
+                                        <p><a href="{!! action('Web\ArticleController@category', [$series->category->slug]) !!}">{{$series->category->name}}</a></p>
+                                    @else
+                                        <p><a href="{!! action('Web\ArticleController@category', [$series->category->slug]) !!}">{{$series->category->name}}</a></p>
+                                        <p>&nbsp;</p>
+                                    @endif
                                 </section>
                             </section>
+
                             <section class="title">
                                 <h4>
-                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Series hướng dẫn lập trình React Native cơ bản</a>
+                                    <a href="{!! action('Web\ArticleController@series', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
                                 </h4>
 
                                 <section class="social-share">
@@ -89,11 +102,7 @@
 
                     <section class="series-descriptions">
                         <section class="description">
-                            <p>
-                                Giám đốc mảng kinh doanh toàn cầu của MediaTek - Finbarr Moynihan đã giải thích về tình hình ảm đạm của dòng SoC cao cấp nhất của hãng là Helio X đòng thời tiết lộ rằng công ty sẽ tạm rút lui khỏi phân khúc cao cấp và hứa hẹn trở lại trong 2 năm nữa.
-                                <br><br>
-                                Thật sự mà nói thì năm 2017 đã chứng kiến một sự cải tiến đột biến về công nghệ và hiệu năng của vi xử lý di động. Những con vi xử lý sản xuất trên tiến trình 10 nm đang dần phổ biến ít nhất là trong phân khúc điện thoại cao cấp. Cũng ở phân khúc này, đối với các thiết bị cao cấp thì Samsung Exynos 8895 và Qualcomm Snapdragon 835 đang cạnh tranh rất khốc liệt. Cả 2 đều sử dụng tiến trình 10 nm FinFET của Samsung và tập trung cải thiện mức tiêu thụ điện năng so với các thế hệ trước. Tuy nhiên, điều ngạc nhiên nhất lại đến từ Apple khi táo mẻ gây địa chấn với Apple A11 Bionic với cả 6 nhân có thể chạy ở xung nhịp cao cùng lúc, lần đầu đánh bại các SoC dành cho Android về mặt điểm số benchmark đa nhân. Tuy nhiên, nói đến đây thì MediaTek vẫn chưa được gọi tên, nhà sản xuất vi xử lý di động của Đài Loan đã âm thầm lùi vào bóng tối.
-                            </p>
+                            <p>{!! $series->description !!}</p>
                         </section>
                     </section>
                 </section>
@@ -102,205 +111,26 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
+                                @foreach( $articles as $article )
+                                    <article>
+                                        <a href="{!! action('Web\ArticleController@detail', [$article->category->slug, $article->slug]) !!}">
+                                            <img src="http://via.placeholder.com/560x390" alt="{{$article->slug}}" title="{{$article->slug}}">
+                                        </a>
+                                        <section class="details">
+                                            <h5 class="title">
+                                                <a href="{!! action('Web\ArticleController@detail', [$article->category->slug, $article->slug]) !!}">{{$article->title}}</a>
+                                            </h5>
+                                            <p class="descriptions">{!! substr($article->description, 0, 250) !!}...</p>
 
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
+                                            <section class="counter">
+                                                <span><i class="fa fa-eye"></i> {{$article->read}}</span>
+                                                <span><i class="fa fa-commenting-o"></i> {{$article->voted}}</span>
+                                                <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
+                                                <time datetime="23/09/2017">23/09/2017</time>
+                                            </section>
                                         </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
-
-                                <article>
-                                    <a href="{!! action('Web\ArticleController@category', ['react-native']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="">
-                                    </a>
-                                    <section class="details">
-                                        <h5 class="title">
-                                            <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                                Game thủ PC có thể yên tâm, bom tấn Attack on Titan 2 sẽ không độc quyền
-                                            </a>
-                                        </h5>
-                                        <p class="descriptions">Vietel là sim 3G/4G chính thống của các đại lý viễn thông phát hành .Khách hàng trước khi thanh toán có thể gọi tổng đài kiểm tra thông tin sim về gói 4G , ngày kích hoạt , ngày hết hạn khuyến mại</p>
-                                        <section class="counter">
-                                            <span><i class="fa fa-eye"></i> 254</span>
-                                            <span><i class="fa fa-commenting-o"></i> 22</span>
-                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
-                                        </section>
-                                    </section>
-                                </article>
+                                    </article>
+                                @endforeach
 
                                 <section class="view-more">
                                     <button class="btn btn-light">Xem thêm</button>

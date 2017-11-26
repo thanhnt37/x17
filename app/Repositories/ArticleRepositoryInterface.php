@@ -27,4 +27,13 @@ interface ArticleRepositoryInterface extends SingleKeyModelRepositoryInterface
      * @return mixed
      */
     public function getSeriesArticles($numberArticle, $categoryIds = []);
+
+    /**
+     * @params  $seriesId
+     *          $offset
+     *          $limit
+     *
+     * @return mixed
+     */
+    public function getArticleInSeries($seriesId, $offset, $limit);
 }
