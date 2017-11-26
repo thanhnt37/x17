@@ -206,11 +206,9 @@
                     <section class="site-index">
                         <h5>INDEX</h5>
                         <ul>
-                            <li><a href="#">Chuẩn bị</a></li>
-                            <li class="active"><a href="#">Khởi động</a></li>
-                            <li><a href="#">Vượt chướng ngại vật</a></li>
-                            <li><a href="#">Tăng tốc</a></li>
-                            <li><a href="#">Về đích</a></li>
+                            @foreach( $article->index as $index )
+                                <li><a href="#{{$index->href}}">{{$index->title}}</a></li>
+                            @endforeach
                         </ul>
                     </section>
                 </aside>

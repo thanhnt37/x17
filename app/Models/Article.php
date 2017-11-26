@@ -106,6 +106,16 @@ class Article extends Base
         return $this->belongsTo(\App\Models\Category::class, 'category_id', 'id');
     }
 
+    public function index()
+    {
+        return $this->hasMany(\App\Models\ArticleIndex::class, 'article_id', 'id')->orderBy('id', 'asc');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(\App\Models\ArticleImage::class, 'article_id', 'id')->orderBy('id', 'asc');
+    }
+
     // define for Sluggable
     public function sluggable()
     {
