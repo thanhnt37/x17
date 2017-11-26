@@ -1,7 +1,15 @@
 @if( !empty($currentCategory) )
     @php
-        $category = (!empty($currentCategory->childs) && count($currentCategory->childs)) ? $currentCategory : $currentCategory->parent;
-        $childs   = $category->childs;
+        if(!empty($currentCategory->childs) && count($currentCategory->childs)) {
+            $category = $currentCategory;
+            $childs   = $category->childs;
+        } elseif(!empty($currentCategory->parent) && count($currentCategory->parent)) {
+            $category = $currentCategory->parent;
+            $childs   = $category->childs;
+        } else {
+            $category = $currentCategory;
+            $childs   = [];
+        }
     @endphp
 @endif
 <section id="breadcrumb">
