@@ -9,7 +9,6 @@
 
 		.site-index {
 			padding-top: 10px;
-			padding-left: 25px;
 
 			ul {
 				list-style: none;
@@ -24,7 +23,7 @@
 						text-decoration: none;
 					}
 					a:hover {
-						color: #408a4b;
+						color: $main-color;
 					}
 				}
 				li.active {
@@ -33,6 +32,98 @@
 
 					a {
 						color: inherit;
+					}
+				}
+			}
+		}
+		.series-article-index {
+			padding-top: 10px;
+
+			ul.root {
+				list-style: none;
+				padding-left: 15px;
+
+				a {
+					color: inherit;
+					text-decoration: none;
+				}
+				i {
+					display: inline-block;
+					font-style: normal;
+					width: 25px;
+					min-width: 25px;
+					background: #fff;
+					border-radius: 50%;
+					text-align: center;
+					height: 26px;
+					vertical-align: middle;
+					line-height: 24px;
+					border: 2px solid #bdbdbd;
+					margin-right: 8px;
+					font-weight: 400;
+				}
+				i::after {
+					content: '';
+					display: block;
+					border-left: 1px solid #bdbdbd;
+					width: 0;
+					height: 40px;
+					z-index: -1;
+					margin-left: 10px;
+				}
+				li {
+					padding: 10px 0;
+				}
+				li:hover {
+					i {
+						border-color: $main-color;
+					}
+					a {
+						color: $main-color;
+					}
+				}
+				li:first-child {
+					position: relative;
+
+					i:after {
+						height: 100%;
+						position: absolute;
+					}
+				}
+				li:last-child {
+					i:after {
+						display: none;
+					}
+				}
+				li.active {
+					i {
+						border-color: $main-color;
+					}
+					a {
+						color: $main-color;
+					}
+					ul {
+						list-style: none;
+
+						li {
+							padding: 5px 0;
+							padding-left: 20px;
+
+							a {
+								color: inherit;
+							}
+							a:hover {
+								color: $main-color;
+							}
+						}
+						li.active {
+							border-left: 2px solid $main-color;
+							color: $main-color;
+
+							a {
+								color: inherit;
+							}
+						}
 					}
 				}
 			}
