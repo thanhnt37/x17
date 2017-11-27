@@ -76,6 +76,11 @@ class Series extends Base
     }
 
     // Relations
+    public function articles()
+    {
+        return $this->hasMany(\App\Models\Article::class, 'series_id', 'id')->orderBy('id', 'asc');
+    }
+
     public function coverImage()
     {
         return $this->hasOne(\App\Models\Image::class, 'id', 'cover_image_id');

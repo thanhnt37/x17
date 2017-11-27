@@ -216,32 +216,19 @@
                         <section class="series-article-index">
                             <h5>INDEX</h5>
                             <ul class="root">
-                                <li class="active">
-                                    <i>1</i>
-                                    <a href="#">Chương Một</a>
-                                    <ul>
-                                        <li><a href="#">Phần Một</a></li>
-                                        <li class="active"><a href="#">Phần Hai</a></li>
-                                        <li><a href="#">Phần Ba</a></li>
-                                        <li><a href="#">Phần Bốn</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <i>2</i>
-                                    <a href="#">Chương Hai</a>
-                                </li>
-                                <li>
-                                    <i>3</i>
-                                    <a href="#">Chương Ba</a>
-                                </li>
-                                <li>
-                                    <i>4</i>
-                                    <a href="#">Chương Bốn</a>
-                                </li>
-                                <li>
-                                    <i>5</i>
-                                    <a href="#">Chương Năm</a>
-                                </li>
+                                @foreach( $article->series->articles as $index => $series )
+                                    <li @if($series->slug == $article->slug) class="active" @endif >
+                                        <i>{{$index + 1}}</i>
+                                        <a href="{!! action('Web\ArticleController@detail', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
+                                        @if($series->slug == $article->slug)
+                                            <ul>
+                                                @foreach( $series->index as $index )
+                                                    <li><a href="#{{$index->href}}">{{$index->title}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
                             </ul>
                         </section>
                     @endif

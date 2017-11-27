@@ -61,6 +61,7 @@
 					border: 2px solid #bdbdbd;
 					margin-right: 8px;
 					font-weight: 400;
+					float: left;
 				}
 				i::after {
 					content: '';
@@ -83,12 +84,6 @@
 					}
 				}
 				li:first-child {
-					position: relative;
-
-					i:after {
-						height: 100%;
-						position: absolute;
-					}
 				}
 				li:last-child {
 					i:after {
@@ -96,6 +91,12 @@
 					}
 				}
 				li.active {
+					position: relative;
+
+					i:after {
+						height: 100%;
+						position: absolute;
+					}
 					i {
 						border-color: $main-color;
 					}
@@ -133,6 +134,14 @@
 		position: fixed;
 		top: -310px;
 		border-left: 1px solid #ccc;
+	}
+	aside.top {
+		position: absolute;
+		top: 0;
+	}
+	aside.bottom {
+		position: fixed;
+		bottom: 0;
 	}
 
 	#article-detail {
