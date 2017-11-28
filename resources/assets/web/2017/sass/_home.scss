@@ -363,6 +363,11 @@
 							background: aquamarine;
 							font-size: 20px;
 							font-weight: bolder;
+
+							a {
+								color: inherit;
+								text-decoration: none;
+							}
 						}
 						section {
 							display: inline-block;
