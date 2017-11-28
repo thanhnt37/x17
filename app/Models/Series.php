@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int                    $id
  * @property string                 $slug
  * @property string                 $title
+ * @property string|null            $keywords
  * @property string|null            $description
  * @property int|null               $voted
  * @property int|null               $read
  * @property int|null               $category_id
  * @property int|null               $cover_image_id
+ * @property int|null               $is_enabled
+ * @property \Carbon\Carbon|null    $publish_started_at
+ * @property \Carbon\Carbon|null    $publish_ended_at
  * @property \Carbon\Carbon|null    $deleted_at
  * @property \Carbon\Carbon         $created_at
  * @property \Carbon\Carbon         $updated_at
@@ -51,11 +55,15 @@ class Series extends Base
     protected $fillable = [
         'slug',
         'title',
+        'keywords',
         'description',
         'voted',
         'read',
         'category_id',
         'cover_image_id',
+        'is_enabled',
+        'publish_started_at',
+        'publish_ended_at',
     ];
 
     /**
@@ -65,7 +73,7 @@ class Series extends Base
      */
     protected $hidden = [];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['publish_started_at', 'publish_ended_at', 'deleted_at'];
 
     protected $presenter = \App\Presenters\SeriesPresenter::class;
 
@@ -101,13 +109,17 @@ class Series extends Base
     public function toAPIArray()
     {
         return [
-            'slug'           => $this->slug,
-            'title'          => $this->title,
-            'description'    => $this->description,
-            'voted'          => $this->voted,
-            'read'           => $this->read,
-            'category_id'    => $this->category_id,
-            'cover_image_id' => $this->cover_image_id,
+            'slug'               => $this->slug,
+            'title'              => $this->title,
+            'keywords'           => $this->keywords,
+            'description'        => $this->description,
+            'voted'              => $this->voted,
+            'read'               => $this->read,
+            'category_id'        => $this->category_id,
+            'cover_image_id'     => $this->cover_image_id,
+            'is_enabled'         => $this->is_enabled,
+            'publish_started_at' => $this->publish_started_at,
+            'publish_ended_at'   => $this->publish_ended_at,
         ];
     }
 

@@ -160,13 +160,17 @@ $factory->define(
 $factory->define(App\Models\Series::class, function (Faker\Generator $faker)
 {
     return [
-        'slug'           => $faker->unique()->slug(),
-        'title'          => $faker->sentence(6),
-        'description'    => $faker->sentences(10, true),
-        'voted'          => $faker->numberBetween(0, 100),
-        'read'           => $faker->numberBetween(0, 1000),
-        'category_id'    => 0,
-        'cover_image_id' => 0,
+        'slug'               => $faker->unique()->slug(),
+        'title'              => $faker->sentence(6),
+        'keywords'           => implode(',', $faker->words(5)),
+        'description'        => $faker->sentences(10, true),
+        'voted'              => $faker->numberBetween(0, 100),
+        'read'               => $faker->numberBetween(0, 1000),
+        'category_id'        => 0,
+        'cover_image_id'     => 0,
+        'is_enabled'         => true,
+        'publish_started_at' => $faker->dateTime,
+        'publish_ended_at'   => null,
     ];
 });
 
