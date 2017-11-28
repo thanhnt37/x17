@@ -52,7 +52,8 @@
                                     <section class="details">
                                         <p class="category">
                                             <a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a>
-                                            <time datetime="23/09/2017">23/09/2017</time>
+                                            @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
+                                            <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                         </p>
                                         <h5 class="title">
                                             <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">{{$normalArticle->title}}</a>
@@ -63,7 +64,8 @@
                                             <span><i class="fa fa-eye"></i> {{$normalArticle->read}}</span>
                                             <span><i class="fa fa-commenting-o"></i> {{$normalArticle->voted}}</span>
                                             <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                            <time datetime="23/09/2017">23/09/2017</time>
+                                            @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
+                                            <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                         </section>
                                     </section>
                                 </article>

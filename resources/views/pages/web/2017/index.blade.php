@@ -24,7 +24,8 @@
                             <article class="featured-article featured-article-big">
                                 <header>
                                     <h3><a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">{{$bigArticle->title}}</a></h3>
-                                    <time datetime="23/09/2017">23/09/2017</time>
+                                    @php $publishDate = date_format($bigArticle->publish_started_at,"d/m/Y"); @endphp
+                                    <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                 </header>
                                 <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">
                                     <img src="http://via.placeholder.com/560x390" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
@@ -39,7 +40,8 @@
                                         <article class="featured-article featured-article-small">
                                             <header>
                                                 <h5><a href="{!! action('Web\ArticleController@detail', [$smallArticle->category->slug, $smallArticle->slug]) !!}">{{$smallArticle->title}}</a></h5>
-                                                <time datetime="23/09/2017">23/09/2017</time>
+                                                @php $publishDate = date_format($smallArticle->publish_started_at,"d/m/Y"); @endphp
+                                                <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                             </header>
                                             <a href="{!! action('Web\ArticleController@detail', [$smallArticle->category->slug, $smallArticle->slug]) !!}">
                                                 <img src="http://via.placeholder.com/560x390" alt="{{$smallArticle->slug}}" title="{{$smallArticle->slug}}">
@@ -85,7 +87,8 @@
                                                             <p>&nbsp;</p>
                                                         @endif
                                                     </section>
-                                                    <time datetime="23/09/2017">23/09/2017</time>
+                                                    @php $publishDate = date_format($viewedArticle->publish_started_at,"d/m/Y"); @endphp
+                                                    <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                                 </footer>
                                             </article>
                                         </div>
@@ -174,7 +177,8 @@
                                 <span><i class="fa fa-eye"></i> {{$normalArticle->read}}</span>
                                 <span><i class="fa fa-commenting-o"></i> {{$normalArticle->voted}}</span>
                                 <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                <time datetime="23/09/2017">23/09/2017</time>
+                                @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
+                                <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                             </section>
                             <hr class="clearfix">
                         </section>

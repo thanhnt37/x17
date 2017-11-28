@@ -65,7 +65,8 @@
                         $bigCategory = isset($article->category->parent->slug) && !empty($article->category->parent->slug) ? $article->category->parent : $article->category;
                     @endphp
                     <p class="publish-date">
-                        <time datetime="23/09/2017">23/09/2017</time>
+                        @php $publishDate = date_format($article->publish_started_at,"d/m/Y"); @endphp
+                        <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                         trong <a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->name}}</a>
                         @if( $bigCategory != $article->category )
                             / <a href="{!! action('Web\ArticleController@category', [$article->category->slug]) !!}">{{$article->category->name}}</a>

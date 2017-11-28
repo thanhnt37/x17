@@ -126,7 +126,8 @@
                                                 <span><i class="fa fa-eye"></i> {{$article->read}}</span>
                                                 <span><i class="fa fa-commenting-o"></i> {{$article->voted}}</span>
                                                 <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                                <time datetime="23/09/2017">23/09/2017</time>
+                                                @php $publishDate = date_format($article->publish_started_at,"d/m/Y"); @endphp
+                                                <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                             </section>
                                         </section>
                                     </article>
