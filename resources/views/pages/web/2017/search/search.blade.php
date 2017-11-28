@@ -48,10 +48,13 @@
                             <li><a href="#">NodeJS</a></li>
                         </ul>
 
-                        <ul class="panel">
-                            <li class="active"><a href="#">Kết Quả Theo Bài Viết</a></li>
-                            <li><a href="#">Kết Quả Theo Series</a></li>
-                        </ul>
+                        {{--<ul class="panel">--}}
+                            {{--<li class="active"><a href="#">Kết Quả Theo Bài Viết</a></li>--}}
+                            {{--<li><a href="#">Kết Quả Theo Series</a></li>--}}
+                        {{--</ul>--}}
+                        <p class="alert alert-success" role="alert">
+                            Tổng cộng: 36 kết quả được tìm thấy !
+                        </p>
 
                         @foreach( $normalArticles as $normalArticle )
                             <article>
