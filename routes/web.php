@@ -5,6 +5,7 @@ Route::group(['middleware' => ['web.values']], function () {
     Route::get('/404', function () {
         return view('pages.web.2017.404', []);
     });
+    Route::get('/series', 'Web\SeriesController@lists');
     Route::get('/{category}', 'Web\ArticleController@category');
     Route::get('/{category}/series-{slug}', 'Web\ArticleController@series');
     Route::get('/{category}/{slug}', 'Web\ArticleController@detail');
