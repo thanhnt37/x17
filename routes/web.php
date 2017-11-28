@@ -2,10 +2,7 @@
 
 Route::group(['middleware' => ['web.values']], function () {
     Route::get('/', 'Web\IndexController@index');
-    Route::get('/404', function () {
-        return view('pages.web.2017.404', []);
-    });
-    Route::get('/series', 'Web\SeriesController@lists');
+    Route::get('/series-bai-viet-huong-dan', 'Web\SeriesController@lists')->defaults('category', 'series-bai-viet-huong-dan');;
     Route::get('/{category}', 'Web\ArticleController@category');
     Route::get('/{category}/series-{slug}', 'Web\SeriesController@detail');
     Route::get('/{category}/{slug}', 'Web\ArticleController@detail');

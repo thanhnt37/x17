@@ -15,16 +15,7 @@
         <section class="wrap-content">
             <section class="container">
 
-                <section id="breadcrumb">
-                    <header>
-                        <a href="/series">
-                            <span style="background: #aeec628f">Sr</span>
-                        </a>
-                        <h2><a href="/series">Series</a></h2>
-                        <ul></ul>
-                    </header>
-                    <img src="http://placehold.it/730x95" alt="series-bai-viet-huong-dan" title="series-bai-viet-huong-dan">
-                </section>
+                @include('pages.web.2017.elements.breadcrumb')
 
                 <div class="row">
                     <div class="col-lg-8">

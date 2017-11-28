@@ -14,10 +14,11 @@
 13,"Redis","redis","D","#1378d68f",2,11,0
 14,"Memcache","memcache","D","#1378d68f",3,11,0
 15,"MongoDB","mongodb","D","#1378d68f",4,11,0
-16,"Khác","cac-bai-viet-lien-quan","D","#1378d68f",5,11,0
+16,"Others","cac-bai-viet-lien-quan-databases","D","#1378d68f",5,11,0
 17,"Git","git","G","#660da58f",4,0,0
-19,"Server/Linux","server-linux","Sv","#38d6478f",5,0,0
-20,"About","about-me","Ab","#d4a01f5e",7,0,0
-21,"Others","cac-chu-de-khac","O","#38d6478f",6,0,0
-22,"SEO","seo","O","#38d6478f",1,21,0
-23,"Social","social","O","#38d6478f",2,21,0
+18,"Series","series-bai-viet-huong-dan","Sr","#38d6478f",5,0,0
+19,"About","about-me","Ab","#d4a01f5e",7,0,0
+20,"Others","cac-chu-de-khac","O","#38d6478f",6,0,0
+21,"SEO","seo","O","#38d6478f",1,21,0
+22,"Social","social","O","#38d6478f",2,21,0
+23,"Server/Linux","server-linux","Sv","#38d6478f",3,21,0
