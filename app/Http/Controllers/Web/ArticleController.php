@@ -53,29 +53,6 @@ class ArticleController extends Controller
         );
     }
 
-    public function series($category, $slug)
-    {
-        // $slug   = 'series-' . $slug;
-        $series = $this->seriesRepository->findBySlug($slug);
-        if( empty($series) ) {
-            return view('pages.web.2017.404');
-        }
-
-        if( $series->category->slug != $category ) {
-            return redirect()->action('Web\ArticleController@series', [$series->category->slug, $series->slug]);
-        }
-
-        $articles = $this->articleRepository->getArticleInSeries($series->id, 0, 10);
-
-        return view(
-            'pages.web.2017.articles.series',
-            [
-                'series'   => $series,
-                'articles' => $articles,
-            ]
-        );
-    }
-
     public function detail($category, $slug)
     {
         $article = $this->articleRepository->findBySlug($slug);

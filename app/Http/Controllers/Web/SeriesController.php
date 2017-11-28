@@ -38,4 +38,27 @@ class SeriesController extends Controller
             ]
         );
     }
+
+    public function detail($category, $slug)
+    {
+        // $slug   = 'series-' . $slug;
+        $series = $this->seriesRepository->findBySlug($slug);
+        if( empty($series) ) {
+            return view('pages.web.2017.404');
+        }
+
+        if( $series->category->slug != $category ) {
+            return redirect()->action('Web\SeriesController@detail', [$series->category->slug, $series->slug]);
+        }
+
+        $articles = $this->articleRepository->getArticleInSeries($series->id, 0, 10);
+
+        return view(
+            'pages.web.2017.series.detail',
+            [
+                'series'   => $series,
+                'articles' => $articles,
+            ]
+        );
+    }
 }

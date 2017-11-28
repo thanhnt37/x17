@@ -60,7 +60,7 @@
 
                 <section id="series-info">
                     <section class="series-title">
-                        <a href="{!! action('Web\ArticleController@series', [$series->category->slug, $series->slug]) !!}">
+                        <a href="{!! action('Web\SeriesController@detail', [$series->category->slug, $series->slug]) !!}">
                             <img src="https://s3.envato.com/files/145553660/970x250.jpg" alt="{{$series->slug}}" title="{{$series->slug}}">
                         </a>
                         <header>
@@ -85,7 +85,7 @@
 
                             <section class="title">
                                 <h4>
-                                    <a href="{!! action('Web\ArticleController@series', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
+                                    <a href="{!! action('Web\SeriesController@detail', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
                                 </h4>
 
                                 <section class="social-share">

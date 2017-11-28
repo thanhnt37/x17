@@ -107,10 +107,10 @@
                                     <article class="featured-serie">
                                         <header>
                                             <h5>
-                                                <a href="{!! action('Web\ArticleController@series', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
+                                                <a href="{!! action('Web\SeriesController@detail', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
                                             </h5>
                                         </header>
-                                        <a href="{!! action('Web\ArticleController@series', [$series->category->slug, $series->slug]) !!}">
+                                        <a href="{!! action('Web\SeriesController@detail', [$series->category->slug, $series->slug]) !!}">
                                             <img src="{{$series->coverImage->url}}" alt="{{$series->slug}}" title="{{$series->slug}}">
                                         </a>
                                     </article>
