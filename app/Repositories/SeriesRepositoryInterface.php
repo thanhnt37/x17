@@ -3,6 +3,13 @@
 interface SeriesRepositoryInterface extends SingleKeyModelRepositoryInterface
 {
     /**
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function findBySlug($slug);
+    
+    /**
      * @params  $categoryIds
      *          $offset
      *          $limit

@@ -21,42 +21,42 @@
                     <div class="col-lg-8">
                         <h5 class="title">DANH SÁCH SERIES BÀI VIẾT, HƯỚNG DẪN</h5>
 
-                        @foreach( $normalArticles as $normalArticle )
+                        @foreach( $lists as $series )
                             <article class="normal-article">
-                                <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">
-                                    <img src="http://via.placeholder.com/970x250" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                                <a href="{!! action('Web\SeriesController@detail', [$series->category->slug, $series->slug]) !!}">
+                                    <img src="http://via.placeholder.com/970x250" alt="{{$series->slug}}" title="{{$series->slug}}">
                                 </a>
                                 <section class="normal-article__descriptions">
                                     <header>
                                         <section class="normal-article__category">
                                             @php
-                                            $bigCategory = isset($normalArticle->category->parent->slug) && !empty($normalArticle->category->parent->slug) ? $normalArticle->category->parent : $normalArticle->category;
+                                                $bigCategory = isset($series->category->parent->slug) && !empty($series->category->parent->slug) ? $series->category->parent : $series->category;
                                             @endphp
                                             <span style="background: {{$bigCategory->color}};">
                                         <a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->wildcard}}</a>
                                     </span>
                                             <section>
                                                 <section>
-                                                    @if( $bigCategory != $normalArticle->category )
+                                                    @if( $bigCategory != $series->category )
                                                         <p><a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->name}}</a></p>
-                                                        <p><a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a></p>
+                                                        <p><a href="{!! action('Web\ArticleController@category', [$series->category->slug]) !!}">{{$series->category->name}}</a></p>
                                                     @else
-                                                        <p><a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a></p>
+                                                        <p><a href="{!! action('Web\ArticleController@category', [$series->category->slug]) !!}">{{$series->category->name}}</a></p>
                                                         <p>&nbsp;</p>
                                                     @endif
                                                 </section>
                                             </section>
                                         </section>
                                         <h4>
-                                            <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">{{$normalArticle->title}}</a>
+                                            <a href="{!! action('Web\SeriesController@detail', [$series->category->slug, $series->slug]) !!}">{{$series->title}}</a>
                                         </h4>
                                     </header>
 
-                                    <p>{!! $normalArticle->description !!}</p>
+                                    <p>{!! $series->description !!}</p>
 
                                     <ul class="normal-article__tags">
                                         @php
-                                        $tags = explode(',', $normalArticle->keywords);
+                                        $tags = explode(',', $series->keywords);
                                         @endphp
                                         @foreach( $tags as $tag )
                                             <li>
@@ -66,10 +66,11 @@
                                     </ul>
 
                                     <section class="normal-article__counter">
-                                        <span><i class="fa fa-eye"></i> {{$normalArticle->read}}</span>
-                                        <span><i class="fa fa-commenting-o"></i> {{$normalArticle->voted}}</span>
+                                        <span><i class="fa fa-eye"></i> {{$series->read}}</span>
+                                        <span><i class="fa fa-commenting-o"></i> {{$series->voted}}</span>
                                         <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                        <time datetime="23/09/2017">23/09/2017</time>
+                                        @php $publishDate = date_format($series->publish_started_at,"d/m/Y"); @endphp
+                                        <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                     </section>
                                     <hr class="clearfix">
                                 </section>

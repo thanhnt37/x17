@@ -24,17 +24,11 @@ class SeriesController extends Controller
 
     public function lists()
     {
-        $featuredArticles   = $this->articleRepository->getFeaturedArticles([], 0, 5);
-        $viewedArticles     = $this->articleRepository->getViewedArticles([], 0, 8);
-        $featuredSeries     = $this->seriesRepository->getFeaturedSeries([], 0, 4);
-        $normalArticles     = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
+        $series = $this->seriesRepository->getEnabled('publish_started_at', 'desc', 0, 10);
 
         return view('pages.web.2017.series.lists',
             [
-                'featuredArticles' => $featuredArticles,
-                'viewedArticles'   => $viewedArticles,
-                'featuredSeries'   => $featuredSeries,
-                'normalArticles'   => $normalArticles,
+                'lists' => $series,
             ]
         );
     }
