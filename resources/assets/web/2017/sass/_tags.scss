@@ -1,0 +1,250 @@
+#tags-page {
+    .wrap-content {
+        padding-top: 20px;
+        padding-bottom: 30px;
+
+        .container {
+            #breadcrumb {
+                margin-bottom: 40px;
+            }
+            .col-lg-8 {
+                h5.top-title {
+                    margin-bottom: 20px;
+                    padding: 10px 15px;
+                    border-left: 3px solid #7dce37;
+                    color: #8e8e8b;
+                    background: #dedcdc3d;
+                }
+                ul.tags {
+                    list-style: none;
+                    padding: 0;
+                    margin-top: 10px;
+                    //margin-bottom: 30px;
+
+                    span {
+                        margin-right: 5px;
+                    }
+                    li {
+                        display: inline-block;
+                        margin-right: 10px;
+                        margin-bottom: 10px;
+                        border: 1px dashed $sub-color;
+                        padding: 1px 20px;
+                        border-radius: 25px;
+                        font-size: 0.85rem;
+
+                        a {
+                            color: $sub-color;
+                            text-decoration: none;
+                        }
+                    }
+                    li:hover {
+                        background: $main-color;
+                    }
+                }
+                ul.panel {
+                    list-style: none;
+                    padding: 0;
+                    margin-bottom: 35px;
+                    height: 36px;
+
+                    li {
+                        width: 49%;
+                        display: inline-block;
+                        text-align: center;
+                        color: #8e8e8b;
+                        background: #dedcdc3d;
+                        padding: 6px 0;
+                        float: left;
+                        position: relative;
+                        height: 36px;
+
+                        a {
+                            color: inherit;
+                            text-decoration: none;
+                            width: 100%;
+                            position: absolute;
+                            left: 0;
+                        }
+                    }
+                    li.active {
+                        background: rgba(125, 206, 55, 0.2);
+                    }
+                    li.active::after {
+                        content: " ";
+                        position: absolute;
+                        left: 49%;
+                        opacity: 1;
+                        margin: 0 auto;
+                        bottom: 0;
+                        border: 7px solid transparent;
+                        border-bottom-color: $main-color;
+                    }
+                }
+                article {
+                    margin-bottom: 20px;
+
+                    a {
+                        color: inherit;
+                        text-decoration: none;
+                    }
+                    img {
+                        width: 42%;
+                        max-width: 300px;
+                    }
+                    .details {
+                        width: 57%;
+                        display: inline-block;
+                        vertical-align: top;
+                        min-height: 205px;
+                        padding-left: 10px;
+                        position: relative;
+                        border-top: 1px solid #efefef;
+                        margin-left: -5px;
+
+                        .category {
+                            margin-bottom: 5px;
+                            padding-top: 5px;
+                            font-size: 0.9rem;
+                            color: $sub-color;
+
+                            a {
+                                padding-right: 10px;
+                                border-right: 1px solid;
+                                margin-right: 5px;
+                                color: inherit;
+                            }
+                            a:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                        .title {
+                            margin-top: 10px;
+                            max-height: 45px;
+                            min-height: 25px;
+                            overflow: hidden;
+
+                            a {
+                                color: inherit;
+                                text-decoration: none;
+                            }
+                        }
+                        .descriptions {
+                            font-size: 0.95rem;
+                            height: 90px;
+                            overflow: hidden;
+                            margin-bottom: 30px;
+                        }
+                        .counter {
+                            color: #828181;
+                            font-size: 0.85rem;
+                            position: absolute;
+                            width: 100%;
+                            bottom: 0;
+
+                            span {
+                                margin-right: 25px;
+
+                                i {
+                                    color: #7dce37;
+                                    margin-right: 3px;
+                                }
+                            }
+                            span:nth-child(3) {
+                                cursor: pointer;
+                                margin-right: 0;
+                            }
+                            span:nth-child(3):hover {
+                                i {
+                                    color: #828181;
+                                }
+                            }
+                            time {
+                                float: right;
+                            }
+                        }
+                    }
+                }
+                .view-more {
+                    margin-top: 60px;
+
+                    button {
+                        width: 85%;
+                        margin: 0 auto;
+                        display: inherit;
+                        background-color: rgb(125, 206, 55);
+                        border: none;
+                        border-radius: 0;
+                    }
+                }
+            }
+            .col-lg-4 {
+                border-left: 1px solid #efefef;
+
+                .hr-top {
+                    margin-top: 0;
+                }
+                .ads-300x250, .ads-300x600 {
+                    margin-bottom: 20px;
+
+                    .hr-top, .hr-bottom, h6 {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // Medium devices (tablets, less than 992px)
+    @media (max-width: 991px) {
+        .wrap-content {
+            .col-lg-4 {
+                display: none;
+            }
+        }
+    }
+
+    // Extra small devices (portrait phones, less than 576px)
+    @media (max-width: 575px) {
+        .wrap-content {
+            .container {
+                .col-lg-8 {
+                    article {
+                        img {
+                            width: 100%;
+                            max-width: inherit;
+                            max-height: 200px;
+                        }
+                        .details {
+                            display: block;
+                            width: 100%;
+                            border: none;
+                            border-bottom: 1px solid #efefef;
+                            padding-bottom: 20px;
+                            height: inherit;
+
+                            .descriptions {
+                                margin-bottom: 10px;
+                            }
+                            .counter {
+                                position: relative;
+                            }
+                        }
+                    }
+                    .view-more {
+                        margin-top: 40px;
+
+                        button {
+                            width: 85%;
+                            margin: 0 auto;
+                            display: inherit;
+                            background-color: rgb(125, 206, 55);
+                            border: none;
+                            border-radius: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

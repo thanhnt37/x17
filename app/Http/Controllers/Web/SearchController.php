@@ -32,4 +32,15 @@ class SearchController extends Controller
             ]
         );
     }
+    public function tags(BaseRequest $request, $tag)
+    {
+        $normalArticles = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
+
+        return view('pages.web.2017.search.tags',
+            [
+                'tag'            => $tag,
+                'normalArticles' => $normalArticles
+            ]
+        );
+    }
 }

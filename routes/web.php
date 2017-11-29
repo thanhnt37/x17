@@ -3,6 +3,7 @@
 Route::group(['middleware' => ['web.values']], function () {
     Route::get('/', 'Web\IndexController@index');
     Route::get('/search', 'Web\SearchController@search');
+    Route::get('/tags/{tag}', 'Web\SearchController@tags');
     Route::get('/series-bai-viet-huong-dan', 'Web\SeriesController@lists')->defaults('category', 'series-bai-viet-huong-dan');
     Route::get('/{category}', 'Web\ArticleController@category');
     Route::get('/{category}/series-{slug}', 'Web\SeriesController@detail');
