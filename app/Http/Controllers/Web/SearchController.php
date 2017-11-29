@@ -51,14 +51,21 @@ class SearchController extends Controller
             ]
         );
     }
+
     public function tags(BaseRequest $request, $tag)
     {
-        $normalArticles = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
+        // find articles by keyword
+        $articles = $this->articleRepository->getWithKeyword($tag);
+        $total = $this->articleRepository->countWithKeyword($tag);
+
+        // counting keyword
+        $this->searchService->countingKeyword($tag);
 
         return view('pages.web.2017.search.tags',
             [
-                'tag'            => $tag,
-                'normalArticles' => $normalArticles
+                'tag'      => $tag,
+                'articles' => $articles,
+                'total'    => $total
             ]
         );
     }
