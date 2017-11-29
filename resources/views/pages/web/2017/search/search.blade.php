@@ -32,20 +32,13 @@
                             <label for="keyword">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </label>
-                            <input name="keyword" id="keyword" type="text" class="form-control" placeholder="Bạn đang tìm gì ???" value="{{$keyword}}">
+                            <input name="keyword" id="keyword" type="text" class="form-control" placeholder="Bạn đang tìm gì vậy ???" value="{{$keyword}}">
                         </form>
 
                         <ul class="tags">
-                            <li><a href="{!! action('Web\SearchController@tags', 'javascript') !!}">Javascript</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'react-native') !!}">React Native</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'angular') !!}">AngularJS</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'laravel') !!}">Laravel</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'javascript') !!}">Javascript</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'react-native') !!}">React Native</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'angular') !!}">AngularJS</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'laravel') !!}">Laravel</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
+                            @foreach( $featuredTags as $tag )
+                                <li><a href="{!! action('Web\SearchController@tags', $tag->keyword) !!}">{{$tag->keyword}}</a></li>
+                            @endforeach
                         </ul>
 
                         @if( isset($keyword) && !empty($keyword) )

@@ -23,4 +23,14 @@ class SearchRepository extends SingleKeyModelRepository implements SearchReposit
         ];
     }
 
+    /**
+     * @params  $offset
+     *          $limit
+     *
+     * @return mixed
+     */
+    public function getFeaturedTags($offset = 0, $limit = 10)
+    {
+        return $this->getBlankModel()->orderBy('count', 'desc')->offset($offset)->limit($limit)->get();
+    }
 }

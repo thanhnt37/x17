@@ -7,6 +7,7 @@ use App\Http\Requests\BaseRequest;
 use App\Repositories\ArticleRepositoryInterface;
 use App\Repositories\SeriesRepositoryInterface;
 use App\Services\SearchServiceInterface;
+use App\Repositories\SearchRepositoryInterface;
 
 class SearchController extends Controller
 {
@@ -19,21 +20,28 @@ class SearchController extends Controller
     /* @var \App\Services\SearchServiceInterface */
     protected $searchService;
 
+    /* @var \App\Repositories\SearchRepositoryInterface */
+    protected $searchRepository;
+
     public function __construct(
         ArticleRepositoryInterface  $articleRepository,
         SeriesRepositoryInterface   $seriesRepository,
-        SearchServiceInterface      $searchService
+        SearchServiceInterface      $searchService,
+        SearchRepositoryInterface   $searchRepository
     ) {
         $this->articleRepository    = $articleRepository;
         $this->seriesRepository     = $seriesRepository;
         $this->searchService        = $searchService;
+        $this->searchRepository     = $searchRepository;
     }
 
     public function search(BaseRequest $request)
     {
         $keyword = $request->get('keyword', '');
+        $featuredTags = $this->searchRepository->getFeaturedTags();
+
         if( $keyword == '' ) {
-            return view('pages.web.2017.search.search', ['keyword' => ''] );
+            return view('pages.web.2017.search.search', ['keyword' => '', 'featuredTags' => $featuredTags,] );
         }
 
         // find articles by keyword
@@ -45,9 +53,10 @@ class SearchController extends Controller
 
         return view('pages.web.2017.search.search',
             [
-                'keyword'  => $request->get('keyword', ''),
-                'articles' => $articles,
-                'total'    => $total
+                'keyword'      => $request->get('keyword', ''),
+                'featuredTags' => $featuredTags,
+                'articles'     => $articles,
+                'total'        => $total
             ]
         );
     }
@@ -61,11 +70,14 @@ class SearchController extends Controller
         // counting keyword
         $this->searchService->countingKeyword($tag);
 
+        $featuredTags = $this->searchRepository->getFeaturedTags();
+
         return view('pages.web.2017.search.tags',
             [
-                'tag'      => $tag,
-                'articles' => $articles,
-                'total'    => $total
+                'tag'          => $tag,
+                'featuredTags' => $featuredTags,
+                'articles'     => $articles,
+                'total'        => $total
             ]
         );
     }

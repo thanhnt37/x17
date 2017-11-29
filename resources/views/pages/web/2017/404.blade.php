@@ -18,18 +18,16 @@
             <label for="search-404">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </label>
-            <input id="search-404" type="text" class="form-control" placeholder="Cho tôi biết bạn đang tìm gì">
+            <input id="search-404" type="text" class="form-control" placeholder="Bạn đang tìm gì vậy ???">
         </form>
         <p class="internal-link">
             <a href="/" class="btn">HOME PAGE</a>
             <a href="/about" class="btn">CONTACT ME</a>
         </p>
         <ul>
-            <li><a href="#">Javascript</a></li>
-            <li><a href="#">React Native</a></li>
-            <li><a href="#">AngularJS</a></li>
-            <li><a href="#">Laravel</a></li>
-            <li><a href="#">NodeJS</a></li>
+            @foreach( $featuredTags as $tag )
+                <li><a href="{!! action('Web\SearchController@tags', $tag->keyword) !!}">{{$tag->keyword}}</a></li>
+            @endforeach
         </ul>
     </section>
 

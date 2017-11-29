@@ -30,16 +30,9 @@
 
                         <ul class="tags">
                             <span>Related Tags: </span>
-                            <li><a href="{!! action('Web\SearchController@tags', 'javascript') !!}">Javascript</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'react-native') !!}">React Native</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'angular') !!}">AngularJS</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'laravel') !!}">Laravel</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'javascript') !!}">Javascript</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'react-native') !!}">React Native</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'angular') !!}">AngularJS</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'laravel') !!}">Laravel</a></li>
-                            <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
+                            @foreach( $featuredTags as $tag )
+                                <li><a href="{!! action('Web\SearchController@tags', $tag->keyword) !!}">{{$tag->keyword}}</a></li>
+                            @endforeach
                         </ul>
 
                         @if( isset($tag) && !empty($tag) )

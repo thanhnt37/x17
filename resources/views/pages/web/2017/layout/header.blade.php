@@ -55,7 +55,7 @@
                     <label for="keyword">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </label>
-                    <input name="keyword" id="keyword" class="form-control mr-sm-2" type="text" placeholder="Bạn đang tìm gì ???" aria-label="Search">
+                    <input name="keyword" id="keyword" class="form-control mr-sm-2" type="text" placeholder="Bạn đang tìm gì vậy ???" aria-label="Search">
                 </form>
             </section>
         </div>
@@ -67,6 +67,6 @@
         <label for="keyword">
             <i class="fa fa-search" aria-hidden="true"></i>
         </label>
-        <input name="keyword" id="keyword" class="form-control mr-sm-2" type="text" placeholder="Bạn đang tìm gì ???" aria-label="Search">
+        <input name="keyword" id="keyword" class="form-control mr-sm-2" type="text" placeholder="Bạn đang tìm gì vậy ???" aria-label="Search">
     </form>
 </section>

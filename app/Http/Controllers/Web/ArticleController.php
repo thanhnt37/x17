@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ArticleRepositoryInterface;
 use App\Repositories\SeriesRepositoryInterface;
+use App\Repositories\SearchRepositoryInterface;
 
 class ArticleController extends Controller
 {
@@ -18,21 +19,27 @@ class ArticleController extends Controller
     /* @var \App\Repositories\SeriesRepositoryInterface */
     protected $seriesRepository;
 
+    /* @var \App\Repositories\SearchRepositoryInterface */
+    protected $searchRepository;
+
     public function __construct(
         CategoryRepositoryInterface     $categoryRepository,
         ArticleRepositoryInterface      $articleRepository,
-        SeriesRepositoryInterface       $seriesRepository
+        SeriesRepositoryInterface       $seriesRepository,
+        SearchRepositoryInterface       $searchRepository
     ) {
         $this->categoryRepository       = $categoryRepository;
         $this->articleRepository        = $articleRepository;
         $this->seriesRepository         = $seriesRepository;
+        $this->searchRepository         = $searchRepository;
     }
 
     public function category($categorySlug)
     {
         $category = $this->categoryRepository->findBySlug($categorySlug);
         if( empty($category) ) {
-            return view('pages.web.2017.404');
+            $featuredTags = $this->searchRepository->getFeaturedTags();
+            return view('pages.web.2017.404', ['featuredTags' => $featuredTags]);
         }
 
         $categoryIds = $this->categoryRepository->getAllChilds($category->id);
@@ -57,7 +64,8 @@ class ArticleController extends Controller
     {
         $article = $this->articleRepository->findBySlug($slug);
         if( empty($article) ) {
-            return view('pages.web.2017.404');
+            $featuredTags = $this->searchRepository->getFeaturedTags();
+            return view('pages.web.2017.404', ['featuredTags' => $featuredTags]);
         }
 
         if( $article->category->slug != $category ) {
