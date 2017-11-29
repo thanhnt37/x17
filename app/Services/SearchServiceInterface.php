@@ -2,4 +2,10 @@
 
 interface SearchServiceInterface extends BaseServiceInterface
 {
+    /**
+     * @params  $keyword
+     *
+     * @return  integer
+     */
+    public function countingKeyword($keyword);
 }

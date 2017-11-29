@@ -108,6 +108,53 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
         return $query->where('series_id', '=', $seriesId)->orderBy('publish_started_at', 'desc')->orderBy('voted', 'desc')->orderBy('read', 'desc')->offset($offset)->limit($limit)->get();
     }
 
+    /**
+     * @params  $keyword
+     *          $order
+     *          $direction
+     *          $offset
+     *          $limit
+     *
+     * @return  array
+     */
+    public function getWithKeyword($keyword, $order = 'voted', $direction = 'desc', $offset = 0, $limit = 10)
+    {
+        $query = $this->isPublish($this->getBlankModel());
+
+        $query = $query->where(function ($subquery) use ($keyword)
+        {
+            $likeQuery = '%' . $keyword . '%';
+            $subquery->where('slug', 'like', $likeQuery)
+                ->orWhere('title', 'like', $likeQuery)
+                ->orWhere('keywords', 'like', $likeQuery)
+                ->orWhere('description', 'like', $likeQuery)
+                ->orWhere('content', 'like', $likeQuery);
+        });
+
+        return $query->orderBy($order, $direction)->offset($offset)->limit($limit)->get();
+    }
+    /**
+     * @params  $keyword
+     *
+     * @return  integer
+     */
+    public function countWithKeyword($keyword)
+    {
+        $query = $this->isPublish($this->getBlankModel());
+
+        $query = $query->where(function ($subquery) use ($keyword)
+        {
+            $likeQuery = '%' . $keyword . '%';
+            $subquery->where('slug', 'like', $likeQuery)
+                ->orWhere('title', 'like', $likeQuery)
+                ->orWhere('keywords', 'like', $likeQuery)
+                ->orWhere('description', 'like', $likeQuery)
+                ->orWhere('content', 'like', $likeQuery);
+        });
+
+        return $query->count();
+    }
+
     private function isPublish($query)
     {
         $now = date('Y-m-d H:i:s');

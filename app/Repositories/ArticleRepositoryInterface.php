@@ -46,4 +46,22 @@ interface ArticleRepositoryInterface extends SingleKeyModelRepositoryInterface
      * @return mixed
      */
     public function getArticleInSeries($seriesId, $offset, $limit);
+
+    /**
+     * @params  $keyword
+     *          $order
+     *          $direction
+     *          $offset
+     *          $limit
+     *
+     * @return  array
+     */
+    public function getWithKeyword($keyword, $order = 'voted', $direction = 'desc', $offset = 0, $limit = 10);
+    
+    /**
+     * @params  $keyword
+     *
+     * @return  integer
+     */
+    public function countWithKeyword($keyword);
 }
