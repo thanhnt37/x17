@@ -138,20 +138,21 @@
 	position: relative;
 	font-size: 18px;
 
-	#search-input-desktop {
+	#keyword {
 		width: 300px;
 		padding: 8px 50px;
 		border-radius: 50px;
 		-webkit-transition: 1s;
 		transition: 1s;
 	}
-	#search-input-desktop:focus {
+	#keyword:focus {
 		width: 350px;
 	}
-	label[for="search-input-desktop"] {
+	label[for="keyword"] {
 		position: absolute;
 		left: 18px;
 		top: 10px;
+		color: #828181;
 	}
 }
 
@@ -183,22 +184,23 @@
 		font-size: 18px;
 		padding: 0 10px;
 		z-index: 98;
-	}
-	#search-input-mobile {
-		width: 100%;
-		padding: 8px 50px;
-		border-radius: 50px;
-	}
-	#search-box-mobile label[for="search-input-mobile"] {
-		position: absolute;
-		left: 35px;
-		top: 18px;
+
+		#keyword {
+			width: 100%;
+			padding: 8px 50px;
+			border-radius: 50px;
+		}
+		label[for="keyword"] {
+			position: absolute;
+			left: 35px;
+			top: 18px;
+		}
 	}
 	/* end */
 }
 
 @media (max-width: 767px) {
-	#search-box-mobile label[for="search-input-mobile"] {
+	#search-box-mobile label[for="keyword"] {
 		top: 13px;
 	}
 }

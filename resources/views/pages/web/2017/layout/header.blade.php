@@ -51,11 +51,11 @@
             </ul>
 
             <section id="search-box-desktop">
-                <form class="form-inline my-2 my-lg-0">
-                    <label for="search-input-desktop">
+                <form action="{{ action('Web\SearchController@search') }}" method="get" class="form-inline my-2 my-lg-0">
+                    <label for="keyword">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </label>
-                    <input id="search-input-desktop" class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm gì nào" aria-label="Search">
+                    <input name="keyword" id="keyword" class="form-control mr-sm-2" type="text" placeholder="Bạn đang tìm gì ???" aria-label="Search">
                 </form>
             </section>
         </div>
@@ -63,10 +63,10 @@
 </nav>
 
 <section id="search-box-mobile" class="hidden">
-    <form class="form-inline my-2 my-lg-0">
-        <label for="search-input-mobile">
+    <form action="{{ action('Web\SearchController@search') }}" method="get" class="form-inline my-2 my-lg-0">
+        <label for="keyword">
             <i class="fa fa-search" aria-hidden="true"></i>
         </label>
-        <input id="search-input-mobile" class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm gì nào" aria-label="Search">
+        <input name="keyword" id="keyword" class="form-control mr-sm-2" type="text" placeholder="Bạn đang tìm gì ???" aria-label="Search">
     </form>
 </section>
