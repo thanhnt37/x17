@@ -28,7 +28,7 @@
                     <div class="col-lg-8">
                         <h5 class="top-title">TÌM KIẾM THEO TỪ KHÓA</h5>
 
-                        <form class="search-form" action="/search" method="get">
+                        <form class="search-form" action="{{ action('Web\SearchController@search') }}" method="get">
                             <label for="keyword">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </label>
@@ -36,16 +36,16 @@
                         </form>
 
                         <ul class="tags">
-                            <li><a href="#">Javascript</a></li>
-                            <li><a href="#">React Native</a></li>
-                            <li><a href="#">AngularJS</a></li>
-                            <li><a href="#">Laravel</a></li>
-                            <li><a href="#">NodeJS</a></li>
-                            <li><a href="#">Javascript</a></li>
-                            <li><a href="#">React Native</a></li>
-                            <li><a href="#">AngularJS</a></li>
-                            <li><a href="#">Laravel</a></li>
-                            <li><a href="#">NodeJS</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'javascript') !!}">Javascript</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'react-native') !!}">React Native</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'angular') !!}">AngularJS</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'laravel') !!}">Laravel</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'javascript') !!}">Javascript</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'react-native') !!}">React Native</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'angular') !!}">AngularJS</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'laravel') !!}">Laravel</a></li>
+                            <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
                         </ul>
 
                         {{--<ul class="panel">--}}

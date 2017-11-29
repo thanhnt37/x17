@@ -219,4 +219,48 @@
             }
         }
     }
+
+    // Extra small devices (portrait phones, less than 576px)
+    @media (max-width: 575px) {
+        .wrap-content {
+            .container {
+                .col-lg-8 {
+                    article {
+                        img {
+                            width: 100%;
+                            max-width: inherit;
+                            max-height: 200px;
+                        }
+                        .details {
+                            display: block;
+                            width: 100%;
+                            border: none;
+                            border-bottom: 1px solid #efefef;
+                            padding-bottom: 20px;
+                            height: inherit;
+
+                            .descriptions {
+                                margin-bottom: 10px;
+                            }
+                            .counter {
+                                position: relative;
+                            }
+                        }
+                    }
+                    .view-more {
+                        margin-top: 40px;
+
+                        button {
+                            width: 85%;
+                            margin: 0 auto;
+                            display: inherit;
+                            background-color: rgb(125, 206, 55);
+                            border: none;
+                            border-radius: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
