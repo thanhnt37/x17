@@ -32,7 +32,7 @@
                             <label for="keyword">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </label>
-                            <input name="keyword" id="keyword" type="text" class="form-control" placeholder="Bạn đang tìm gì ???">
+                            <input name="keyword" id="keyword" type="text" class="form-control" placeholder="Bạn đang tìm gì ???" value="{{$keyword}}">
                         </form>
 
                         <ul class="tags">
@@ -48,44 +48,46 @@
                             <li><a href="{!! action('Web\SearchController@tags', 'nodejs') !!}">NodeJS</a></li>
                         </ul>
 
-                        {{--<ul class="panel">--}}
+                        @if( isset($keyword) && !empty($keyword) )
+                            {{--<ul class="panel">--}}
                             {{--<li class="active"><a href="#">Kết Quả Theo Bài Viết</a></li>--}}
                             {{--<li><a href="#">Kết Quả Theo Series</a></li>--}}
-                        {{--</ul>--}}
-                        <p class="alert alert-success" role="alert">
-                            Tổng cộng: 36 kết quả được tìm thấy !
-                        </p>
+                            {{--</ul>--}}
+                            <p class="alert alert-success" role="alert">
+                                Tổng cộng: 36 kết quả được tìm thấy !
+                            </p>
 
-                        @foreach( $normalArticles as $normalArticle )
-                            <article>
-                                <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">
-                                    <img src="http://via.placeholder.com/560x390" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
-                                </a>
-                                <section class="details">
-                                    <p class="category">
-                                        <a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a>
-                                        @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
-                                        <time datetime="{{$publishDate}}">{{$publishDate}}</time>
-                                    </p>
-                                    <h5 class="title">
-                                        <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">{{$normalArticle->title}}</a>
-                                    </h5>
-                                    <p class="descriptions">{!! substr($normalArticle->description, 0, 250) !!}...</p>
+                            @foreach( $normalArticles as $normalArticle )
+                                <article>
+                                    <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">
+                                        <img src="http://via.placeholder.com/560x390" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                                    </a>
+                                    <section class="details">
+                                        <p class="category">
+                                            <a href="{!! action('Web\ArticleController@category', [$normalArticle->category->slug]) !!}">{{$normalArticle->category->name}}</a>
+                                            @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
+                                            <time datetime="{{$publishDate}}">{{$publishDate}}</time>
+                                        </p>
+                                        <h5 class="title">
+                                            <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">{{$normalArticle->title}}</a>
+                                        </h5>
+                                        <p class="descriptions">{!! substr($normalArticle->description, 0, 250) !!}...</p>
 
-                                    <section class="counter">
-                                        <span><i class="fa fa-eye"></i> {{$normalArticle->read}}</span>
-                                        <span><i class="fa fa-commenting-o"></i> {{$normalArticle->voted}}</span>
-                                        <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
-                                        @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
-                                        <time datetime="{{$publishDate}}">{{$publishDate}}</time>
+                                        <section class="counter">
+                                            <span><i class="fa fa-eye"></i> {{$normalArticle->read}}</span>
+                                            <span><i class="fa fa-commenting-o"></i> {{$normalArticle->voted}}</span>
+                                            <span class="normal-article__counter--share"><i class="fa fa-share-alt"></i></span>
+                                            @php $publishDate = date_format($normalArticle->publish_started_at,"d/m/Y"); @endphp
+                                            <time datetime="{{$publishDate}}">{{$publishDate}}</time>
+                                        </section>
                                     </section>
-                                </section>
-                            </article>
-                        @endforeach
+                                </article>
+                            @endforeach
 
-                        <section class="view-more">
-                            <button class="btn btn-light">Xem thêm</button>
-                        </section>
+                            <section class="view-more">
+                                <button class="btn btn-light">Xem thêm</button>
+                            </section>
+                        @endif
                     </div>
 
                     <div class="col-lg-4">

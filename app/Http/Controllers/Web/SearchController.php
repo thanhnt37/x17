@@ -25,10 +25,12 @@ class SearchController extends Controller
 
     public function search(BaseRequest $request)
     {
-        $normalArticles     = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
+        $normalArticles = $this->articleRepository->getEnabled('publish_started_at', 'desc', 0, 10);
+
         return view('pages.web.2017.search.search',
             [
-                'normalArticles'   => $normalArticles
+                'keyword'        => $request->get('keyword', ''),
+                'normalArticles' => $normalArticles
             ]
         );
     }
