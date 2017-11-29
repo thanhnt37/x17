@@ -207,7 +207,7 @@ $factory->define(App\Models\Search::class, function (Faker\Generator $faker)
 {
     return [
         'keyword' => $faker->word,
-        'alias'   => $faker->word,
+        'slug'    => $faker->word,
         'count'   => 0,
     ];
 });

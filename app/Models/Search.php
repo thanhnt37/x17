@@ -6,7 +6,7 @@
  *
  * @property int            $id
  * @property string         $keyword
- * @property string         $alias
+ * @property string         $slug
  * @property int|null       $count
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -36,7 +36,7 @@ class Search extends Base
      */
     protected $fillable = [
         'keyword',
-        'alias',
+        'slug',
         'count',
     ];
 
@@ -69,7 +69,7 @@ class Search extends Base
     {
         return [
             'keyword' => $this->keyword,
-            'alias'   => $this->alias,
+            'slug'    => $this->slug,
             'count'   => $this->count,
         ];
     }

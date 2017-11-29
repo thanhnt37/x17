@@ -19,7 +19,7 @@ class CreateSearchesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('keyword');
-            $table->string('alias');
+            $table->string('slug');
 
             $table->unsignedBigInteger('count')->nullable()->default(0);
 
