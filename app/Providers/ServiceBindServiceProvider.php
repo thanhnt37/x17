@@ -109,6 +109,11 @@ class ServiceBindServiceProvider extends ServiceProvider
             \App\Services\Production\APIUserService::class
         );
         
+        $this->app->singleton(
+            \App\Services\SearchServiceInterface::class,
+            \App\Services\Production\SearchService::class
+        );
+
         /* NEW BINDING */
     }
 }
