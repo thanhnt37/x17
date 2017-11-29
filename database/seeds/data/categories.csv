@@ -4,11 +4,11 @@
 3,"Advanced","php-nang-cao","P","#d3da127a",2,1,0
 4,"Laravel","laravel","P","#d3da127a",3,1,0
 5,"CakePHP","cakephp","P","#d3da127a",4,1,0
-6,"Javascript","javascript","J","#d1ff7f8f",2,0,0
-7,"ReactJS","reactjs","J","#d1ff7f8f",1,6,0
-8,"React Native","react-native","J","#d1ff7f8f",2,6,0
-9,"NodeJS","nodejs","J","#d1ff7f8f",3,6,0
-10,"Angular","angular","J","#d1ff7f8f",4,6,0
+6,"Javascript","javascript","Js","#d1ff7f8f",2,0,0
+7,"ReactJS","reactjs","Js","#d1ff7f8f",1,6,0
+8,"React Native","react-native","Js","#d1ff7f8f",2,6,0
+9,"NodeJS","nodejs","Js","#d1ff7f8f",3,6,0
+10,"Angular","angular","Js","#d1ff7f8f",4,6,0
 11,"Databases","databases","D","#1378d68f",3,0,0
 12,"MySQL","mysql","D","#1378d68f",1,11,0
 13,"Redis","redis","D","#1378d68f",2,11,0
