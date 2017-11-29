@@ -9,12 +9,12 @@
 8,"React Native","react-native","Js","#d1ff7f8f",2,6,0
 9,"NodeJS","nodejs","Js","#d1ff7f8f",3,6,0
 10,"Angular","angular","Js","#d1ff7f8f",4,6,0
-11,"Databases","databases","D","#1378d68f",3,0,0
-12,"MySQL","mysql","D","#1378d68f",1,11,0
-13,"Redis","redis","D","#1378d68f",2,11,0
-14,"Memcache","memcache","D","#1378d68f",3,11,0
-15,"MongoDB","mongodb","D","#1378d68f",4,11,0
-16,"Others","cac-bai-viet-lien-quan-databases","D","#1378d68f",5,11,0
+11,"Databases","databases","Db","#1378d68f",3,0,0
+12,"MySQL","mysql","Db","#1378d68f",1,11,0
+13,"Redis","redis","Db","#1378d68f",2,11,0
+14,"Memcache","memcache","Db","#1378d68f",3,11,0
+15,"MongoDB","mongodb","Db","#1378d68f",4,11,0
+16,"Others","cac-bai-viet-lien-quan-databases","Db","#1378d68f",5,11,0
 17,"Git","git","G","#660da58f",4,0,0
 18,"Series","series-bai-viet-huong-dan","Sr","#38d6478f",5,0,0
 19,"About","about-me","Ab","#d4a01f5e",7,0,0
