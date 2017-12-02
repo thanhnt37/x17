@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'api', 'namespace' => 'API'], function () {
+Route::group(['namespace' => 'API'], function () {
     Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
 
         Route::group(['middleware' => []], function () {

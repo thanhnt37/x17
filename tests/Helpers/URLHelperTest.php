@@ -35,7 +35,7 @@ class URLHelperTest extends TestCase
         $helper = \App::make(\App\Helpers\URLHelperInterface::class);
         $hash = config('asset.hash');
         $result = $helper->asset('img/test.png');
-        $this->assertEquals('http://localhost/static/user/img/test.png?'.$hash, $result);
+        $this->assertEquals('http://localhost/static/web/img/test.png?'.$hash, $result);
 
         $result = $helper->asset('img/test.png', 'common');
         $this->assertEquals('http://localhost/static/common/img/test.png?'.$hash, $result);
