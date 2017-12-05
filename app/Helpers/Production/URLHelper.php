@@ -115,7 +115,7 @@ class URLHelper implements URLHelperInterface
         return $urlPath;
     }
 
-    public function asset($path, $type = 'user')
+    public function asset($path, $type = 'web')
     {
         $hash = config('asset.hash');
         $url = asset('static/'.$type.'/'.$path);
@@ -127,7 +127,7 @@ class URLHelper implements URLHelperInterface
         return $url.'?'.$hash;
     }
 
-    public function elixir($path, $type = 'user')
+    public function elixir($path, $type = 'web')
     {
         $url = elixir('static/'.$type.'/'.$path);
 
