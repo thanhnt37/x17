@@ -1,4 +1,4 @@
-@extends('layouts.admin.' . config('view.admin') . '.application', ['noFrame' => true, 'bodyClasses' => 'hold-transition login-page'])
+@extends('pages.admin.' . config('view.admin') . '.layout.application', ['noFrame' => true, 'bodyClasses' => 'hold-transition login-page'])
 
 @section('metadata')
 @stop

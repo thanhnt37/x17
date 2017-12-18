@@ -1,4 +1,4 @@
-@extends('layouts.admin.' . config('view.admin') . '.application', ['menu' => 'admin_users'] )
+@extends('pages.admin.' . config('view.admin') . '.layout.application', ['menu' => 'admin_users'] )
 
 @section('metadata')
 @stop
