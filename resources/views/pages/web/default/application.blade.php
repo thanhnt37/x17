@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title', config('site.name', ''))</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    @include('layouts.web.metadata')
-    @include('layouts.web.styles')
+    @include('pages.web.default.metadata')
+    @include('pages.web.default.styles')
     @section('styles')
     @show
     <meta name="csrf-token" content="{!! csrf_token() !!}">
 </head>
+
 <body class="{!! isset($bodyClasses) ? $bodyClasses : '' !!}">
-@if( isset($noFrame) && $noFrame == true )
-@yield('content')
-@else
-@include('layouts.web.frame')
-@endif
-@include('layouts.web.scripts')
-@section('scripts')
-@show
+    @if( isset($noFrame) && $noFrame == true )
+        @yield('content')
+    @else
+        @include('pages.web.default.frame')
+    @endif
+
+    @include('pages.web.default.scripts')
+    @section('scripts')
+    @show
 </body>
 </html>

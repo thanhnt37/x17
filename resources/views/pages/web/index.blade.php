@@ -1,4 +1,4 @@
-@extends('layouts.web.application')
+@extends('pages.web.default.application')
 
 @section('metadata')
 @stop
@@ -48,7 +48,7 @@
 <div class="container">
     <p class="content">
         <div class="title">Laravel Boilerplate</div>
-        <p><a href="https://github.com/takaaki-mizuno/laravel-boilerplate/">GitHub</a></p>
+        <p><a href="https://github.com/thanhnt37/laravel-boilerplate/">GitHub</a></p>
     </div>
 </div>
 @stop
