@@ -8,7 +8,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('pages.web.index', [
+        return view('pages.web.default.index', [
         ]);
     }
 }
