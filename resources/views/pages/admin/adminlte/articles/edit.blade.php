@@ -1,4 +1,4 @@
-@extends('layouts.admin.' . config('view.admin') . '.application', ['menu' => 'articles'] )
+@extends('pages.admin.' . config('view.admin') . '.layout.application', ['menu' => 'articles'] )
 
 @section('metadata')
 @stop
@@ -34,7 +34,7 @@
         };
     </script>
 
-    <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin') }}"></script>
+    <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin/adminlte') }}"></script>
 @stop
 
 @section('title')

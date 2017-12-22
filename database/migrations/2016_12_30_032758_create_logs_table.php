@@ -13,7 +13,10 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table)
+        {
+            $table->engine = 'MyISAM';
+
             $table->bigIncrements('id');
 
             $table->string('user_name');

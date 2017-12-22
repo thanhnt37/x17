@@ -41,7 +41,7 @@ interface URLHelperInterface
      *
      * @return string
      */
-    public function asset($path, $type = 'user');
+    public function asset($path, $type = 'web');
 
     /**
      * @param string $path
@@ -49,5 +49,5 @@ interface URLHelperInterface
      *
      * @return string
      */
-    public function elixir($path, $type = 'user');
+    public function elixir($path, $type = 'web');
 }

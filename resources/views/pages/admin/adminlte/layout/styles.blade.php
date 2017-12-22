@@ -7,4 +7,4 @@
 <link rel="stylesheet" href="{!! \URLHelper::asset('libs/plugins/toastr/toastr.min.css', 'admin') !!}">
 <link rel="stylesheet" href="{!! \URLHelper::asset('libs/plugins/flagstrap/dist/css/flags.css', 'admin') !!}">
 
-<link rel="stylesheet" href="{!! \URLHelper::asset('css/style.css', 'admin') !!}">
+<link rel="stylesheet" href="{!! \URLHelper::asset('css/style.css', 'admin/adminlte') !!}">

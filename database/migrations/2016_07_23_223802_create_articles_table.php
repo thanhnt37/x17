@@ -10,10 +10,10 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) 
+        Schema::create('articles', function (Blueprint $table)
         {
             $table->engine = 'MyISAM';
-            
+
             $table->bigIncrements('id');
 
             $table->string('slug')->unique();
@@ -33,12 +33,13 @@ class CreateArticlesTable extends Migration
             $table->boolean('is_enabled')->nullable()->default(true);
             $table->timestamp('publish_started_at')->nullable()->default('2000-01-01 00:00:00');
             $table->timestamp('publish_ended_at')->nullable();
-
+            
             $table->softDeletes();
             $table->timestamps();
 
             $table->index('slug');
-            $table->index(['is_enabled', 'publish_started_at', 'publish_ended_at', 'id']);
+            $table->index(['id', 'is_enabled', 'publish_started_at', 'publish_ended_at']);
+            $table->index(['is_enabled', 'publish_started_at', 'publish_ended_at', 'deleted_at'], 'articles_is_enabled_and_is_publish_and_not_delete_index');
 
         });
 
