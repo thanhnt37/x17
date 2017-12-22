@@ -1,4 +1,4 @@
-@extends('layouts.admin.' . config('view.admin') . '.application', ['noFrame' => true, 'bodyClasses' => 'hold-transition login-page'])
+@extends('pages.admin.' . config('view.admin') . '.layout.application', ['noFrame' => true, 'bodyClasses' => 'hold-transition login-page'])
 
 @section('metadata')
 @stop
@@ -20,7 +20,7 @@ Reset Password
     <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{!! action('User\IndexController@index') !!}"><b>{{ config('site.name') }}</b> Admin</a>
+            <a href="{!! action('Web\IndexController@index') !!}"><b>{{ config('site.name') }}</b> Admin</a>
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">@lang('admin.pages.auth.messages.reset_password')</p>

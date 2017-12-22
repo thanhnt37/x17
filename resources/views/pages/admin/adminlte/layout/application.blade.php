@@ -2,12 +2,12 @@
 <html>
 <head>
     <!-------------------------------- Begin: Meta ----------------------------------->
-    @include('layouts.admin.' . config('view.admin') . '.meta')
+    @include('pages.admin.' . config('view.admin') . '.layout.meta')
     @yield('metadata')
     <!-------------------------------- End: Meta ----------------------------------->
 
     <!-------------------------------- Begin: stylesheet ----------------------------------->
-    @include('layouts.admin.' . config('view.admin') . '.styles')
+    @include('pages.admin.' . config('view.admin') . '.layout.styles')
     @yield('styles')
     <!-------------------------------- End: stylesheet ----------------------------------->
 
@@ -18,11 +18,11 @@
 @else
     <div class="wrapper">
         <!-------------------------------- Begin: Header ----------------------------------->
-        @include('layouts.admin.' . config('view.admin') . '.header')
+        @include('pages.admin.' . config('view.admin') . '.layout.header')
         <!-------------------------------- End: Header ----------------------------------->
 
         <!-------------------------------- Begin: Left Navigation ----------------------------------->
-        @include('layouts.admin.' . config('view.admin') . '.left_navigation')
+        @include('pages.admin.' . config('view.admin') . '.layout.left_navigation')
         <!-------------------------------- End: Left Navigation ----------------------------------->
 
         <!-- Content Wrapper. Contains page content -->
@@ -46,13 +46,13 @@
         </div>
 
         <!-------------------------------- Begin: Footer ----------------------------------->
-        @include('layouts.admin.' . config('view.admin') . '.footer')
+        @include('pages.admin.' . config('view.admin') . '.layout.footer')
         <!-------------------------------- End: Footer ----------------------------------->
     </div>
 @endif
 
 <!-------------------------------- Begin: Script ----------------------------------->
-@include('layouts.admin.' . config('view.admin') . '.scripts')
+@include('pages.admin.' . config('view.admin') . '.layout.scripts')
 @yield('scripts')
 <!-------------------------------- End: Script ----------------------------------->
 </body>

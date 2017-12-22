@@ -285,13 +285,16 @@ class ArticleController extends Controller
      */
     public function preview(BaseRequest $request)
     {
-        $locale     = $request->input('language');
-        $content    = $this->articleService->filterContent($request->input('content'), $locale);
-        $title      = $request->input('title');
-        $response   = response()->view('pages.admin.articles.preview', [
-            'content' => $content,
-            'title'   => $title,
-        ]);
+        $locale   = $request->input('language');
+        $content  = $this->articleService->filterContent($request->input('content'), $locale);
+        $title    = $request->input('title');
+        $response = response()->view(
+            'pages.admin.' . config('view.admin') . '.articles.preview',
+            [
+                'content' => $content,
+                'title'   => $title,
+            ]
+        );
 
         //        $response->headers->set('Content-Security-Policy', "default-src 'self' 'unsafe-inline'");
         $response->headers->set('X-XSS-Protection', '0');
