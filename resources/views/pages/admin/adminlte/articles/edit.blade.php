@@ -113,19 +113,21 @@
                                 </td>
                             </tr>
 
-                            <tr class="@if ($errors->has('locale')) has-error @endif">
+                            <tr class="@if ($errors->has('voted')) has-error @endif">
                                 <td>
-                                    <label for="locale">@lang('admin.pages.articles.columns.locale')</label>
+                                    <label for="voted">@lang('admin.pages.articles.columns.voted')</label>
                                 </td>
                                 <td>
-                                    <select class="form-control" name="locale" id="locale" style="margin-bottom: 15px;" required>
-                                        <option value="">@lang('admin.pages.common.label.select_locale')</option>
-                                        @foreach( config('locale.languages') as $code => $locale )
-                                            <option value="{!! $code !!}" @if( (old('locale') && old('locale') == $code) || ( $article->locale === $code) ) selected @endif >
-                                                {{ trans($locale['name']) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <input type="number" min="0" class="form-control" id="voted" name="voted" value="{{ old('voted') ? old('voted') : $article->voted }}">
+                                </td>
+                            </tr>
+
+                            <tr class="@if ($errors->has('read')) has-error @endif">
+                                <td>
+                                    <label for="read">@lang('admin.pages.articles.columns.read')</label>
+                                </td>
+                                <td>
+                                    <input type="number" min="0" class="form-control" id="read" name="read" value="{{ old('read') ? old('read') : $article->read }}">
                                 </td>
                             </tr>
 
@@ -146,7 +148,7 @@
                                     <label for="publish_started_at">@lang('admin.pages.articles.columns.publish_started_at')</label>
                                 </td>
                                 <td>
-                                    <div class="input-group date datetime-field" style="margin-bottom: 10px;">
+                                    <div class="input-group" style="margin-bottom: 10px;" id="publish_started_at">
                                         <input type="text" class="form-control" style="margin: 0;" name="publish_started_at" required value="{{ old('publish_started_at') ? old('publish_started_at') : $article->publish_started_at }}">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -160,7 +162,7 @@
                                     <label for="publish_ended_at">@lang('admin.pages.articles.columns.publish_ended_at')</label>
                                 </td>
                                 <td>
-                                    <div class="input-group date datetime-field" style="margin-bottom: 10px;">
+                                    <div class="input-group" style="margin-bottom: 10px;" id="publish_ended_at">
                                         <input type="text" class="form-control" style="margin: 0;" name="publish_ended_at" value="{{ old('publish_ended_at') ? old('publish_ended_at') : $article->publish_ended_at }}">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>

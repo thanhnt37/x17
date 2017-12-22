@@ -109,15 +109,16 @@ class ArticleController extends Controller
                 'keywords',
                 'description',
                 'content',
+                'voted',
+                'read',
                 'publish_started_at',
                 'publish_ended_at',
             ]
         );
 
-        $input['is_enabled']         = $request->get('is_enabled', 0);
-        $input['locale']             = $request->get('locale', 'ja');
-        $input['publish_started_at'] = ($input['publish_started_at'] != "") ? $input['publish_started_at'] : null;
-        $input['publish_ended_at']   = ($input['publish_ended_at'] != "") ? $input['publish_ended_at'] : null;
+        $input['is_enabled']    = $request->get('is_enabled', 0);
+        $input['series_id']     = $request->get('series_id', 0);
+        $input['category_id']   = $request->get('category_id', 0);
 
         $model = $this->articleRepository->create($input);
 
