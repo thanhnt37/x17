@@ -39,6 +39,23 @@ class CategoryRepository extends SingleKeyModelRepository implements CategoryRep
         return $ids;
     }
 
+    /**
+     * Return all all category without child
+     *
+     * @params
+     *
+     * @return  \App\Models\Category
+     */
+    public function getAllLeaf()
+    {
+        $parents = $this->getBlankModel()->groupBy('parent_id')->get()->pluck('parent_id');
+
+        $leaf = $this->getBlankModel()->whereNotIn('id', $parents)->orderBy('name', 'asc')->get();
+
+        return $leaf;
+    }
+
+
     private function recursiveAllChilds(Category $category, &$ids = [])
     {
         array_push($ids, $category->id);

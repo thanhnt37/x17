@@ -101,8 +101,8 @@ class ArticleController extends Controller
             [
                 'isNew'      => true,
                 'article'    => $this->articleRepository->getBlankModel(),
-                'series'     => $this->seriesRepository->all(),
-                'categories' => $this->categoryRepository->all()
+                'series'     => $this->seriesRepository->all('title', 'asc'),
+                'categories' => $this->categoryRepository->getAllLeaf()
             ]
         );
     }
@@ -187,8 +187,8 @@ class ArticleController extends Controller
             [
                 'isNew'      => false,
                 'article'    => $article,
-                'series'     => $this->seriesRepository->all(),
-                'categories' => $this->categoryRepository->all()
+                'series'     => $this->seriesRepository->all('title', 'asc'),
+                'categories' => $this->categoryRepository->getAllLeaf()
             ]
         );
     }
