@@ -176,6 +176,38 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('category_id')) has-error @endif">
+                            <label for="category_id">@lang('admin.pages.articles.columns.category_id')</label>
+
+                            <select class="form-control" name="category_id" id="category_id" style="margin-bottom: 15px;" required>
+                                <option value="">@lang('admin.pages.common.label.select_category')</option>
+                                @foreach( $categories as $category )
+                                    <option value="{!! $category->id !!}" @if( (old('category_id') && old('category_id') == $category->id) || ( $article->category_id == $category->id) ) selected @endif >
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('series_id')) has-error @endif">
+                            <label for="series_id">@lang('admin.pages.articles.columns.series_id')</label>
+
+                            <select class="form-control" name="series_id" id="series_id" style="margin-bottom: 15px;" required>
+                                <option value="">@lang('admin.pages.common.label.select_series')</option>
+                                @foreach( $series as $seri )
+                                    <option value="{!! $seri->id !!}" @if( (old('series_id') && old('series_id') == $seri->id) || ( $article->series_id == $seri->id) ) selected @endif >
+                                        {{ $seri->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12">
                         <div class="form-group @if ($errors->has('keywords')) has-error @endif">
                             <label for="keywords">@lang('admin.pages.articles.columns.keywords')</label>

@@ -11,6 +11,8 @@ use App\Repositories\ImageRepositoryInterface;
 use App\Services\ArticleServiceInterface;
 use App\Services\FileUploadServiceInterface;
 use App\Services\ImageServiceInterface;
+use App\Repositories\CategoryRepositoryInterface;
+use App\Repositories\SeriesRepositoryInterface;
 
 class ArticleController extends Controller
 {
@@ -29,12 +31,20 @@ class ArticleController extends Controller
     /** @var  ImageServiceInterface $imageService */
     protected $imageService;
 
+    /** @var \App\Repositories\CategoryRepositoryInterface */
+    protected $categoryRepository;
+
+    /** @var \App\Repositories\SeriesRepositoryInterface */
+    protected $seriesRepository;
+
     public function __construct(
         ArticleRepositoryInterface      $articleRepository,
         ArticleServiceInterface         $articleService,
         FileUploadServiceInterface      $fileUploadService,
         ImageRepositoryInterface        $imageRepository,
-        ImageServiceInterface           $imageService
+        ImageServiceInterface           $imageService,
+        CategoryRepositoryInterface     $categoryRepository,
+        SeriesRepositoryInterface       $seriesRepository
     )
     {
         $this->articleRepository        = $articleRepository;
@@ -42,6 +52,8 @@ class ArticleController extends Controller
         $this->fileUploadService        = $fileUploadService;
         $this->imageRepository          = $imageRepository;
         $this->imageService             = $imageService;
+        $this->categoryRepository       = $categoryRepository;
+        $this->seriesRepository         = $seriesRepository;
     }
 
     /**
@@ -87,8 +99,10 @@ class ArticleController extends Controller
         return view(
             'pages.admin.' . config('view.admin') . '.articles.edit',
             [
-                'isNew'   => true,
-                'article' => $this->articleRepository->getBlankModel(),
+                'isNew'      => true,
+                'article'    => $this->articleRepository->getBlankModel(),
+                'series'     => $this->seriesRepository->all(),
+                'categories' => $this->categoryRepository->all()
             ]
         );
     }
@@ -171,8 +185,10 @@ class ArticleController extends Controller
         return view(
             'pages.admin.' . config('view.admin') . '.articles.edit',
             [
-                'isNew'   => false,
-                'article' => $article,
+                'isNew'      => false,
+                'article'    => $article,
+                'series'     => $this->seriesRepository->all(),
+                'categories' => $this->categoryRepository->all()
             ]
         );
     }
@@ -212,17 +228,16 @@ class ArticleController extends Controller
                 'keywords',
                 'description',
                 'content',
+                'voted',
+                'read',
+                'publish_started_at',
+                'publish_ended_at',
             ]
         );
 
-        $input['is_enabled'] = $request->get('is_enabled', 0);
-        $input['locale']     = $request->get('locale', 'ja');
-        if ($request->get('publish_started_at') != "") {
-            $input['publish_started_at'] = $request->get('publish_started_at');
-        }
-        if ($request->get('publish_ended_at') != "") {
-            $input['publish_ended_at'] = $request->get('publish_ended_at');
-        }
+        $input['is_enabled']    = $request->get('is_enabled', 0);
+        $input['series_id']     = $request->get('series_id', 0);
+        $input['category_id']   = $request->get('category_id', 0);
 
         $article = $this->articleRepository->update($article, $input);
 

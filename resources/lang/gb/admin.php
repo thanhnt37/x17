@@ -60,6 +60,7 @@ return [
                 'select_district'  => 'Select a District',
                 'select_locale'    => 'Select a Locale',
                 'select_category'  => 'Select a Category',
+                'select_series'    => 'Select a Series',
             ],
             'buttons' => [
                 'create'          => 'Create New',
