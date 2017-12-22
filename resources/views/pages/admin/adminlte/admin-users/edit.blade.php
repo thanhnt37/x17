@@ -14,7 +14,7 @@
 @section('scripts')
     <script src="{{ \URLHelper::asset('libs/moment/moment.min.js', 'admin') }}"></script>
     <script src="{{ \URLHelper::asset('libs/datetimepicker/js/bootstrap-datetimepicker.min.js', 'admin') }}"></script>
-    <script src="{{ \URLHelper::asset('js/jquery_checkbox_btn.js', 'admin') }}"></script>
+    <script src="{{ \URLHelper::asset('js/jquery_checkbox_btn.js', 'admin/adminlte') }}"></script>
     <script>
         $('.datetime-field').datetimepicker({'format': 'YYYY-MM-DD HH:mm:ss'});
 
