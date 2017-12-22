@@ -28,6 +28,8 @@ class CreateAdminUsersTable extends Migration
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->index(['id', 'deleted_at']);
         });
 
         $this->updateTimestampDefaultValue('admin_users', ['updated_at'], ['created_at']);
