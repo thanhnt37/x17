@@ -5,18 +5,14 @@
 
 @section('styles')
     <link rel="stylesheet" href="{!! \URLHelper::asset('libs/datetimepicker/css/bootstrap-datetimepicker.min.css', 'admin') !!}">
-
-    <!-- Include Froala Editor style. -->
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.5/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.5/css/froala_style.min.css' rel='stylesheet' type='text/css' />
 @stop
 
 @section('scripts')
     <script src="{{ \URLHelper::asset('libs/moment/moment.min.js', 'admin') }}"></script>
     <script src="{{ \URLHelper::asset('libs/datetimepicker/js/bootstrap-datetimepicker.min.js', 'admin') }}"></script>
 
-    <!-- Include Froala JS file. -->
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.5/js/froala_editor.pkgd.min.js'></script>
+    <!-- Imclude CKEditor -->
+    <script src="{{ \URLHelper::asset('libs/plugins/ckeditor/ckeditor.js', 'admin') }}"></script>
 
     <script>
         Boilerplate.imageUploadUrl = "{!! URL::action('Admin\ArticleController@postImage') !!}";
@@ -35,6 +31,8 @@
     </script>
 
     <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin/adminlte') }}"></script>
+
+    <script>initCKEditor();</script>
 @stop
 
 @section('title')
@@ -197,7 +195,7 @@
                     <div class="col-md-12">
                         <div class="form-group @if ($errors->has('content')) has-error @endif">
                             <label for="content">@lang('admin.pages.articles.columns.content')</label>
-                            <textarea id="froala-editor" name="content" class="form-control" rows="10" placeholder="@lang('admin.pages.articles.columns.content')">{{ old('content') ? old('content') : $article->content }}</textarea>
+                            <textarea id="article-content-editor" name="content" class="form-control" rows="10" placeholder="@lang('admin.pages.articles.columns.content')">{{ old('content') ? old('content') : $article->content }}</textarea>
                         </div>
                     </div>
                 </div>
