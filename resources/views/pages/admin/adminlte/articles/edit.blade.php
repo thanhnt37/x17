@@ -76,102 +76,18 @@
             </div>
             <div class="box-body">
                 <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group text-center">
-                            @if( !empty($article->present()->coverImage() ))
-                                <img id="cover-image-preview" style="max-width: 500px; width: 100%;"
-                                     src="{!! $article->present()->coverImage()->present()->url !!}" alt="" class="margin"/>
-                            @else
-                                <img id="cover-image-preview" style="max-width: 500px; width: 100%;"
-                                     src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt="" class="margin"/>
-                            @endif
-                            <input type="file" style="display: none;" id="cover-image" name="cover_image">
-                            <p class="help-block" style="font-weight: bolder;">
-                                @lang('admin.pages.articles.columns.cover_image_id')
-                                <label for="cover-image"
-                                       style="font-weight: 100; color: #549cca; margin-left: 10px; cursor: pointer;">@lang('admin.pages.common.buttons.edit')</label>
-                            </p>
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('title')) has-error @endif">
+                            <label for="title">@lang('admin.pages.articles.columns.title')</label>
+                            <input type="text" class="form-control" id="title" name="title" required value="{{ old('title') ? old('title') : $article->title }}">
                         </div>
                     </div>
-                    <div class="col-lg-7">
-                        <table class="edit-user-profile">
-                            <tr class="@if ($errors->has('title')) has-error @endif">
-                                <td>
-                                    <label for="title">@lang('admin.pages.articles.columns.title')</label>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="title" name="title" required value="{{ old('title') ? old('title') : $article->title }}">
-                                </td>
-                            </tr>
 
-                            <tr class="@if ($errors->has('slug')) has-error @endif">
-                                <td>
-                                    <label for="slug">@lang('admin.pages.articles.columns.slug')</label>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') ? old('slug') : $article->slug }}">
-                                </td>
-                            </tr>
-
-                            <tr class="@if ($errors->has('voted')) has-error @endif">
-                                <td>
-                                    <label for="voted">@lang('admin.pages.articles.columns.voted')</label>
-                                </td>
-                                <td>
-                                    <input type="number" min="0" class="form-control" id="voted" name="voted" value="{{ old('voted') ? old('voted') : $article->voted }}">
-                                </td>
-                            </tr>
-
-                            <tr class="@if ($errors->has('read')) has-error @endif">
-                                <td>
-                                    <label for="read">@lang('admin.pages.articles.columns.read')</label>
-                                </td>
-                                <td>
-                                    <input type="number" min="0" class="form-control" id="read" name="read" value="{{ old('read') ? old('read') : $article->read }}">
-                                </td>
-                            </tr>
-
-                            <tr class="@if ($errors->has('is_enabled')) has-error @endif">
-                                <td>
-                                    <label for="is_enabled">@lang('admin.pages.common.label.is_enabled')</label>
-                                </td>
-                                <td>
-                                    <div class="switch" style="margin-bottom: 10px;">
-                                        <input id="is_enabled" name="is_enabled" value="1" @if( $article->is_enabled) checked @endif class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                                        <label for="is_enabled"></label>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr class="@if ($errors->has('publish_started_at')) has-error @endif">
-                                <td>
-                                    <label for="publish_started_at">@lang('admin.pages.articles.columns.publish_started_at')</label>
-                                </td>
-                                <td>
-                                    <div class="input-group" style="margin-bottom: 10px;" id="publish_started_at">
-                                        <input type="text" class="form-control" style="margin: 0;" name="publish_started_at" required value="{{ old('publish_started_at') ? old('publish_started_at') : $article->publish_started_at }}">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr class="@if ($errors->has('publish_ended_at')) has-error @endif">
-                                <td>
-                                    <label for="publish_ended_at">@lang('admin.pages.articles.columns.publish_ended_at')</label>
-                                </td>
-                                <td>
-                                    <div class="input-group" style="margin-bottom: 10px;" id="publish_ended_at">
-                                        <input type="text" class="form-control" style="margin: 0;" name="publish_ended_at" value="{{ old('publish_ended_at') ? old('publish_ended_at') : $article->publish_ended_at }}">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </table>
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('slug')) has-error @endif">
+                            <label for="slug">@lang('admin.pages.articles.columns.slug')</label>
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') ? old('slug') : $article->slug }}">
+                        </div>
                     </div>
                 </div>
 
@@ -181,7 +97,7 @@
                             <label for="category_id">@lang('admin.pages.articles.columns.category_id')</label>
 
                             <select class="form-control" name="category_id" id="category_id" style="margin-bottom: 15px;" required>
-{{--                                <option value="">@lang('admin.pages.common.label.select_category')</option>--}}
+                                {{--                                <option value="">@lang('admin.pages.common.label.select_category')</option>--}}
                                 @foreach( $categories as $category )
                                     <option value="{!! $category->id !!}" @if( (old('category_id') && old('category_id') == $category->id) || ( $article->category_id == $category->id) ) selected @endif >
                                         {{ $category->name }}
@@ -196,13 +112,65 @@
                             <label for="series_id">@lang('admin.pages.articles.columns.series_id')</label>
 
                             <select class="form-control" name="series_id" id="series_id" style="margin-bottom: 15px;" required>
-{{--                                <option value="">@lang('admin.pages.common.label.select_series')</option>--}}
+                                {{--                                <option value="">@lang('admin.pages.common.label.select_series')</option>--}}
                                 @foreach( $series as $seri )
                                     <option value="{!! $seri->id !!}" @if( (old('series_id') && old('series_id') == $seri->id) || ( $article->series_id == $seri->id) ) selected @endif >
                                         {{ $seri->title }}
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('publish_started_at')) has-error @endif">
+                            <label for="publish_started_at">@lang('admin.pages.articles.columns.publish_started_at')</label>
+                            <div class="input-group" style="margin-bottom: 10px;" id="publish_started_at">
+                                <input type="text" class="form-control" style="margin: 0;" name="publish_started_at" required value="{{ old('publish_started_at') ? old('publish_started_at') : $article->publish_started_at }}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('publish_ended_at')) has-error @endif">
+                            <label for="publish_ended_at">@lang('admin.pages.articles.columns.publish_ended_at')</label>
+                            <div class="input-group" style="margin-bottom: 10px;" id="publish_ended_at">
+                                <input type="text" class="form-control" style="margin: 0;" name="publish_ended_at" value="{{ old('publish_ended_at') ? old('publish_ended_at') : $article->publish_ended_at }}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group @if ($errors->has('voted')) has-error @endif">
+                            <label for="voted">@lang('admin.pages.articles.columns.voted')</label>
+                            <input type="number" min="0" class="form-control" id="voted" name="voted" value="{{ old('voted') ? old('voted') : $article->voted }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group @if ($errors->has('read')) has-error @endif">
+                            <label for="read">@lang('admin.pages.articles.columns.read')</label>
+                            <input type="number" min="0" class="form-control" id="read" name="read" value="{{ old('read') ? old('read') : $article->read }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group @if ($errors->has('is_enabled')) has-error @endif">
+                            <label for="is_enabled">@lang('admin.pages.common.label.is_enabled')</label>
+                            <div class="switch" style="margin-bottom: 10px;">
+                                <input id="is_enabled" name="is_enabled" value="1" @if( $article->is_enabled) checked @endif class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                                <label for="is_enabled"></label>
+                            </div>
                         </div>
                     </div>
                 </div>
