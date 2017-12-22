@@ -5,6 +5,7 @@
 @stop
 
 @section('styles')
+    <link rel="stylesheet" href="{!! \URLHelper::asset('plugins/highlight/styles/atelier-cave-dark.css', 'admin/libs') !!}">
 @stop
 
 @section('scripts')
@@ -49,6 +50,10 @@
     <script src="https://apis.google.com/js/platform.js" async defer>
         {lang: 'vi'}
     </script>
+
+    {{-- highlight code --}}
+    <script src="{!! \URLHelper::asset('plugins/highlight/highlight.pack.js', 'admin/libs') !!}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 @stop
 
 @section('content')
