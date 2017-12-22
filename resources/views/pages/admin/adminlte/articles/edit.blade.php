@@ -34,7 +34,7 @@
         };
     </script>
 
-    <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin') }}"></script>
+    <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin/adminlte') }}"></script>
 @stop
 
 @section('title')

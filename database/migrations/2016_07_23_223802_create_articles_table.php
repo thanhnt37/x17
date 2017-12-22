@@ -33,7 +33,8 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
 
             $table->index('slug');
-            $table->index(['is_enabled', 'publish_started_at', 'publish_ended_at', 'id']);
+            $table->index(['id', 'is_enabled', 'publish_started_at', 'publish_ended_at']);
+            $table->index(['is_enabled', 'publish_started_at', 'publish_ended_at', 'deleted_at'], 'articles_is_enabled_and_is_publish_and_not_delete_index');
 
         });
 

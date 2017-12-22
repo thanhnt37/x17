@@ -7,7 +7,7 @@
 @stop
 
 @section('scripts')
-    <script src="{!! \URLHelper::asset('js/delete_item.js', 'admin') !!}"></script>
+    <script src="{!! \URLHelper::asset('js/delete_item.js', 'admin/adminlte') !!}"></script>
 @stop
 
 @section('title')
