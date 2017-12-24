@@ -71,7 +71,8 @@
             <div class="box-header with-border">
                 <h3 class="box-title">
                     <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-default btn-sm" style="width: 125px; display: inline-block;">@lang('admin.pages.common.buttons.back')</a>
-                    <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-primary btn-sm" id="button-preview" style="width: 125px; display: inline-block; margin: 0 15px;">@lang('admin.pages.common.buttons.preview')</a>
+                    <a href="{!! URL::action('Admin\ArticleController@images', $article->id) !!}" class="btn btn-block btn-success btn-sm" style="width: 125px; display: inline-block; margin: 0 15px;">Images</a>
+                    <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-primary btn-sm" id="button-preview" style="width: 125px; display: inline-block; margin: 0;">@lang('admin.pages.common.buttons.preview')</a>
                 </h3>
             </div>
             <div class="box-body">

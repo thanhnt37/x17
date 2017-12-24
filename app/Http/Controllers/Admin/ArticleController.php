@@ -13,6 +13,7 @@ use App\Services\FileUploadServiceInterface;
 use App\Services\ImageServiceInterface;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\SeriesRepositoryInterface;
+use App\Repositories\ArticleImageRepositoryInterface;
 
 class ArticleController extends Controller
 {
@@ -37,6 +38,9 @@ class ArticleController extends Controller
     /** @var \App\Repositories\SeriesRepositoryInterface */
     protected $seriesRepository;
 
+    /** @var \App\Repositories\ArticleImageRepositoryInterface */
+    protected $articleImageRepository;
+
     public function __construct(
         ArticleRepositoryInterface      $articleRepository,
         ArticleServiceInterface         $articleService,
@@ -44,7 +48,8 @@ class ArticleController extends Controller
         ImageRepositoryInterface        $imageRepository,
         ImageServiceInterface           $imageService,
         CategoryRepositoryInterface     $categoryRepository,
-        SeriesRepositoryInterface       $seriesRepository
+        SeriesRepositoryInterface       $seriesRepository,
+        ArticleImageRepositoryInterface $articleImageRepository
     )
     {
         $this->articleRepository        = $articleRepository;
@@ -54,6 +59,7 @@ class ArticleController extends Controller
         $this->imageService             = $imageService;
         $this->categoryRepository       = $categoryRepository;
         $this->seriesRepository         = $seriesRepository;
+        $this->articleImageRepository   = $articleImageRepository;
     }
 
     /**
@@ -142,24 +148,6 @@ class ArticleController extends Controller
                 ->withErrors(trans('admin.errors.general.save_failed'));
         }
 
-        if ($request->hasFile('cover_image')) {
-            $file = $request->file('cover_image');
-
-            $image = $this->fileUploadService->upload(
-                'article_cover_image',
-                $file,
-                [
-                    'entity_type' => 'article_cover_image',
-                    'entity_id'   => $model->id,
-                    'title'       => $request->input('name', ''),
-                ]
-            );
-
-            if (!empty($image)) {
-                $this->articleRepository->update($model, ['cover_image_id' => $image->id]);
-            }
-        }
-
         return redirect()
             ->action('Admin\ArticleController@index')
             ->with(
@@ -241,29 +229,6 @@ class ArticleController extends Controller
 
         $article = $this->articleRepository->update($article, $input);
 
-        if ($request->hasFile('cover_image')) {
-            $currentImage = $article->coverImage;
-            $file = $request->file('cover_image');
-
-            $newImage = $this->fileUploadService->upload(
-                'article_cover_image',
-                $file,
-                [
-                    'entity_type' => 'article_cover_image',
-                    'entity_id'   => $article->id,
-                    'title'       => $request->input('name', ''),
-                ]
-            );
-
-            if (!empty($newImage)) {
-                $this->articleRepository->update($article, ['cover_image_id' => $newImage->id]);
-
-                if (!empty($currentImage)) {
-                    $this->fileUploadService->delete($currentImage);
-                }
-            }
-        }
-
         return redirect()
             ->action('Admin\ArticleController@show', [$id])
             ->with(
@@ -292,6 +257,101 @@ class ArticleController extends Controller
         return redirect()
             ->action('Admin\ArticleController@index')
             ->with('message-success', trans('admin.messages.general.delete_success'));
+    }
+
+    /**
+     * Show all article images.
+     *
+     * @param   int $id  article_id
+     *
+     * @return  \Response
+     */
+    public function images($id)
+    {
+        $article = $this->articleRepository->find($id);
+        if (empty($article)) {
+            abort(404);
+        }
+
+        return view(
+            'pages.admin.' . config('view.admin') . '.articles.images',
+            [
+                'article'    => $article
+            ]
+        );
+    }
+
+    /**
+     * Upload article cover images.
+     *
+     * @params  int $id  article_id
+     *              $request
+     *
+     * @return  \Response
+     */
+    public function uploadCoverImages($id, BaseRequest $request)
+    {
+        $article = $this->articleRepository->find($id);
+        if (empty($article)) {
+            abort(404);
+        }
+
+        $images = $request->only(
+            [
+                '970x250',
+                '560x390',
+                '420x340',
+                '730x350',
+                '300x500',
+            ]
+        );
+
+        foreach( $images as $key => $image ) {
+            if (empty($image)) {
+                continue;
+            }
+
+            $size = explode('x', $key);
+            $fileSize = getimagesize($image->getPathname());
+
+            // continue with image small than config
+            if( ($fileSize[0] < $size[0]) || ($fileSize[1] < $size[1]) ) {
+                session()->flash('message-failed', 'Need upload image with more bigger');
+                continue;
+            }
+
+            $newImage = $this->fileUploadService->upload(
+                'article_' . $key,
+                $image,
+                [
+                    'entity_type' => 'article_' . $key,
+                    'entity_id'   => $article->id,
+                    'title'       => $article->title,
+                ]
+            );
+
+            $currentImage = $article->present()->image($size[0], $size[1]);
+            if (!empty($newImage)) {
+                if (!empty($currentImage)) {
+                    $articleImage = $this->articleImageRepository->findByArticleIdAndImageId($article->id, $currentImage->id);
+                    $articleImage->image_id = $newImage->id;
+                    $this->articleImageRepository->save($articleImage);
+
+                    $this->fileUploadService->delete($currentImage);
+                } else {
+                    $this->articleImageRepository->create(
+                        [
+                            'article_id' => $article->id,
+                            'image_id'   => $newImage->id
+                        ]
+                    );
+                }
+            }
+        }
+
+        return redirect()
+            ->action('Admin\ArticleController@images', [$id])
+            ->with('message-success', trans('admin.messages.general.update_success'));
     }
 
     /**

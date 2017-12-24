@@ -113,7 +113,7 @@ class Article extends Base
 
     public function images()
     {
-        return $this->hasMany(\App\Models\ArticleImage::class, 'article_id', 'id')->orderBy('id', 'asc');
+        return $this->belongsToMany(\App\Models\Image::class, ArticleImage::getTableName(), 'article_id', 'image_id')->orderBy('id', 'asc');
     }
 
     // define for Sluggable

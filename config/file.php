@@ -15,20 +15,71 @@ return [
         ],
     ],
     'categories' => [
-        'article_cover_image' => [
-            'name'        => 'article_cover_image',
+        'article_970x250' => [
+            'name'        => 'article_970x250',
             'type'        => 'image',
             'region'      => env('AWS_IMAGE_REGION'),
             'buckets'     => [
                 env('AWS_IMAGE_BUCKET'),
             ],
             'size'        => [970, 250],
-            'thumbnails'  => [
-                [560, 390], // hot article in home page
-                [420, 340], // newest article in home page
-                [730, 350], // cover image in page detail
-                [300, 500], // hot article in category page
+            'thumbnails'  => [],
+            'seed_prefix' => 'article_cover',
+            'format'      => 'png',
+            'local_type'  => 'common',
+            'local_path'  => 'img/articles/'
+        ],
+        'article_560x390' => [
+            'name'        => 'article_560x390',
+            'type'        => 'image',
+            'region'      => env('AWS_IMAGE_REGION'),
+            'buckets'     => [
+                env('AWS_IMAGE_BUCKET'),
             ],
+            'size'        => [560, 390],
+            'thumbnails'  => [],
+            'seed_prefix' => 'article_cover',
+            'format'      => 'png',
+            'local_type'  => 'common',
+            'local_path'  => 'img/articles/'
+        ],
+        'article_420x340' => [
+            'name'        => 'article_420x340',
+            'type'        => 'image',
+            'region'      => env('AWS_IMAGE_REGION'),
+            'buckets'     => [
+                env('AWS_IMAGE_BUCKET'),
+            ],
+            'size'        => [420, 340],
+            'thumbnails'  => [],
+            'seed_prefix' => 'article_cover',
+            'format'      => 'png',
+            'local_type'  => 'common',
+            'local_path'  => 'img/articles/'
+        ],
+        'article_730x350' => [
+            'name'        => 'article_730x350',
+            'type'        => 'image',
+            'region'      => env('AWS_IMAGE_REGION'),
+            'buckets'     => [
+                env('AWS_IMAGE_BUCKET'),
+            ],
+            'size'        => [730, 350],
+            'thumbnails'  => [],
+            'seed_prefix' => 'article_cover',
+            'format'      => 'png',
+            'local_type'  => 'common',
+            'local_path'  => 'img/articles/'
+        ],
+        'article_300x500' => [
+            'name'        => 'article_300x500',
+            'type'        => 'image',
+            'region'      => env('AWS_IMAGE_REGION'),
+            'buckets'     => [
+                env('AWS_IMAGE_BUCKET'),
+            ],
+            'size'        => [300, 500],
+            'thumbnails'  => [],
             'seed_prefix' => 'article_cover',
             'format'      => 'png',
             'local_type'  => 'common',
