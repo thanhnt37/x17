@@ -4,26 +4,29 @@ use Illuminate\Support\Facades\Redis;
 
 class ArticleObserver extends BaseObserver
 {
-    protected $cachePrefix = 'articles';
+    protected $cachePrefix = 'ArticleModel';
 
     public function created($model)
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hsetnx(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $model->id, $model);
+            $cacheKey = \CacheHelper::keyForModel($this->cachePrefix);
+            Redis::hsetnx($cacheKey, $model->id, $model);
         }
     }
 
     public function updated($model)
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hset(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $model->id, $model);
+            $cacheKey = \CacheHelper::keyForModel($this->cachePrefix);
+            Redis::hset($cacheKey, $model->id, $model);
         }
     }
 
     public function deleted($model)
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hdel(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $model->id);
+            $cacheKey = \CacheHelper::keyForModel($this->cachePrefix);
+            Redis::hdel($cacheKey, $model->id);
         }
     }
 }
