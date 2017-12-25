@@ -30,7 +30,12 @@
                                     @foreach( $featuredArticles as $index => $featuredArticle )
                                         <div class="carousel-item @if($index == 0) active @endif">
                                             <a href="{!! action('Web\ArticleController@detail', [$featuredArticle->category->slug, $featuredArticle->slug]) !!}">
-                                                <img class="d-block w-100" src="http://via.placeholder.com/730x350" alt="{{$featuredArticle->slug}}" title="{{$featuredArticle->slug}}">
+                                                @php $image = $featuredArticle->present()->image(730, 350); @endphp
+                                                @if(isset($image->url))
+                                                    <img class="d-block w-100" src="{{$image->url}}" alt="{{$featuredArticle->slug}}" title="{{$featuredArticle->slug}}">
+                                                @else
+                                                    <img src="https://placehold.it/730x350?text=xcode.vn" alt="{{$featuredArticle->slug}}" title="{{$featuredArticle->slug}}"/>
+                                                @endif
                                             </a>
 
                                             <div class="carousel-caption d-md-block">
@@ -47,7 +52,12 @@
                             @foreach( $normalArticles as $normalArticle )
                                 <article>
                                     <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                                        @php $image = $normalArticle->present()->image(560, 390); @endphp
+                                        @if(isset($image->url))
+                                            <img src="{{$image->url}}" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                                        @else
+                                            <img src="https://placehold.it/560x390?text=xcode.vn" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}"/>
+                                        @endif
                                     </a>
                                     <section class="details">
                                         <p class="category">

@@ -87,7 +87,12 @@
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </section>
 
-                    <img src="http://via.placeholder.com/730x350" alt="{{$article->slug}}" title="{{$article->slug}}" class="cover-image">
+                    @php $image = $article->present()->image(730, 350); @endphp
+                    @if(isset($image->url))
+                        <img src="{{$image->url}}" alt="{{$article->slug}}" title="{{$article->slug}}" class="cover-image">
+                    @else
+                        <img src="https://placehold.it/730x350?text=xcode.vn" alt="{{$article->slug}}" title="{{$article->slug}}" />
+                    @endif
 
                     <p class="descriptions">{!! $article->description !!}</p>
 
@@ -163,7 +168,12 @@
                                                 </p>
                                             </header>
                                             <a href="{!! action('Web\ArticleController@detail', [$relateArticle->category->slug, $relateArticle->slug]) !!}">
-                                                <img src="http://via.placeholder.com/560x390" alt="{{$relateArticle->slug}}" title="{{$relateArticle->slug}}">
+                                                @php $image = $relateArticle->present()->image(560, 390); @endphp
+                                                @if(isset($image->url))
+                                                    <img src="{{$image->url}}" alt="{{$relateArticle->slug}}" title="{{$relateArticle->slug}}">
+                                                @else
+                                                    <img src="https://placehold.it/560x390?text=xcode.vn" alt="{{$relateArticle->slug}}" title="{{$relateArticle->slug}}"/>
+                                                @endif
                                             </a>
                                         </article>
                                     </div>
