@@ -64,4 +64,11 @@ interface ArticleRepositoryInterface extends SingleKeyModelRepositoryInterface
      * @return  integer
      */
     public function countWithKeyword($keyword);
+
+    /**
+     * @params  $id
+     *
+     * @return  \App\Models\Article
+     */
+    public function getRelateArticles($id);
 }
