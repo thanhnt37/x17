@@ -20,7 +20,9 @@ class ArticleSeeder extends Seeder
             // set cover_image for category
             $image = factory(Image::class)->create(
                 [
-                    'url' => "http://placehold.it/730x95",
+                    'url'    => "http://placehold.it/730x95",
+                    'width'  => 730,
+                    'height' => 95
                 ]
             );
             $category->cover_image_id = $image->id;
@@ -36,13 +38,23 @@ class ArticleSeeder extends Seeder
                     ]
                 );
 
-                $imageSize = config('file.categories.article_cover_image.thumbnails');
-                array_push($imageSize, config('file.categories.article_cover_image.size'));
+                $imageSize = [
+                    [970, 250],
+                    [560, 390],
+                    [420, 340],
+                    [730, 350],
+                    [300, 500]
+                ];
                 foreach ($imageSize as $size)
                 {
                     $image = factory(Image::class)->create(
                         [
-                            'url' => "http://placehold.it/$size[0]x$size[1]",
+                            'url'                => "http://placehold.it/$size[0]x$size[1]",
+                            'width'              => $size[0],
+                            'height'             => $size[1],
+                            'entity_id'          => $article->id,
+                            'entity_type'        => "article_$size[0]x$size[1]",
+                            'file_category_type' => "article_$size[0]x$size[1]",
                         ]
                     );
                     factory(ArticleImage::class)->create(
@@ -68,7 +80,9 @@ class ArticleSeeder extends Seeder
             {
                 $image = factory(Image::class)->create(
                     [
-                        'url' => 'http://placehold.it/650x240',
+                        'url'    => 'http://placehold.it/650x240',
+                        'width'  => 650,
+                        'height' => 240
                     ]
                 );
                 $series = factory(Series::class)->create(
@@ -87,13 +101,23 @@ class ArticleSeeder extends Seeder
                         ]
                     );
 
-                    $imageSize = config('file.categories.article_cover_image.thumbnails');
-                    array_push($imageSize, config('file.categories.article_cover_image.size'));
+                    $imageSize = [
+                        [970, 250],
+                        [560, 390],
+                        [420, 340],
+                        [730, 350],
+                        [300, 500]
+                    ];
                     foreach ($imageSize as $size)
                     {
                         $image = factory(Image::class)->create(
                             [
-                                'url' => "http://placehold.it/$size[0]x$size[1]",
+                                'url'                => "http://placehold.it/$size[0]x$size[1]",
+                                'width'              => $size[0],
+                                'height'             => $size[1],
+                                'entity_id'          => $article->id,
+                                'entity_type'        => "article_$size[0]x$size[1]",
+                                'file_category_type' => "article_$size[0]x$size[1]",
                             ]
                         );
                         factory(ArticleImage::class)->create(

@@ -39,3 +39,4 @@ mix-manifest.json
 package-lock.json
 npm-debug.log
 composer.lock
+public/static/common/img/articles

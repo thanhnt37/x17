@@ -5,18 +5,14 @@
 
 @section('styles')
     <link rel="stylesheet" href="{!! \URLHelper::asset('libs/datetimepicker/css/bootstrap-datetimepicker.min.css', 'admin') !!}">
-
-    <!-- Include Froala Editor style. -->
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.5/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.5/css/froala_style.min.css' rel='stylesheet' type='text/css' />
 @stop
 
 @section('scripts')
     <script src="{{ \URLHelper::asset('libs/moment/moment.min.js', 'admin') }}"></script>
     <script src="{{ \URLHelper::asset('libs/datetimepicker/js/bootstrap-datetimepicker.min.js', 'admin') }}"></script>
 
-    <!-- Include Froala JS file. -->
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.5/js/froala_editor.pkgd.min.js'></script>
+    <!-- Imclude CKEditor -->
+    <script src="{{ \URLHelper::asset('libs/plugins/ckeditor/ckeditor.js', 'admin') }}"></script>
 
     <script>
         Boilerplate.imageUploadUrl = "{!! URL::action('Admin\ArticleController@postImage') !!}";
@@ -35,6 +31,8 @@
     </script>
 
     <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin/adminlte') }}"></script>
+
+    <script>initCKEditor();</script>
 @stop
 
 @section('title')
@@ -73,105 +71,108 @@
             <div class="box-header with-border">
                 <h3 class="box-title">
                     <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-default btn-sm" style="width: 125px; display: inline-block;">@lang('admin.pages.common.buttons.back')</a>
-                    <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-primary btn-sm" id="button-preview" style="width: 125px; display: inline-block; margin: 0 15px;">@lang('admin.pages.common.buttons.preview')</a>
+                    <a href="{!! URL::action('Admin\ArticleController@images', $article->id) !!}" class="btn btn-block btn-success btn-sm" style="width: 125px; display: inline-block; margin: 0 15px;">Images</a>
+                    <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-primary btn-sm" id="button-preview" style="width: 125px; display: inline-block; margin: 0;">@lang('admin.pages.common.buttons.preview')</a>
                 </h3>
             </div>
             <div class="box-body">
                 <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group text-center">
-                            @if( !empty($article->present()->coverImage() ))
-                                <img id="cover-image-preview" style="max-width: 500px; width: 100%;"
-                                     src="{!! $article->present()->coverImage()->present()->url !!}" alt="" class="margin"/>
-                            @else
-                                <img id="cover-image-preview" style="max-width: 500px; width: 100%;"
-                                     src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt="" class="margin"/>
-                            @endif
-                            <input type="file" style="display: none;" id="cover-image" name="cover_image">
-                            <p class="help-block" style="font-weight: bolder;">
-                                @lang('admin.pages.articles.columns.cover_image_id')
-                                <label for="cover-image"
-                                       style="font-weight: 100; color: #549cca; margin-left: 10px; cursor: pointer;">@lang('admin.pages.common.buttons.edit')</label>
-                            </p>
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('title')) has-error @endif">
+                            <label for="title">@lang('admin.pages.articles.columns.title')</label>
+                            <input type="text" class="form-control" id="title" name="title" required value="{{ old('title') ? old('title') : $article->title }}">
                         </div>
                     </div>
-                    <div class="col-lg-7">
-                        <table class="edit-user-profile">
-                            <tr class="@if ($errors->has('title')) has-error @endif">
-                                <td>
-                                    <label for="title">@lang('admin.pages.articles.columns.title')</label>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="title" name="title" required value="{{ old('title') ? old('title') : $article->title }}">
-                                </td>
-                            </tr>
 
-                            <tr class="@if ($errors->has('slug')) has-error @endif">
-                                <td>
-                                    <label for="slug">@lang('admin.pages.articles.columns.slug')</label>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') ? old('slug') : $article->slug }}">
-                                </td>
-                            </tr>
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('slug')) has-error @endif">
+                            <label for="slug">@lang('admin.pages.articles.columns.slug')</label>
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') ? old('slug') : $article->slug }}">
+                        </div>
+                    </div>
+                </div>
 
-                            <tr class="@if ($errors->has('locale')) has-error @endif">
-                                <td>
-                                    <label for="locale">@lang('admin.pages.articles.columns.locale')</label>
-                                </td>
-                                <td>
-                                    <select class="form-control" name="locale" id="locale" style="margin-bottom: 15px;" required>
-                                        <option value="">@lang('admin.pages.common.label.select_locale')</option>
-                                        @foreach( config('locale.languages') as $code => $locale )
-                                            <option value="{!! $code !!}" @if( (old('locale') && old('locale') == $code) || ( $article->locale === $code) ) selected @endif >
-                                                {{ trans($locale['name']) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('category_id')) has-error @endif">
+                            <label for="category_id">@lang('admin.pages.articles.columns.category_id')</label>
 
-                            <tr class="@if ($errors->has('is_enabled')) has-error @endif">
-                                <td>
-                                    <label for="is_enabled">@lang('admin.pages.common.label.is_enabled')</label>
-                                </td>
-                                <td>
-                                    <div class="switch" style="margin-bottom: 10px;">
-                                        <input id="is_enabled" name="is_enabled" value="1" @if( $article->is_enabled) checked @endif class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                                        <label for="is_enabled"></label>
-                                    </div>
-                                </td>
-                            </tr>
+                            <select class="form-control" name="category_id" id="category_id" style="margin-bottom: 15px;" required>
+                                {{--                                <option value="">@lang('admin.pages.common.label.select_category')</option>--}}
+                                @foreach( $categories as $category )
+                                    <option value="{!! $category->id !!}" @if( (old('category_id') && old('category_id') == $category->id) || ( $article->category_id == $category->id) ) selected @endif >
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
-                            <tr class="@if ($errors->has('publish_started_at')) has-error @endif">
-                                <td>
-                                    <label for="publish_started_at">@lang('admin.pages.articles.columns.publish_started_at')</label>
-                                </td>
-                                <td>
-                                    <div class="input-group date datetime-field" style="margin-bottom: 10px;">
-                                        <input type="text" class="form-control" style="margin: 0;" name="publish_started_at" required value="{{ old('publish_started_at') ? old('publish_started_at') : $article->publish_started_at }}">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('series_id')) has-error @endif">
+                            <label for="series_id">@lang('admin.pages.articles.columns.series_id')</label>
 
-                            <tr class="@if ($errors->has('publish_ended_at')) has-error @endif">
-                                <td>
-                                    <label for="publish_ended_at">@lang('admin.pages.articles.columns.publish_ended_at')</label>
-                                </td>
-                                <td>
-                                    <div class="input-group date datetime-field" style="margin-bottom: 10px;">
-                                        <input type="text" class="form-control" style="margin: 0;" name="publish_ended_at" value="{{ old('publish_ended_at') ? old('publish_ended_at') : $article->publish_ended_at }}">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
+                            <select class="form-control" name="series_id" id="series_id" style="margin-bottom: 15px;" required>
+                                {{--                                <option value="">@lang('admin.pages.common.label.select_series')</option>--}}
+                                @foreach( $series as $seri )
+                                    <option value="{!! $seri->id !!}" @if( (old('series_id') && old('series_id') == $seri->id) || ( $article->series_id == $seri->id) ) selected @endif >
+                                        {{ $seri->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-                        </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('publish_started_at')) has-error @endif">
+                            <label for="publish_started_at">@lang('admin.pages.articles.columns.publish_started_at')</label>
+                            <div class="input-group" style="margin-bottom: 10px;" id="publish_started_at">
+                                <input type="text" class="form-control" style="margin: 0;" name="publish_started_at" required value="{{ old('publish_started_at') ? old('publish_started_at') : $article->publish_started_at }}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group @if ($errors->has('publish_ended_at')) has-error @endif">
+                            <label for="publish_ended_at">@lang('admin.pages.articles.columns.publish_ended_at')</label>
+                            <div class="input-group" style="margin-bottom: 10px;" id="publish_ended_at">
+                                <input type="text" class="form-control" style="margin: 0;" name="publish_ended_at" value="{{ old('publish_ended_at') ? old('publish_ended_at') : $article->publish_ended_at }}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group @if ($errors->has('voted')) has-error @endif">
+                            <label for="voted">@lang('admin.pages.articles.columns.voted')</label>
+                            <input type="number" min="0" class="form-control" id="voted" name="voted" value="{{ old('voted') ? old('voted') : $article->voted }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group @if ($errors->has('read')) has-error @endif">
+                            <label for="read">@lang('admin.pages.articles.columns.read')</label>
+                            <input type="number" min="0" class="form-control" id="read" name="read" value="{{ old('read') ? old('read') : $article->read }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group @if ($errors->has('is_enabled')) has-error @endif">
+                            <label for="is_enabled">@lang('admin.pages.common.label.is_enabled')</label>
+                            <div class="switch" style="margin-bottom: 10px;">
+                                <input id="is_enabled" name="is_enabled" value="1" @if( $article->is_enabled) checked @endif class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                                <label for="is_enabled"></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -197,7 +198,7 @@
                     <div class="col-md-12">
                         <div class="form-group @if ($errors->has('content')) has-error @endif">
                             <label for="content">@lang('admin.pages.articles.columns.content')</label>
-                            <textarea id="froala-editor" name="content" class="form-control" rows="10" placeholder="@lang('admin.pages.articles.columns.content')">{{ old('content') ? old('content') : $article->content }}</textarea>
+                            <textarea id="article-content-editor" name="content" class="form-control" rows="10" placeholder="@lang('admin.pages.articles.columns.content')">{{ old('content') ? old('content') : $article->content }}</textarea>
                         </div>
                     </div>
                 </div>

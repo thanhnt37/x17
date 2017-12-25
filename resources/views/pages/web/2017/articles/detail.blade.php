@@ -5,6 +5,7 @@
 @stop
 
 @section('styles')
+    <link rel="stylesheet" href="{!! \URLHelper::asset('plugins/highlight/styles/atelier-cave-dark.css', 'admin/libs') !!}">
 @stop
 
 @section('scripts')
@@ -49,6 +50,10 @@
     <script src="https://apis.google.com/js/platform.js" async defer>
         {lang: 'vi'}
     </script>
+
+    {{-- highlight code --}}
+    <script src="{!! \URLHelper::asset('plugins/highlight/highlight.pack.js', 'admin/libs') !!}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 @stop
 
 @section('content')
@@ -82,7 +87,12 @@
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </section>
 
-                    <img src="http://via.placeholder.com/730x350" alt="{{$article->slug}}" title="{{$article->slug}}" class="cover-image">
+                    @php $image = $article->present()->image(730, 350); @endphp
+                    @if(isset($image->url))
+                        <img src="{{$image->url}}" alt="{{$article->slug}}" title="{{$article->slug}}" class="cover-image">
+                    @else
+                        <img src="https://placehold.it/730x350?text=xcode.vn" alt="{{$article->slug}}" title="{{$article->slug}}" />
+                    @endif
 
                     <p class="descriptions">{!! $article->description !!}</p>
 
@@ -134,69 +144,43 @@
 
                     <div id="fb-comments" class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
 
-                    <section class="article-suggests">
-                        <h4>CÓ THỂ BẠN QUAN TÂM</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <article>
-                                    <header>
-                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                        <p>
-                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
-                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
-                                        </p>
-                                    </header>
-                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                    </a>
-                                </article>
+                    @if( count($relateArticles) )
+                        <section class="article-suggests">
+                            <h4>CÓ THỂ BẠN QUAN TÂM</h4>
+
+                            <div class="row">
+                                @foreach( $relateArticles as $relateArticle )
+                                    <div class="col-md-6">
+                                        <article>
+                                            <header>
+                                                <h5>
+                                                    <a href="{!! action('Web\ArticleController@detail', [$relateArticle->category->slug, $relateArticle->slug]) !!}">
+                                                        {{$relateArticle->title}}
+                                                    </a>
+                                                </h5>
+
+                                                @php
+                                                    $bigCategory = isset($article->category->parent->slug) && !empty($article->category->parent->slug) ? $article->category->parent : $article->category;
+                                                @endphp
+                                                <p>
+                                                    <a href="{!! action('Web\ArticleController@category', [$bigCategory->slug]) !!}">{{$bigCategory->name}}</a> /
+                                                    <a href="{!! action('Web\ArticleController@category', [$article->category->slug]) !!}">{{$article->category->name}}</a>
+                                                </p>
+                                            </header>
+                                            <a href="{!! action('Web\ArticleController@detail', [$relateArticle->category->slug, $relateArticle->slug]) !!}">
+                                                @php $image = $relateArticle->present()->image(560, 390); @endphp
+                                                @if(isset($image->url))
+                                                    <img src="{{$image->url}}" alt="{{$relateArticle->slug}}" title="{{$relateArticle->slug}}">
+                                                @else
+                                                    <img src="https://placehold.it/560x390?text=xcode.vn" alt="{{$relateArticle->slug}}" title="{{$relateArticle->slug}}"/>
+                                                @endif
+                                            </a>
+                                        </article>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="col-md-6">
-                                <article>
-                                    <header>
-                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                        <p>
-                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
-                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
-                                        </p>
-                                    </header>
-                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                    </a>
-                                </article>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <article>
-                                    <header>
-                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                        <p>
-                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
-                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
-                                        </p>
-                                    </header>
-                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                    </a>
-                                </article>
-                            </div>
-                            <div class="col-md-6">
-                                <article>
-                                    <header>
-                                        <h5><a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">Laravel 5.4 có gì mới</a></h5>
-                                        <p>
-                                            <a href="{!! action('Web\ArticleController@category', ['javascript']) !!}">Javascript</a> /
-                                            <a href="{!! action('Web\ArticleController@category', ['nodejs']) !!}">NodeJS</a>
-                                        </p>
-                                    </header>
-                                    <a href="{!! action('Web\ArticleController@detail', ['category', 'article-slug']) !!}">
-                                        <img src="http://via.placeholder.com/560x390" alt="xcode.vn" class="">
-                                    </a>
-                                </article>
-                            </div>
-                        </div>
-                    </section>
+                        </section>
+                    @endif
                 </article>
             </div>
             <div class="col-lg-4" style="padding: 0;">

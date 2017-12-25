@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'menu'     => [
+    'menu'       => [
         'dashboard'                => 'Dashboard',
         'admin_users'              => 'Admin Users',
         'users'                    => 'Users',
@@ -24,14 +24,14 @@ return [
         'articles'                 => 'Articles',
         'create_new'               => 'Create New',
     ],
-    'messages' => [
+    'messages'   => [
         'general' => [
             'update_success' => 'Successfully updated.',
             'create_success' => 'Successfully created.',
             'delete_success' => 'Successfully deleted.',
         ],
     ],
-    'errors'   => [
+    'errors'     => [
         'general'  => [
             'save_failed' => 'Failed To Save. Please contact with developers',
         ],
@@ -47,7 +47,7 @@ return [
             ],
         ],
     ],
-    'pages'    => [
+    'pages'      => [
         'common'                   => [
             'label'   => [
                 'page'             => 'Page',
@@ -60,6 +60,7 @@ return [
                 'select_district'  => 'Select a District',
                 'select_locale'    => 'Select a Locale',
                 'select_category'  => 'Select a Category',
+                'select_series'    => 'Select a Series',
             ],
             'buttons' => [
                 'create'          => 'Create New',
@@ -106,7 +107,10 @@ return [
                 'description'        => 'Description',
                 'content'            => 'Content',
                 'cover_image_id'     => 'Cover Image',
-                'locale'             => 'Locale',
+                'voted'              => 'Voted',
+                'read'               => 'Read',
+                'series_id'          => 'Series',
+                'category_id'        => 'Category',
                 'is_enabled'         => 'Active',
                 'publish_started_at' => 'Publish Started At',
                 'publish_ended_at'   => 'Publish Ended At',
@@ -212,7 +216,7 @@ return [
         ],
         /* NEW PAGE STRINGS */
     ],
-    'roles'    => [
+    'roles'      => [
         'super_user' => 'Super User',
         'admin'      => 'Administrator',
     ],

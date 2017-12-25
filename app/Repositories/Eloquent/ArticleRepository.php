@@ -155,6 +155,19 @@ class ArticleRepository extends SingleKeyModelRepository implements ArticleRepos
         return $query->count();
     }
 
+
+    /**
+     * @params  $id
+     *
+     * @return  \App\Models\Article
+     */
+    public function getRelateArticles($id)
+    {
+        $query = $this->isPublish($this->getBlankModel());
+        
+        return $query->where('id', '<', $id)->orderBy('id', 'desc')->offset(0)->limit(4)->get();
+    }
+
     private function isPublish($query)
     {
         $now = date('Y-m-d H:i:s');

@@ -29,4 +29,19 @@ class ArticlePresenter extends BasePresenter
         $category = $this->entity->category;
         return $category;
     }
+
+    public function image($width = 0, $height = 0)
+    {
+        if( ($width * $height) == 0 ) {
+            return $this->images;
+        }
+
+        $image = $this->images->where('width', $width)->where('height', $height)->first();
+        if( !empty($image) && $image->is_local ) {
+            $config = config('file.categories.' . $image->file_category_type);
+            $image->url = \URLHelper::asset($config['local_path'] . $image->url, $config['local_type']);
+        }
+
+        return $image;
+    }
 }

@@ -114,7 +114,12 @@
                                 @foreach( $articles as $article )
                                     <article>
                                         <a href="{!! action('Web\ArticleController@detail', [$article->category->slug, $article->slug]) !!}">
-                                            <img src="http://via.placeholder.com/560x390" alt="{{$article->slug}}" title="{{$article->slug}}">
+                                            @php $image = $article->present()->image(560, 390); @endphp
+                                            @if(isset($image->url))
+                                                <img src="{{$image->url}}" alt="{{$article->slug}}" title="{{$article->slug}}">
+                                            @else
+                                                <img src="https://placehold.it/560x390?text=xcode.vn" alt="{{$article->slug}}" title="{{$article->slug}}"/>
+                                            @endif
                                         </a>
                                         <section class="details">
                                             <h5 class="title">

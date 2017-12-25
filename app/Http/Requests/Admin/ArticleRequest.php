@@ -31,7 +31,23 @@ class ArticleRequest extends BaseRequest
      */
     public function rules()
     {
-        return $this->articleRepository->rules();
+        $id = ($this->method() == 'PUT') ? $this->route('article') : 0;
+
+        $rules = [
+            'slug'               => 'required|string|unique:articles,slug,' . $id,
+            'title'              => 'required|string',
+            'keywords'           => 'string',
+            'description'        => 'string',
+            'content'            => 'string|required',
+            'voted'              => 'required|integer|min:0',
+            'read'               => 'required|integer|min:0',
+            'category_id'        => 'required|integer|min:0',
+            'series_id'          => 'nullable|integer|min:0',
+            'publish_started_at' => 'date_format:Y-m-d H:i:s|required',
+            'publish_ended_at'   => 'date_format:Y-m-d H:i:s|nullable',
+        ];
+
+        return $rules;
     }
 
     public function messages()

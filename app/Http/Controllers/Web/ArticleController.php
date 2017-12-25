@@ -75,7 +75,8 @@ class ArticleController extends Controller
         return view(
             'pages.web.2017.articles.detail',
             [
-                'article' => $article
+                'article'        => $article,
+                'relateArticles' => $this->articleRepository->getRelateArticles($article->id)
             ]
         );
     }

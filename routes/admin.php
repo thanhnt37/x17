@@ -21,6 +21,8 @@
 
             \Route::resource('articles', 'Admin\ArticleController');
             \Route::post('articles/preview', 'Admin\ArticleController@preview');
+            \Route::get('articles/{id}/images', 'Admin\ArticleController@images');
+            \Route::put('articles/{id}/images', 'Admin\ArticleController@uploadCoverImages');
             \Route::get('articles/images', 'Admin\ArticleController@getImages');
             \Route::post('articles/images', 'Admin\ArticleController@postImage');
             \Route::delete('articles/images', 'Admin\ArticleController@deleteImage');

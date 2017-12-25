@@ -28,7 +28,12 @@
                                     <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                 </header>
                                 <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">
-                                    <img src="http://via.placeholder.com/560x390" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
+                                    @php $image = $bigArticle->present()->image(560, 390); @endphp
+                                    @if(isset($image->url))
+                                        <img src="{{$image->url}}" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
+                                    @else
+                                        <img src="https://placehold.it/560x390?text=xcode.vn" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}"/>
+                                    @endif
                                 </a>
                             </article>
                         </div>
@@ -44,7 +49,12 @@
                                                 <time datetime="{{$publishDate}}">{{$publishDate}}</time>
                                             </header>
                                             <a href="{!! action('Web\ArticleController@detail', [$smallArticle->category->slug, $smallArticle->slug]) !!}">
-                                                <img src="http://via.placeholder.com/560x390" alt="{{$smallArticle->slug}}" title="{{$smallArticle->slug}}">
+                                                @php $image = $smallArticle->present()->image(560, 390); @endphp
+                                                @if(isset($image->url))
+                                                    <img src="{{$image->url}}" alt="{{$smallArticle->slug}}" title="{{$smallArticle->slug}}">
+                                                @else
+                                                    <img src="https://placehold.it/560x390?text=xcode.vn" alt="{{$smallArticle->slug}}" title="{{$smallArticle->slug}}"/>
+                                                @endif
                                             </a>
                                         </article>
                                     </div>
@@ -65,7 +75,12 @@
                                         <div class="col-sm-12">
                                             <article class="newest-article @if( (($index%4) == 0) || (($index%4) == 3) ) newest-article--long @else newest-article--short @endif">
                                                 <a href="{!! action('Web\ArticleController@detail', [$viewedArticle->category->slug, $viewedArticle->slug]) !!}">
-                                                    <img src="http://via.placeholder.com/420x340" alt="{{$viewedArticle->slug}}" title="{{$viewedArticle->slug}}">
+                                                    @php $image = $viewedArticle->present()->image(420, 340); @endphp
+                                                    @if(isset($image->url))
+                                                        <img src="{{$image->url}}" alt="{{$viewedArticle->slug}}" title="{{$viewedArticle->slug}}">
+                                                    @else
+                                                        <img src="https://placehold.it/420x340?text=xcode.vn" alt="{{$viewedArticle->slug}}" title="{{$viewedArticle->slug}}"/>
+                                                    @endif
                                                 </a>
                                                 <header>
                                                     <h6><a href="{!! action('Web\ArticleController@detail', [$viewedArticle->category->slug, $viewedArticle->slug]) !!}">{{$viewedArticle->title}}</a></h6>
@@ -132,7 +147,12 @@
                 @foreach( $normalArticles as $normalArticle )
                     <article class="normal-article">
                         <a href="{!! action('Web\ArticleController@detail', [$normalArticle->category->slug, $normalArticle->slug]) !!}">
-                            <img src="http://via.placeholder.com/970x250" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                            @php $image = $normalArticle->present()->image(970, 250); @endphp
+                            @if(isset($image->url))
+                                <img src="{{$image->url}}" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}">
+                            @else
+                                <img src="https://placehold.it/970x250?text=xcode.vn" alt="{{$normalArticle->slug}}" title="{{$normalArticle->slug}}"/>
+                            @endif
                         </a>
                         <section class="normal-article__descriptions">
                             <header>
