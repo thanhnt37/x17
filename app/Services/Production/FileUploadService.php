@@ -102,12 +102,11 @@ class FileUploadService extends BaseService implements FileUploadServiceInterfac
         }
 
         if( env('LOCAL_STORAGE') ) {
-            $filePath  = 'static/' . $conf['local_type'] . '/' . $conf['local_path'] . $model['url'];
-            if( !file_exists($filePath) ) {
-                return false;
+            $filePath  = 'static/' . $conf['local_type'] . '/' . $conf['local_path'] . $model->getOriginal('url');
+            
+            if( file_exists($filePath) ) {
+                unlink($filePath);
             }
-
-            unlink($filePath);
         } else {
             $bucket = $model->s3_bucket;
             $region = $model->s3_region;
