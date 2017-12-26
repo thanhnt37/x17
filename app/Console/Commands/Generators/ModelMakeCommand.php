@@ -336,14 +336,16 @@ class ModelMakeCommand extends GeneratorCommandBase
                     'public function ' . $relationName . '()' . PHP_EOL . '    ' .
                     '{' . PHP_EOL . '        ' .
                         'if( \CacheHelper::cacheRedisEnabled() ) {' . PHP_EOL . '            ' .
-                            '$cached = Redis::hget(\CacheHelper::generateCacheKey(\'hash_images\'), $this->entity->' . $columnName . ');' . PHP_EOL . '            ' .
-                                'if( $cached ) {' . PHP_EOL . '                ' .
+                            '$cacheKey = \CacheHelper::keyForModel(\'ImageModel\');' . PHP_EOL . '            ' .
+                            '$cached = Redis::hget($cacheKey, $this->entity->' . $columnName . ');' . PHP_EOL . PHP_EOL . '            ' .
+
+                            'if( $cached ) {' . PHP_EOL . '                ' .
                                 '$image = new Image(json_decode($cached, true));' . PHP_EOL . '                ' .
                                 '$image[\'id\'] = json_decode($cached, true)[\'id\'];' . PHP_EOL . '                ' .
                                 'return $image;' . PHP_EOL . '            ' .
                             '} else {' . PHP_EOL . '                ' .
                                 '$image = $this->entity->' . $relationName . ';' . PHP_EOL . '                ' .
-                                'Redis::hsetnx(\CacheHelper::generateCacheKey(\'hash_images\'), $this->entity->' . $columnName . ', $image);' . PHP_EOL . '                ' .
+                                'Redis::hsetnx($cacheKey, $this->entity->' . $columnName . ', $image);' . PHP_EOL . '                ' .
                                 'return $image;' . PHP_EOL . '            ' .
                             '}' . PHP_EOL . '        ' .
                         '}' . PHP_EOL . PHP_EOL . '        ' .
@@ -367,20 +369,22 @@ class ModelMakeCommand extends GeneratorCommandBase
                     'public function ' . $relationName . '()' . PHP_EOL . '    ' .
                     '{' . PHP_EOL . '        ' .
                         'if( \CacheHelper::cacheRedisEnabled() ) {' . PHP_EOL . '            ' .
-                            '$cached = Redis::hget(\CacheHelper::generateCacheKey(\'hash_' . $this->getTableName($className) . '\'), $this->entity->' . $columnName . ');' . PHP_EOL . '            ' .
-                                'if( $cached ) {' . PHP_EOL . '                ' .
+                            '$cacheKey = \CacheHelper::keyForModel(\'' . $className . 'Model\');' . PHP_EOL . '            ' .
+                            '$cached = Redis::hget($cacheKey, $this->entity->' . $columnName . ');' . PHP_EOL . PHP_EOL . '            ' .
+
+                            'if( $cached ) {' . PHP_EOL . '                ' .
                                 '$' . $relationName . ' = new ' . $className . '(json_decode($cached, true));' . PHP_EOL . '                ' .
                                 '$' . $relationName . '[\'id\'] = json_decode($cached, true)[\'id\'];' . PHP_EOL . '                ' .
                                 'return $' . $relationName . ';' . PHP_EOL . '            ' .
                             '} else {' . PHP_EOL . '                ' .
                                 '$' . $relationName . ' = $this->entity->' . $relationName . ';' . PHP_EOL . '                ' .
-                                'Redis::hsetnx(\CacheHelper::generateCacheKey(\'hash_' . $this->getTableName($className) . '\'), $this->entity->' . $columnName . ', $' . $relationName . ');' . PHP_EOL . '                ' .
+                                'Redis::hsetnx($cacheKey, $this->entity->' . $columnName . ', $' . $relationName . ');' . PHP_EOL . '                ' .
                                 'return $' . $relationName . ';' . PHP_EOL . '            ' .
                             '}' . PHP_EOL . '        ' .
                         '}' . PHP_EOL . PHP_EOL . '        ' .
 
-                        '$image = $this->entity->' . $relationName . ';' . PHP_EOL . '        ' .
-                        'return $image;' . PHP_EOL . '    ' .
+                        '$' . $relationName . ' = $this->entity->' . $relationName . ';' . PHP_EOL . '        ' .
+                        'return $' . $relationName . ';' . PHP_EOL . '    ' .
 
                     '}' . PHP_EOL . PHP_EOL . '    ';
 

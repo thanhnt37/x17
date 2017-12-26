@@ -278,7 +278,7 @@ class AdminCRUDMakeCommand extends GeneratorCommandBase
 
     protected function getSideBarViewPath()
     {
-        return $this->laravel['path'].'/../resources/views/layouts/admin/' . config('view.admin') . '/left_navigation.blade.php';
+        return $this->laravel['path'].'/../resources/views/pages/admin/' . config('view.admin') . '/layout/left_navigation.blade.php';
     }
 
     /**

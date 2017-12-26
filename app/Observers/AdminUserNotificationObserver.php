@@ -4,26 +4,20 @@ use Illuminate\Support\Facades\Redis;
 
 class AdminUserNotificationObserver extends BaseObserver
 {
-    protected $cachePrefix = 'admin_user_notifications';
+    protected $cachePrefix = 'AdminUserNotificationModel';
 
     public function created($model)
     {
-        if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hsetnx(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $model->id, $model);
-        }
+
     }
 
     public function updated($model)
     {
-        if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hset(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $model->id, $model);
-        }
+
     }
 
     public function deleted($model)
     {
-        if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hdel(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $model->id);
-        }
+        
     }
 }

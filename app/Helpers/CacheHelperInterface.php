@@ -5,15 +5,6 @@ namespace App\Helpers;
 interface CacheHelperInterface
 {
     /**
-     * Generate Cache key
-     *
-     * @params  string  $name
-     *
-     * @return  string
-     */
-    public function generateCacheKey($name);
-
-    /**
      * Check is enabled cache & redis
      *
      * @params
@@ -21,4 +12,21 @@ interface CacheHelperInterface
      * @return  boolean
      */
     public function cacheRedisEnabled();
+
+    /**
+     * generate redis key for model
+     *
+     * @params  string  $model  ex: UserModel
+     *
+     * */
+    public function keyForModel($model);
+
+    /**
+     * generate redis key for method
+     *
+     * @params  string  $class  ex: UserRepository
+     *          string  $method ex: getAllFriendInProvince
+     *          array   [5, 200]
+     * */
+    public function keyForMethod($class, $method, $params = []);
 }

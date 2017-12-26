@@ -4,26 +4,29 @@ use Illuminate\Support\Facades\Redis;
 
 class SiteConfigurationObserver extends BaseObserver
 {
-    protected $cachePrefix = 'site_configurations';
+    protected $cachePrefix = 'SiteConfigurationModel';
 
-    public function created($user)
+    public function created($model)
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hsetnx(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $user->id, $user);
+            $cacheKey = \CacheHelper::keyForModel($this->cachePrefix);
+            Redis::hsetnx($cacheKey, $model->id, $model);
         }
     }
 
-    public function updated($user)
+    public function updated($model)
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hset(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $user->id, $user);
+            $cacheKey = \CacheHelper::keyForModel($this->cachePrefix);
+            Redis::hset($cacheKey, $model->id, $model);
         }
     }
 
-    public function deleted($user)
+    public function deleted($model)
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            Redis::hdel(\CacheHelper::generateCacheKey('hash_' . $this->cachePrefix), $user->id);
+            $cacheKey = \CacheHelper::keyForModel($this->cachePrefix);
+            Redis::hdel($cacheKey, $model->id);
         }
     }
 }
