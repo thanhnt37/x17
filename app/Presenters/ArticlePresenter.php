@@ -14,14 +14,16 @@ class ArticlePresenter extends BasePresenter
     public function category()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_categories'), $this->entity->category_id);
+            $cacheKey = \CacheHelper::keyForModel('CategoryModel');
+            $cached = Redis::hget($cacheKey, $this->entity->cover_image_id);
+
             if( $cached ) {
                 $category = new Category(json_decode($cached, true));
                 $category['id'] = json_decode($cached, true)['id'];
                 return $category;
             } else {
                 $category = $this->entity->category_id;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_categories'), $this->entity->category_id, $category);
+                Redis::hsetnx($cacheKey, $this->entity->category_id, $category);
                 return $category;
             }
         }
@@ -35,13 +37,11 @@ class ArticlePresenter extends BasePresenter
         if( ($width * $height) == 0 ) {
             return $this->images;
         }
-
         $image = $this->images->where('width', $width)->where('height', $height)->first();
         if( !empty($image) && $image->is_local ) {
             $config = config('file.categories.' . $image->file_category_type);
             $image->url = \URLHelper::asset($config['local_path'] . $image->url, $config['local_type']);
         }
-
         return $image;
     }
 }
