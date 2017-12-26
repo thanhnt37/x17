@@ -13,14 +13,16 @@ class SiteConfigurationPresenter extends BasePresenter
     public function ogpImage()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->ogp_image_id);
+            $cacheKey = \CacheHelper::keyForModel('ImageModel');
+            $cached = Redis::hget($cacheKey, $this->entity->ogp_image_id);
+
             if( $cached ) {
                 $image = new Image(json_decode($cached, true));
                 $image['id'] = json_decode($cached, true)['id'];
                 return $image;
             } else {
                 $image = $this->entity->ogpImage;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->ogp_image_id, $image);
+                Redis::hsetnx($cacheKey, $this->entity->ogp_image_id, $image);
                 return $image;
             }
         }
@@ -35,18 +37,20 @@ class SiteConfigurationPresenter extends BasePresenter
     public function twitterCardImage()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->twitter_card_image_id);
+            $cacheKey = \CacheHelper::keyForModel('ImageModel');
+            $cached = Redis::hget($cacheKey, $this->entity->twitter_card_image_id);
+
             if( $cached ) {
                 $image = new Image(json_decode($cached, true));
                 $image['id'] = json_decode($cached, true)['id'];
                 return $image;
             } else {
                 $image = $this->entity->twitterCardImage;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->twitter_card_image_id, $image);
+                Redis::hsetnx($cacheKey, $this->entity->twitter_card_image_id, $image);
                 return $image;
             }
         }
-        
+
         $image = $this->entity->twitterCardImage;
         return $image;
     }
