@@ -18,14 +18,16 @@ class SeriesPresenter extends BasePresenter
     public function category()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_categories'), $this->entity->category_id);
+            $cacheKey = \CacheHelper::keyForModel('CategoryModel');
+            $cached = Redis::hget($cacheKey, $this->entity->category_id);
+
             if( $cached ) {
                 $category = new Category(json_decode($cached, true));
                 $category['id'] = json_decode($cached, true)['id'];
                 return $category;
             } else {
                 $category = $this->entity->category_id;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_categories'), $this->entity->category_id, $category);
+                Redis::hsetnx($cacheKey, $this->entity->category_id, $category);
                 return $category;
             }
         }
@@ -40,14 +42,16 @@ class SeriesPresenter extends BasePresenter
     public function coverImage()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->cover_image_id);
+            $cacheKey = \CacheHelper::keyForModel('ImageModel');
+            $cached = Redis::hget($cacheKey, $this->entity->cover_image_id);
+
             if( $cached ) {
                 $image = new Image(json_decode($cached, true));
                 $image['id'] = json_decode($cached, true)['id'];
                 return $image;
             } else {
                 $image = $this->entity->coverImage;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->cover_image_id, $image);
+                Redis::hsetnx($cacheKey, $this->entity->cover_image_id, $image);
                 return $image;
             }
         }
@@ -55,6 +59,4 @@ class SeriesPresenter extends BasePresenter
         $image = $this->entity->coverImage;
         return $image;
     }
-
-    
 }

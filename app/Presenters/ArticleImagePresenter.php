@@ -18,14 +18,16 @@ class ArticleImagePresenter extends BasePresenter
     public function article()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_articles'), $this->entity->article_id);
+            $cacheKey = \CacheHelper::keyForModel('ArticleModel');
+            $cached = Redis::hget($cacheKey, $this->entity->article_id);
+
             if( $cached ) {
                 $article = new Article(json_decode($cached, true));
                 $article['id'] = json_decode($cached, true)['id'];
                 return $article;
             } else {
                 $article = $this->entity->article;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_articles'), $this->entity->article_id, $article);
+                Redis::hsetnx($cacheKey, $this->entity->article_id, $article);
                 return $article;
             }
         }
@@ -40,14 +42,16 @@ class ArticleImagePresenter extends BasePresenter
     public function image()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_images'), $this->entity->image_id);
+            $cacheKey = \CacheHelper::keyForModel('ImageModel');
+            $cached = Redis::hget($cacheKey, $this->entity->image_id);
+
             if( $cached ) {
                 $image = new Image(json_decode($cached, true));
                 $image['id'] = json_decode($cached, true)['id'];
                 return $image;
             } else {
                 $image = $this->entity->image;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_images'), $this->entity->image_id, $image);
+                Redis::hsetnx($cacheKey, $this->entity->image_id, $image);
                 return $image;
             }
         }

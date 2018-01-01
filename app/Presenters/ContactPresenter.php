@@ -17,14 +17,16 @@ class ContactPresenter extends BasePresenter
     public function user()
     {
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_users'), $this->entity->user_id);
+            $cacheKey = \CacheHelper::keyForModel('UserModel');
+            $cached = Redis::hget($cacheKey, $this->entity->user_id);
+
             if( $cached ) {
                 $user = new User(json_decode($cached, true));
                 $user['id'] = json_decode($cached, true)['id'];
                 return $user;
             } else {
                 $user = $this->entity->user;
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_users'), $this->entity->user_id, $user);
+                Redis::hsetnx($cacheKey, $this->entity->user_id, $user);
                 return $user;
             }
         }
