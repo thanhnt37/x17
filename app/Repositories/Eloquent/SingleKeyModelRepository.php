@@ -19,9 +19,13 @@ class SingleKeyModelRepository extends BaseRepository implements SingleKeyModelR
     public function find($id)
     {
         $modelClass = $this->getModelClassName();
+
         if( \CacheHelper::cacheRedisEnabled() ) {
-            $cacheKey   = $modelClass::getTableName();
-            $cached = Redis::hget(\CacheHelper::generateCacheKey('hash_' . $cacheKey), $id);
+            $tmp = explode('\\', $modelClass);
+            $modelName = end($tmp);
+            $cacheKey = \CacheHelper::keyForModel($modelName . 'Model');
+            $cached = Redis::hget($cacheKey, $id);
+
             if( $cached ) {
                 $object = new $modelClass(json_decode($cached, true));
                 $object['attributes'] = json_decode($cached, true);
@@ -31,7 +35,10 @@ class SingleKeyModelRepository extends BaseRepository implements SingleKeyModelR
                 return $object;
             } else {
                 $object = $modelClass::find($id);
-                Redis::hsetnx(\CacheHelper::generateCacheKey('hash_' . $cacheKey), $id, $object);
+                if( !empty($object) ) {
+                    Redis::hsetnx($cacheKey, $id, $object);
+                }
+
                 return $object;
             }
         }
