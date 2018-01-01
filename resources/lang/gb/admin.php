@@ -214,6 +214,17 @@ return [
                 'query'     => 'Query',
             ],
         ],
+        'categories'               => [
+            'columns' => [
+                'name'           => 'Name',
+                'slug'           => 'Slug',
+                'wildcard'       => 'Wildcard',
+                'color'          => 'Color',
+                'order'          => 'Order',
+                'parent_id'      => 'Parent Category',
+                'cover_image_id' => 'Cover Image',
+            ],
+        ],
         /* NEW PAGE STRINGS */
     ],
     'roles'      => [

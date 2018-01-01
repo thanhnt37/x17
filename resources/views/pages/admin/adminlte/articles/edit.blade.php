@@ -130,7 +130,7 @@
                             <label for="series_id">@lang('admin.pages.articles.columns.series_id')</label>
 
                             <select class="form-control" name="series_id" id="series_id" style="margin-bottom: 15px;" required>
-                                {{--                                <option value="">@lang('admin.pages.common.label.select_series')</option>--}}
+                                <option value="">@lang('admin.pages.common.label.select_series')</option>
                                 @foreach( $series as $seri )
                                     <option value="{!! $seri->id !!}" @if( (old('series_id') && old('series_id') == $seri->id) || ( $article->series_id == $seri->id) ) selected @endif >
                                         {{ $seri->title }}
