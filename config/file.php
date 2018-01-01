@@ -148,5 +148,19 @@ return [
             'local_type'  => 'common',
             'local_path'  => 'img/ogp/'
         ],
+        'category_cover_image' => [
+            'name'        => 'category_cover_image',
+            'type'        => 'image',
+            'region'      => env('AWS_IMAGE_REGION'),
+            'buckets'     => [
+                env('AWS_IMAGE_BUCKET'),
+            ],
+            'size'        => [730, 95],
+            'thumbnails'  => [],
+            'seed_prefix' => 'category_cover_image',
+            'format'      => 'png',
+            'local_type'  => 'common',
+            'local_path'  => 'img/categories/'
+        ],
     ],
 ];

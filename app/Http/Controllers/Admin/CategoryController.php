@@ -6,19 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\Requests\PaginationRequest;
+use App\Services\FileUploadServiceInterface;
 
 class CategoryController extends Controller
 {
-
     /** @var \App\Repositories\CategoryRepositoryInterface */
     protected $categoryRepository;
 
+    /** @var \App\Services\FileUploadServiceInterface */
+    protected $fileUploadService;
 
     public function __construct(
-        CategoryRepositoryInterface $categoryRepository
+        CategoryRepositoryInterface $categoryRepository,
+        FileUploadServiceInterface  $fileUploadService
     )
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryRepository   = $categoryRepository;
+        $this->fileUploadService    = $fileUploadService;
     }
 
     /**
@@ -82,6 +86,24 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
         }
 
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+
+            $image = $this->fileUploadService->upload(
+                'category_cover_image',
+                $file,
+                [
+                    'entity_type' => 'category_cover_image',
+                    'entity_id'   => $category->id,
+                    'title'       => $category->name,
+                ]
+            );
+
+            if (!empty($image)) {
+                $this->categoryRepository->update($category, ['cover_image_id' => $image->id]);
+            }
+        }
+
         return redirect()->action('Admin\CategoryController@index')
             ->with('message-success', trans('admin.messages.general.create_success'));
     }
@@ -138,6 +160,29 @@ class CategoryController extends Controller
         $input['parent_id']   = $request->get('parent_id', 0);
 
         $this->categoryRepository->update($category, $input);
+
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+
+            $newImage = $this->fileUploadService->upload(
+                'category_cover_image',
+                $file,
+                [
+                    'entity_type' => 'category_cover_image',
+                    'entity_id'   => $category->id,
+                    'title'       => $category->name,
+                ]
+            );
+
+            if (!empty($newImage)) {
+                $oldImage = $category->coverImage;
+                if (!empty($oldImage)) {
+                    $this->fileUploadService->delete($oldImage);
+                }
+
+                $this->categoryRepository->update($category, [ 'cover_image_id' => $newImage->id ]);
+            }
+        }
 
         return redirect()->action('Admin\CategoryController@show', [$id])
                     ->with('message-success', trans('admin.messages.general.update_success'));

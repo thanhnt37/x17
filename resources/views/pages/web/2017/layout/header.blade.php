@@ -43,7 +43,7 @@
                                         @endforeach
                                     </ul>
                                 </header>
-                                <img src="{{$category->coverImage->url}}" alt="{{$category->slug}}" title="{{$category->slug}}">
+                                <img src="{{$category->coverImage->present()->url}}" alt="{{$category->slug}}" title="{{$category->slug}}">
                             </section>
                         @endif
                     </li>

@@ -74,18 +74,16 @@
                         <figure>
                             @php $image = $category->coverImage; @endphp
                             @if(isset($image->url))
-                                <img id="img-730x95-preview" src="{{$image->url}}" alt="">
+                                <img id="cover-image-preview" src="{{$image->present()->url}}" alt="">
                             @else
-                                <img id="img-730x95-preview" src="https://placehold.it/730x95?text=No%20Image" alt=""
-                                     class="margin"/>
+                                <img id="cover-image-preview" src="https://placehold.it/730x95?text=No%20Image" alt="" class="margin"/>
                             @endif
                             <figcaption>
                                 Upload image with size 730x95 for the best display quality
-                                <label for="img-730x95"
-                                       style="font-weight: 100; color: #549cca; margin-left: 10px; cursor: pointer;">@lang('admin.pages.common.buttons.edit')</label>
+                                <label for="cover-image" style="font-weight: 100; color: #549cca; margin-left: 10px; cursor: pointer;">@lang('admin.pages.common.buttons.edit')</label>
                             </figcaption>
 
-                            <input type="file" style="display: none;" id="img-730x95" name="730x95">
+                            <input type="file" style="display: none;" id="cover-image" name="cover_image">
                         </figure>
                     </div>
                 </div>
