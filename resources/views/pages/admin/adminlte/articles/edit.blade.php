@@ -5,6 +5,13 @@
 
 @section('styles')
     <link rel="stylesheet" href="{!! \URLHelper::asset('libs/datetimepicker/css/bootstrap-datetimepicker.min.css', 'admin') !!}">
+
+    <style>
+        .article-tabs li {
+            width: 125px;
+            text-align: center;
+        }
+    </style>
 @stop
 
 @section('scripts')
@@ -71,11 +78,21 @@
             <div class="box-header with-border">
                 <h3 class="box-title">
                     <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-default btn-sm" style="width: 125px; display: inline-block;">@lang('admin.pages.common.buttons.back')</a>
-                    <a href="{!! URL::action('Admin\ArticleController@images', $article->id) !!}" class="btn btn-block btn-success btn-sm" style="width: 125px; display: inline-block; margin: 0 15px;">Images</a>
                     <a href="{!! URL::action('Admin\ArticleController@index') !!}" class="btn btn-block btn-primary btn-sm" id="button-preview" style="width: 125px; display: inline-block; margin: 0;">@lang('admin.pages.common.buttons.preview')</a>
                 </h3>
             </div>
             <div class="box-body">
+                <div class="bs-example" style="padding: 10px;" data-example-id="simple-nav-tabs">
+                    <ul class="nav nav-tabs article-tabs">
+                        <li role="presentation" class="active">
+                            <a href="#">General</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{!! action('Admin\ArticleController@images', $article->id) !!}">Images</a>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group @if ($errors->has('title')) has-error @endif">

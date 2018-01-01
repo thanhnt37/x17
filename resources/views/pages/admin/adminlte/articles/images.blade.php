@@ -5,6 +5,11 @@
 
 @section('styles')
     <style>
+        .article-tabs li {
+            width: 125px;
+            text-align: center;
+        }
+
         .box-body figure {
             background: rgba(204, 204, 204, 0.2);
             padding-bottom: 10px;
@@ -79,6 +84,17 @@
             </div>
 
             <div class="box-body">
+                <div class="bs-example" style="padding: 10px;" data-example-id="simple-nav-tabs">
+                    <ul class="nav nav-tabs article-tabs">
+                        <li role="presentation">
+                            <a href="{!! URL::action('Admin\ArticleController@show', $article->id) !!}">General</a>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a href="#">Images</a>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <figure>
