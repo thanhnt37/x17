@@ -58,7 +58,7 @@ class SeriesControllerTest extends TestCase
         $name = $faker->name;
         $id = $series->id;
 
-        $series->name = $name;
+        $series->title = $name;
 
         $this->action('PUT', 'Admin\SeriesController@update', [$id], [
                 '_token' => csrf_token(),
@@ -66,7 +66,7 @@ class SeriesControllerTest extends TestCase
         $this->assertResponseStatus(302);
 
         $newSeries = \App\Models\Series::find($id);
-        $this->assertEquals($name, $newSeries->name);
+        $this->assertEquals($name, $newSeries->title);
     }
 
     public function testDeleteModel()
