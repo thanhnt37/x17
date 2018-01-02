@@ -42,6 +42,7 @@
                 <li @if( $menu=='articles') class="active" @endif ><a href="{!! \URL::action('Admin\ArticleController@index') !!}"><i class="fa fa-file-word-o"></i> <span>@lang('admin.menu.articles')</span></a></li>
             @endif
             <li @if( $menu=='categories') class="active" @endif ><a href="{!! \URL::action('Admin\CategoryController@index') !!}"><i class="fa fa-users"></i> <span>Categories</span></a></li>
+            <li @if( $menu=='series') class="active" @endif ><a href="{!! \URL::action('Admin\SeriesController@index') !!}"><i class="fa fa-users"></i> <span>Series</span></a></li>
             <!-- %%SIDEMENU%% -->
         </ul>
     </section>

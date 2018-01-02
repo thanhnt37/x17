@@ -50,6 +50,7 @@
         \Route::post('signout', 'Admin\AuthController@postSignOut');
 
         \Route::resource('categories', 'Admin\CategoryController');
+        \Route::resource('series', 'Admin\SeriesController');
         /* NEW ADMIN RESOURCE ROUTE */
 
     });

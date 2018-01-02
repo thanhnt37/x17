@@ -162,5 +162,19 @@ return [
             'local_type'  => 'common',
             'local_path'  => 'img/categories/'
         ],
+        'series_cover_image' => [
+            'name'        => 'series_cover_image',
+            'type'        => 'image',
+            'region'      => env('AWS_IMAGE_REGION'),
+            'buckets'     => [
+                env('AWS_IMAGE_BUCKET'),
+            ],
+            'size'        => [1300, 480],
+            'thumbnails'  => [],
+            'seed_prefix' => 'series_cover_image',
+            'format'      => 'png',
+            'local_type'  => 'common',
+            'local_path'  => 'img/series/'
+        ],
     ],
 ];

@@ -81,8 +81,8 @@ class ArticleSeeder extends Seeder
                 $image = factory(Image::class)->create(
                     [
                         'url'    => 'http://placehold.it/650x240',
-                        'width'  => 650,
-                        'height' => 240
+                        'width'  => 1300,
+                        'height' => 480
                     ]
                 );
                 $series = factory(Series::class)->create(

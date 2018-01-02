@@ -102,6 +102,16 @@ class Series extends Base
 
 
     // Utility Functions
+    public function isPublished()
+    {
+        $now = date("Y-m-d H:i:s");
+        if ( $this->is_enabled && ($this->publish_started_at <= $now) && ($this->publish_ended_at == null || $now <= $this->publish_ended_at) )
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     /*
      * API Presentation
