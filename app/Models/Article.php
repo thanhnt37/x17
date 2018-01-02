@@ -128,10 +128,10 @@ class Article extends Base
 
 
     // Utility Functions
-    public function isEnabled()
+    public function isPublished()
     {
         $now = date("Y-m-d H:i:s");
-        if ($this->publish_started_at <= $now && ($this->publish_ended_at == null || $now <= $this->publish_ended_at) && $this->is_enabled)
+        if ( $this->is_enabled && ($this->publish_started_at <= $now) && ($this->publish_ended_at == null || $now <= $this->publish_ended_at) )
         {
             return true;
         }

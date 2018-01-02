@@ -49,28 +49,37 @@
                 <tr>
                     <th style="width: 10px">{!! \PaginationHelper::sort('id', 'ID') !!}</th>
                     <th>{!! \PaginationHelper::sort('title', trans('admin.pages.articles.columns.title')) !!}</th>
-                    <th>{!! \PaginationHelper::sort('slug', trans('admin.pages.articles.columns.slug')) !!}</th>
-                    <th>{!! \PaginationHelper::sort('publish_started_at', trans('admin.pages.articles.columns.publish_started_at')) !!}</th>
-                    <th>{!! \PaginationHelper::sort('publish_ended_at', trans('admin.pages.articles.columns.publish_ended_at')) !!}</th>
+                    <th>{!! \PaginationHelper::sort('slug', trans('admin.pages.articles.columns.category_id')) !!}</th>
+                    <th>{!! \PaginationHelper::sort('slug', trans('admin.pages.articles.columns.read')) !!}</th>
+                    <th>{!! \PaginationHelper::sort('slug', trans('admin.pages.articles.columns.voted')) !!}</th>
 
-                    <th style="width: 40px">{!! \PaginationHelper::sort('is_enabled', trans('admin.pages.common.label.is_enabled')) !!}</th>
+                    <th style="width: 40px">{!! \PaginationHelper::sort('is_enabled', trans('admin.pages.articles.columns.is_publish')) !!}</th>
                     <th style="width: 40px">@lang('admin.pages.common.label.actions')</th>
                 </tr>
                 @foreach( $models as $model )
                     <tr>
                         <td>{{ $model->id }}</td>
-                        <td>{{ $model->title }}</td>
-                        <td>{{ $model->slug }}</td>
-                        <td>{{ $model->publish_started_at }}</td>
-                        <td>{{ $model->publish_ended_at }}</td>
 
                         <td>
-                            @if( $model->is_enabled )
+                            <a href="{!! URL::action('Admin\ArticleController@show', $model->id) !!}" >{{ $model->title }}</a>
+                        </td>
+
+                        <td>
+                            <a href="{!! action('Admin\CategoryController@show', $model->category->id) !!}">{{ $model->category->name }}</a>
+                        </td>
+
+                        <td>{{ $model->read }}</td>
+
+                        <td>{{ $model->voted }}</td>
+
+                        <td>
+                            @if( $model->isPublished() )
                                 <span class="badge bg-green">@lang('admin.pages.common.label.is_enabled_true')</span>
                             @else
                                 <span class="badge bg-red">@lang('admin.pages.common.label.is_enabled_false')</span>
                             @endif
                         </td>
+
                         <td>
                             <a href="{!! URL::action('Admin\ArticleController@show', $model->id) !!}"
                                class="btn btn-block btn-primary btn-xs">@lang('admin.pages.common.buttons.edit')</a>
