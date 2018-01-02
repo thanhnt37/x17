@@ -32,6 +32,8 @@
 
             \Route::resource('logs', 'Admin\LogController');
 
+            \Route::resource('categories', 'Admin\CategoryController');
+            \Route::resource('series', 'Admin\SeriesController');
         });
 
         \Route::group(['middleware' => ['admin.has_role.admin']], function () {
@@ -48,9 +50,6 @@
         \Route::get('/me/notifications', 'Admin\MeController@notifications');
 
         \Route::post('signout', 'Admin\AuthController@postSignOut');
-
-        \Route::resource('categories', 'Admin\CategoryController');
-        \Route::resource('series', 'Admin\SeriesController');
         /* NEW ADMIN RESOURCE ROUTE */
 
     });
