@@ -31,10 +31,7 @@ class ArticleRequest extends BaseRequest
      */
     public function rules()
     {
-        $id = ($this->method() == 'PUT') ? $this->route('article') : 0;
-
         $rules = [
-            'slug'               => 'required|string|unique:articles,slug,' . $id,
             'title'              => 'required|string',
             'keywords'           => 'string',
             'description'        => 'string',
@@ -46,6 +43,11 @@ class ArticleRequest extends BaseRequest
             'publish_started_at' => 'date_format:Y-m-d H:i:s|required',
             'publish_ended_at'   => 'date_format:Y-m-d H:i:s|nullable',
         ];
+
+        if($this->method() == 'PUT') {
+            $id = $this->route('article');
+            $rules['slug'] = 'required|string|unique:articles,slug,' . $id;
+        }
 
         return $rules;
     }

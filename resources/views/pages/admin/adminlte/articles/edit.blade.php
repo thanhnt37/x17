@@ -104,7 +104,7 @@
                     <div class="col-md-6">
                         <div class="form-group @if ($errors->has('slug')) has-error @endif">
                             <label for="slug">@lang('admin.pages.articles.columns.slug')</label>
-                            <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') ? old('slug') : $article->slug }}">
+                            <input type="text" class="form-control" id="slug" name="slug" @if(!$isNew) required @endif value="{{ old('slug') ? old('slug') : $article->slug }}">
                         </div>
                     </div>
                 </div>
@@ -171,14 +171,14 @@
                     <div class="col-md-4">
                         <div class="form-group @if ($errors->has('voted')) has-error @endif">
                             <label for="voted">@lang('admin.pages.articles.columns.voted')</label>
-                            <input type="number" min="0" class="form-control" id="voted" name="voted" value="{{ old('voted') ? old('voted') : $article->voted }}">
+                            <input type="number" min="0" class="form-control" id="voted" name="voted" value="{{ old('voted') ? old('voted') : ($article->voted ? $article->voted : 0) }}">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group @if ($errors->has('read')) has-error @endif">
                             <label for="read">@lang('admin.pages.articles.columns.read')</label>
-                            <input type="number" min="0" class="form-control" id="read" name="read" value="{{ old('read') ? old('read') : $article->read }}">
+                            <input type="number" min="0" class="form-control" id="read" name="read" value="{{ old('read') ? old('read') : ($article->read ? $article->read : 0) }}">
                         </div>
                     </div>
 
