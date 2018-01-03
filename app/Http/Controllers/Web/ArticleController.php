@@ -7,6 +7,7 @@ use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ArticleRepositoryInterface;
 use App\Repositories\SeriesRepositoryInterface;
 use App\Repositories\SearchRepositoryInterface;
+use App\Services\ArticleServiceInterface;
 
 class ArticleController extends Controller
 {
@@ -22,16 +23,21 @@ class ArticleController extends Controller
     /* @var \App\Repositories\SearchRepositoryInterface */
     protected $searchRepository;
 
+    /* @var \App\Services\ArticleServiceInterface */
+    protected $articleService;
+
     public function __construct(
         CategoryRepositoryInterface     $categoryRepository,
         ArticleRepositoryInterface      $articleRepository,
         SeriesRepositoryInterface       $seriesRepository,
-        SearchRepositoryInterface       $searchRepository
+        SearchRepositoryInterface       $searchRepository,
+        ArticleServiceInterface         $articleService
     ) {
         $this->categoryRepository       = $categoryRepository;
         $this->articleRepository        = $articleRepository;
         $this->seriesRepository         = $seriesRepository;
         $this->searchRepository         = $searchRepository;
+        $this->articleService           = $articleService;
     }
 
     public function category($categorySlug)
@@ -71,6 +77,8 @@ class ArticleController extends Controller
         if( $article->category->slug != $category ) {
             return redirect()->action('Web\ArticleController@detail', [$article->category->slug, $article->slug]);
         }
+
+        $this->articleService->increaseReads($article->id);
 
         return view(
             'pages.web.2017.articles.detail',

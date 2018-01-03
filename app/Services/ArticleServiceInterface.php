@@ -38,4 +38,13 @@ interface ArticleServiceInterface extends BaseServiceInterface
      * @return bool
      */
     public function hasImageIdInSession($imageId);
+
+    /**
+     * Increase the number of reads
+     *
+     * @param   int $id
+     *
+     * @return  int
+     * */
+    public function increaseReads($id);
 }
