@@ -48,28 +48,30 @@
 
                         <div class="col-lg-4 order-3 hot-articles">
                             <div class="row">
-                                @php
-                                    $bigArticle = $featuredArticles[0];
-                                    unset($featuredArticles[0]);
-                                @endphp
-                                <div class="col-lg-12" >
-                                    <article class="big-article">
-                                        <header>
-                                            <h6><a href="{!! action('Web\ArticleController@category', [$bigArticle->category->slug]) !!}">{{$bigArticle->category->name}}</a></h6>
-                                            <h3>
-                                                <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">{{$bigArticle->title}}</a>
-                                            </h3>
-                                        </header>
-                                        <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">
-                                            @php $image = $bigArticle->present()->image(300, 500); @endphp
-                                            @if(isset($image->url))
-                                                <img src="{{$image->url}}"  alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
-                                            @else
-                                                <img src="https://placehold.it/300x500?text=xcode.vn" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}"/>
-                                            @endif
-                                        </a>
-                                    </article>
-                                </div>
+                                @if( count($featuredArticles) )
+                                    @php
+                                        $bigArticle = $featuredArticles[0];
+                                        unset($featuredArticles[0]);
+                                    @endphp
+                                    <div class="col-lg-12" >
+                                        <article class="big-article">
+                                            <header>
+                                                <h6><a href="{!! action('Web\ArticleController@category', [$bigArticle->category->slug]) !!}">{{$bigArticle->category->name}}</a></h6>
+                                                <h3>
+                                                    <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">{{$bigArticle->title}}</a>
+                                                </h3>
+                                            </header>
+                                            <a href="{!! action('Web\ArticleController@detail', [$bigArticle->category->slug, $bigArticle->slug]) !!}">
+                                                @php $image = $bigArticle->present()->image(300, 500); @endphp
+                                                @if(isset($image->url))
+                                                    <img src="{{$image->url}}"  alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}">
+                                                @else
+                                                    <img src="https://placehold.it/300x500?text=xcode.vn" alt="{{$bigArticle->slug}}" title="{{$bigArticle->slug}}"/>
+                                                @endif
+                                            </a>
+                                        </article>
+                                    </div>
+                                @endif
 
                                 @foreach( $featuredArticles as $featuredArticle )
                                     <div class="col-lg-12" >

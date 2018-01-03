@@ -10,7 +10,7 @@
     @yield('styles')
 </head>
 
-<body style="height: 3500px">
+<body>
 
     @include('pages.web.2017.layout.header')
 

@@ -26,5 +26,9 @@
             @endforeach
         </ul>
     </header>
-    <img src="{{$category->coverImage->url}}" alt="{{$category->slug}}" title="{{$category->slug}}">
+    @php
+        $image = $category->coverImage;
+        $url = ( !empty($image) && isset($image->present()->url) ) ? $image->present()->url : 'http://placehold.it/730x95?text=XCODE.VN' ;
+    @endphp
+    <img src="{{$url}}" alt="{{$category->slug}}" title="{{$category->slug}}">
 </section>
