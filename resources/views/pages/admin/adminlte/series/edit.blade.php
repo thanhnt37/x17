@@ -104,7 +104,7 @@
                     <div class="col-md-6">
                         <div class="form-group @if ($errors->has('slug')) has-error @endif">
                             <label for="slug">@lang('admin.pages.series.columns.slug')</label>
-                            <input type="text" class="form-control" id="slug" name="slug" required value="{{ old('slug') ? old('slug') : $series->slug }}">
+                            <input type="text" class="form-control" id="slug" name="slug" @if(!$isNew) required @endif value="{{ old('slug') ? old('slug') : $series->slug }}">
                         </div>
                     </div>
                 </div>
@@ -153,14 +153,14 @@
                     <div class="col-md-4">
                         <div class="form-group @if ($errors->has('read')) has-error @endif">
                             <label for="read">@lang('admin.pages.series.columns.read')</label>
-                            <input type="number" min="0" class="form-control" id="read" name="read" required value="{{ old('read') ? old('read') : $series->read }}">
+                            <input type="number" min="0" class="form-control" id="read" name="read" required value="{{ old('read') ? old('read') : ($series->read ? $series->read : 0) }}">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group @if ($errors->has('voted')) has-error @endif">
                             <label for="voted">@lang('admin.pages.series.columns.voted')</label>
-                            <input type="number" min="0" class="form-control" id="voted" name="voted" required value="{{ old('voted') ? old('voted') : $series->voted }}">
+                            <input type="number" min="0" class="form-control" id="voted" name="voted" required value="{{ old('voted') ? old('voted') : ($series->voted ? $series->voted : 0) }}">
                         </div>
                     </div>
 

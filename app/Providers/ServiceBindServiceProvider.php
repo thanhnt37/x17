@@ -114,6 +114,11 @@ class ServiceBindServiceProvider extends ServiceProvider
             \App\Services\Production\SearchService::class
         );
 
+        $this->app->singleton(
+            \App\Services\SeriesServiceInterface::class,
+            \App\Services\Production\SeriesService::class
+        );
+
         /* NEW BINDING */
     }
 }
